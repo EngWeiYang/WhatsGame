@@ -5,13 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Faris.unity
-    guid: 48d0f1fef2b18794a84d791ac20a20d9
+    path: Assets/Scenes/MainMenu.unity
+    guid: 5636c160123a21745b749fc47bc629e9
   - enabled: 1
-    path: Assets/Scenes/TestScene.unity
-    guid: bac0e2edaf3594848be814593d8f6893
+    path: Assets/Scenes/Level 1.unity
+    guid: 2e03c45c0662a7b4e878b29627d79993
   m_configObjects: {}
