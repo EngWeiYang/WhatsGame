@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class test : MonoBehaviour
+public class Test : MonoBehaviour
 {
-    public void CompleteLevel(int levelNumber)
+    public void OnClickComplete()
     {
-        PlayerPrefs.SetInt("Level" + levelNumber + "Completed", 1);
-        PlayerPrefs.Save();
+        int previousLevel = MainMenu.currLevel - 1;
+
+        if (previousLevel >= 0)
+        {
+            PlayerPrefs.SetInt("Level" + previousLevel.ToString(), 1);
+        }
         SceneManager.LoadScene("MainMenu");
     }
 }

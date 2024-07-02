@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 2e03c45c0662a7b4e878b29627d79993
+  - enabled: 1
+    path: Assets/Scenes/Yilong.unity
+    guid: 938d48f3d4dd44041b85f7b28abc3435
   m_configObjects: {}

@@ -6,14 +6,32 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public LevelObject[] levelObjects;
     public GameObject levelSelect;
+    public Sprite fillStar;
+
+    public static int currLevel;
+
+    public void Start()
+    {
+        //PlayerPrefs.DeleteAll();
+        //PlayerPrefs.Save();
+        for (int i = 0; i < levelObjects.Length; i++)
+        {
+            if (PlayerPrefs.GetInt("Level" + i.ToString(), 0) == 1)
+            {
+                levelObjects[i].star.sprite = fillStar;
+            }
+        }
+    }
     public void StartButton()
     {
         levelSelect.SetActive(true);
     }
 
-    public void LoadScene(string sceneName)
+    public void LoadScene(int level)
     {
-        SceneManager.LoadScene(sceneName);
+        currLevel = level;
+        SceneManager.LoadScene("Yilong");
     }
 }
