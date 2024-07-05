@@ -8,6 +8,7 @@ public class ReplyingMessage : MonoBehaviour
     public InputField messageInputField;
     public Button sendButton;
     public Text chatDisplay;
+    public GameObject textBox;
     public GameObject winScreen;
 
     void Start()
@@ -24,6 +25,8 @@ public class ReplyingMessage : MonoBehaviour
         {
             // Add the message to the chat display
             chatDisplay.text += message;
+
+            textBox.SetActive(true);
 
             // Clear the input field
             messageInputField.text = "";
