@@ -2,40 +2,95 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System.Security.Cryptography;
 
 public class ReplyingMessage : MonoBehaviour
 {
-    public InputField messageInputField;
-    public Button sendButton;
-    public Text chatDisplay;
-    public GameObject textBox;
-    public GameObject winScreen;
+    public TMP_InputField inputField;  // Reference to the input field
+    public GameObject chatContent;  // Parent object to hold chat bubbles
+    public GameObject chatBubblePrefab;  // Prefab of the chat bubble
+    public Button sendButton; // Reference to the send button
+    public GameObject sendButtonSprite;
+    public GameObject parentChatBubble;
+    public GameObject defaultButtonSprite;
 
     void Start()
     {
-        sendButton.onClick.AddListener(SendMessage);
-        winScreen.SetActive(false);
+        // Add a listener to detect when the input field value changes
+        inputField.onValueChanged.AddListener(UpdateButtonState);
+        // Add a listener to the send button click event
+        sendButton.onClick.AddListener(OnSendButtonClick);
+
+        // Initialize button state
+        UpdateButtonState(inputField.text);
+        chatBubblePrefab.SetActive(false);
     }
 
-    void SendMessage()
+    void OnSendButtonClick()
     {
-        string message = messageInputField.text;
+        SubmitText(inputField.text);
+    }
 
-        if (!string.IsNullOrEmpty(message))
+
+    void SubmitText(string text)
+    {
+        if (!string.IsNullOrEmpty(text))
         {
-            // Add the message to the chat display
-            chatDisplay.text += message;
+            // Instantiate a new chat bubble from the prefab
+            GameObject newBubble = Instantiate(chatBubblePrefab, parentChatBubble.transform);
+            chatBubblePrefab.SetActive(true);
+            // Find the TextMeshProUGUI component in the new chat bubble and set the text
+            TMP_Text bubbleText = newBubble.GetComponentInChildren<TMP_Text>();
+            bubbleText.text = text;
 
-            textBox.SetActive(true);
+            // Adjust the size of the chat bubble
+            AdjustBubbleSize(newBubble, bubbleText);
+
+            // Activate the chat bubble prefab
+            newBubble.SetActive(true);
 
             // Clear the input field
-            messageInputField.text = "";
+            inputField.text = string.Empty;
+
+            // Update button state after sending
+            UpdateButtonState(inputField.text);
         }
-        StartCoroutine(WinScreen());
     }
-    IEnumerator WinScreen()
+
+    void AdjustBubbleSize(GameObject bubble, TMP_Text bubbleText)
     {
-        yield return new WaitForSeconds(1);
-        winScreen.SetActive(true);
+        // Force the text to update its mesh
+        bubbleText.ForceMeshUpdate();
+
+        // Get the preferred size of the text
+        Vector2 textSize = bubbleText.GetPreferredValues(bubbleText.text);
+
+        // Apply padding or adjustments as necessary
+        float padding = 20f; // Adjust this value as needed
+
+        // Calculate the final size of the bubble considering text size and padding
+        Vector2 bubbleSize = new Vector2(textSize.x + padding, textSize.y + padding);
+
+        // Update the size of the bubble without affecting position
+        RectTransform bubbleRect = bubble.GetComponent<RectTransform>();
+        bubbleRect.sizeDelta = bubbleSize;
+
+        //Ensure the position remains unchanged by resetting anchoredPosition
+        bubbleRect.anchoredPosition = Vector2.zero;
+    }
+
+    void UpdateButtonState(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            sendButtonSprite.SetActive(false);
+            defaultButtonSprite.SetActive(true);
+        }
+        else
+        {
+            sendButtonSprite.SetActive(true);
+            defaultButtonSprite.SetActive(false);
+        }
     }
 }
