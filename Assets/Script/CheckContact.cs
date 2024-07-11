@@ -24,10 +24,10 @@ public class CheckContact : MonoBehaviour
 
         Firstname.onSelect.AddListener(OnFirstNameSelect);
         Lastname.onSelect.AddListener(OnLastNameSelect);
-        //Phone.onSelect.AddListener(OnPhoneSelect);
+        Phone.onSelect.AddListener(OnPhoneSelect);
         Firstname.onDeselect.AddListener(OnFirstNameUnSelect);
         Lastname.onDeselect.AddListener(OnLastNameUnSelect);
-        //Phone.onDeselect.AddListener(OnPhoneUnSelect);
+        Phone.onDeselect.AddListener(OnPhoneUnSelect);
     }
     public void CheckInput()
     {
@@ -83,20 +83,27 @@ public class CheckContact : MonoBehaviour
             firstNameAnimator.SetTrigger("FirstName_Selected");
         }
         
-        
-        
     }
 
     void OnLastNameSelect(string text)
     {
-        lastNameAnimator.SetTrigger("LastName_Selected");
+        string lastNameText = Lastname.text.Trim();
+        if (string.IsNullOrEmpty(lastNameText))
+        {
+            lastNameAnimator.SetTrigger("LastName_Selected");
+        }
         
     }
 
-    //void OnPhoneSelect(string text)
-    //{
-    //    phoneAnimator.SetTrigger("Phone_Selected");
-    //}
+    void OnPhoneSelect(string text)
+    {
+        string phoneText = Phone.text.Trim();
+        if (string.IsNullOrEmpty(phoneText))
+        {
+            phoneAnimator.SetTrigger("Phone_Selected");
+        }
+        
+    }
 
     void OnFirstNameUnSelect(string text)
     {
@@ -114,11 +121,31 @@ public class CheckContact : MonoBehaviour
 
     void OnLastNameUnSelect(string text)
     {
-        lastNameAnimator.SetTrigger("LastName_Unselect");
+        string lastNameText = Lastname.text.Trim();
+        if (!string.IsNullOrEmpty(lastNameText))
+        {
+            lastNameAnimator.SetBool("HaveText", true);
+        }
+        else
+        {
+            lastNameAnimator.SetBool("HaveText", false);
+            lastNameAnimator.SetTrigger("LastName_Unselect");
+        }
+        
     }
 
-    //void OnPhoneUnSelect(string text)
-    //{
-    //    phoneAnimator.SetTrigger("Unselect");
-    //}
+    void OnPhoneUnSelect(string text)
+    {
+        string phoneText = Phone.text.Trim();
+        if (!string.IsNullOrEmpty(phoneText))
+        {
+            phoneAnimator.SetBool("HaveText", true);
+        }
+        else
+        {
+            phoneAnimator.SetBool("HaveText", false);
+            phoneAnimator.SetTrigger("Phone_Unselect");
+        }
+        
+    }
 }
