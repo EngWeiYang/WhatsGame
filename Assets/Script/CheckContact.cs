@@ -19,12 +19,15 @@ public class CheckContact : MonoBehaviour
     public Animator lastNameAnimator;
     public Animator phoneAnimator;
     public GameObject DeactivateHintIndicatorSelectContact;
-
-
+    public TMP_Text[] dynamicTexts;
+    public GameObject ErrorMessageTextFirstName;
+    public GameObject ErrorMessageTextLastName;
+    public GameObject ErrorMessageTextPhoneText;
     void Start()
     {
         // Set the Phone input field to only accept numeric values
         Phone.contentType = TMP_InputField.ContentType.IntegerNumber;
+        Phone.characterLimit = 8;
 
         Firstname.onSelect.AddListener(OnFirstNameSelect);
         Lastname.onSelect.AddListener(OnLastNameSelect);
@@ -32,6 +35,10 @@ public class CheckContact : MonoBehaviour
         Firstname.onDeselect.AddListener(OnFirstNameUnSelect);
         Lastname.onDeselect.AddListener(OnLastNameUnSelect);
         Phone.onDeselect.AddListener(OnPhoneUnSelect);
+
+        Firstname.onValueChanged.AddListener(UpdateDynamicTexts);
+        Lastname.onValueChanged.AddListener(UpdateDynamicTexts);
+        Phone.onValueChanged.AddListener(UpdateDynamicTexts);
     }
     public void CheckInput()
     {
@@ -40,8 +47,7 @@ public class CheckContact : MonoBehaviour
         if (string.IsNullOrEmpty(firstNameText))
         {
             Debug.Log("Firstname is empty");
-
-            //ClearAllFields();
+            ErrorMessageTextFirstName.SetActive(true);
             return; // Exit the method if any field is empty
         }
 
@@ -50,7 +56,7 @@ public class CheckContact : MonoBehaviour
         if (string.IsNullOrEmpty(lastNameText))
         {
             Debug.Log("Lastname is empty");
-            //ClearAllFields();
+            ErrorMessageTextLastName.SetActive(true);
             return; // Exit the method if any field is empty
         }
         
@@ -59,18 +65,17 @@ public class CheckContact : MonoBehaviour
         if (string.IsNullOrEmpty(phoneText))
         {
             Debug.Log("Phone is empty");
-            //ClearAllFields();
+            ErrorMessageTextPhoneText.SetActive(true);
             return; // Exit the method if any field is empty
         }
-        
-
-        // If all fields are filled, proceed with your logic here
-        Debug.Log("All fields are filled. Proceed with your logic.");
 
         SelectContact.SetActive(true);
         SelectContactObjectsActive.SetActive(true);
         DeactivateAddContact.SetActive(false);
         DeactivateHintIndicatorSelectContact.SetActive(false);
+        ErrorMessageTextFirstName.SetActive(false);
+        ErrorMessageTextLastName.SetActive(false);
+        ErrorMessageTextPhoneText.SetActive(false);
     }
 
     //private void ClearAllFields()
@@ -161,5 +166,14 @@ public class CheckContact : MonoBehaviour
             phoneAnimator.SetTrigger("Phone_Unselect");
         }
         
+    }
+
+    void UpdateDynamicTexts(string newText)
+    {
+        string fullText = $"{Firstname.text} {Lastname.text}";
+        foreach (var text in dynamicTexts)
+        {
+            text.text = fullText;
+        }
     }
 }
