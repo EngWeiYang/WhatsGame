@@ -11,10 +11,14 @@ public class CheckContact : MonoBehaviour
     public TMP_InputField Phone;
     public GameObject SelectContact;
     public GameObject SelectContactObjectsActive;
+    public GameObject HitIndicatorFirstName;
+    public GameObject HitIndicatorLastName;
+    public GameObject HitIndicatorPhoneText;
     public GameObject DeactivateAddContact;
     public Animator firstNameAnimator;
     public Animator lastNameAnimator;
     public Animator phoneAnimator;
+    public GameObject DeactivateHintIndicatorSelectContact;
 
 
     void Start()
@@ -66,6 +70,7 @@ public class CheckContact : MonoBehaviour
         SelectContact.SetActive(true);
         SelectContactObjectsActive.SetActive(true);
         DeactivateAddContact.SetActive(false);
+        DeactivateHintIndicatorSelectContact.SetActive(false);
     }
 
     //private void ClearAllFields()
@@ -81,6 +86,7 @@ public class CheckContact : MonoBehaviour
         if (string.IsNullOrEmpty(firstNameText))
         {
             firstNameAnimator.SetTrigger("FirstName_Selected");
+            HitIndicatorFirstName.SetActive(true);
         }
         
     }
@@ -91,6 +97,7 @@ public class CheckContact : MonoBehaviour
         if (string.IsNullOrEmpty(lastNameText))
         {
             lastNameAnimator.SetTrigger("LastName_Selected");
+            HitIndicatorLastName.SetActive(true);
         }
         
     }
@@ -101,6 +108,7 @@ public class CheckContact : MonoBehaviour
         if (string.IsNullOrEmpty(phoneText))
         {
             phoneAnimator.SetTrigger("Phone_Selected");
+            HitIndicatorPhoneText.SetActive(true);
         }
         
     }
@@ -111,10 +119,12 @@ public class CheckContact : MonoBehaviour
         if (!string.IsNullOrEmpty(firstNameText))
         {
             firstNameAnimator.SetBool("HaveText", true);
+            HitIndicatorFirstName.SetActive(false);
         }
         else
         {
             firstNameAnimator.SetBool("HaveText", false);
+            HitIndicatorFirstName.SetActive(true);
             firstNameAnimator.SetTrigger("FirstName_Unselect");
         }
     }
@@ -125,10 +135,12 @@ public class CheckContact : MonoBehaviour
         if (!string.IsNullOrEmpty(lastNameText))
         {
             lastNameAnimator.SetBool("HaveText", true);
+            HitIndicatorLastName.SetActive(false);
         }
         else
         {
             lastNameAnimator.SetBool("HaveText", false);
+            HitIndicatorLastName.SetActive(true);
             lastNameAnimator.SetTrigger("LastName_Unselect");
         }
         
@@ -140,10 +152,12 @@ public class CheckContact : MonoBehaviour
         if (!string.IsNullOrEmpty(phoneText))
         {
             phoneAnimator.SetBool("HaveText", true);
+            HitIndicatorPhoneText.SetActive(false);
         }
         else
         {
             phoneAnimator.SetBool("HaveText", false);
+            HitIndicatorPhoneText.SetActive(true);
             phoneAnimator.SetTrigger("Phone_Unselect");
         }
         
