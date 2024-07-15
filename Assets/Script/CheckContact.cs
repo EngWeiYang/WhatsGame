@@ -6,6 +6,9 @@ using TMPro;
 
 public class CheckContact : MonoBehaviour
 {
+    public GameObject levelCompleteScreen;
+    public Animator levelCompleteAnimator;
+    public Button levelCompleteEnable;
     public TMP_InputField Firstname;
     public TMP_InputField Lastname;
     public TMP_InputField Phone;
@@ -35,7 +38,7 @@ public class CheckContact : MonoBehaviour
         Firstname.onDeselect.AddListener(OnFirstNameUnSelect);
         Lastname.onDeselect.AddListener(OnLastNameUnSelect);
         Phone.onDeselect.AddListener(OnPhoneUnSelect);
-
+        levelCompleteEnable.onClick.AddListener(EnableLevelCompletion);
         Firstname.onValueChanged.AddListener(UpdateDynamicTexts);
         Lastname.onValueChanged.AddListener(UpdateDynamicTexts);
         Phone.onValueChanged.AddListener(UpdateDynamicTexts);
@@ -117,7 +120,20 @@ public class CheckContact : MonoBehaviour
         }
         
     }
+    void EnableLevelCompletion()
+    {
+        string firstNameText = Firstname.text.Trim();
+        string lastNameText = Lastname.text.Trim();
+        string phoneText = Phone.text.Trim();
+        if (!string.IsNullOrEmpty(firstNameText) &&
+            !string.IsNullOrEmpty(lastNameText) &&
+            !string.IsNullOrEmpty(phoneText))
+        {
+            levelCompleteScreen.SetActive(true);
+            levelCompleteAnimator.SetTrigger("LevelCompleted");
 
+        }
+    }
     void OnFirstNameUnSelect(string text)
     {
         string firstNameText = Firstname.text.Trim();
