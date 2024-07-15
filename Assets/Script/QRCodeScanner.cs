@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 public class QRCodeScanner : MonoBehaviour
 {
+    public GameObject Popup;
+    public GameObject HintIndicator;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("QRCode"))
         {
-            Debug.Log("Hi");
+            Popup.SetActive(true);
+            HintIndicator.SetActive(true);
         }
     }
+    
 }
