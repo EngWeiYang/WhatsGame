@@ -14,6 +14,11 @@ public class ReplyingMessage : MonoBehaviour
     public GameObject sendButtonSprite;
     public GameObject parentChatBubble;
     public GameObject defaultButtonSprite;
+    public GameObject HintIndicatorSendMessage;
+    public GameObject HintIndicatorInputText;
+    public GameObject levelCompleteScreen;
+    public Animator levelCompleteAnimator;
+    public Button levelCompleteEnable;
 
     void Start()
     {
@@ -30,9 +35,15 @@ public class ReplyingMessage : MonoBehaviour
     void OnSendButtonClick()
     {
         SubmitText(inputField.text);
+        StartCoroutine(WinScreen());
     }
 
-
+    IEnumerator WinScreen()
+    {
+        yield return new WaitForSeconds(2f);
+        levelCompleteScreen.SetActive(true);
+        levelCompleteAnimator.SetTrigger("LevelComplete");
+    }
     void SubmitText(string text)
     {
         if (!string.IsNullOrEmpty(text))
@@ -85,11 +96,15 @@ public class ReplyingMessage : MonoBehaviour
         if (string.IsNullOrEmpty(text))
         {
             sendButtonSprite.SetActive(false);
+            HintIndicatorSendMessage.SetActive(false);
+            HintIndicatorInputText.SetActive(true);
             defaultButtonSprite.SetActive(true);
         }
         else
         {
             sendButtonSprite.SetActive(true);
+            HintIndicatorInputText.SetActive(false);
+            HintIndicatorSendMessage.SetActive(true);
             defaultButtonSprite.SetActive(false);
         }
     }
