@@ -14645,7 +14645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &519526522
 Transform:
   m_ObjectHideFlags: 0
@@ -25851,6 +25851,8 @@ GameObject:
   - component: {fileID: 967821899}
   - component: {fileID: 967821898}
   - component: {fileID: 967821897}
+  - component: {fileID: 967821900}
+  - component: {fileID: 967821901}
   m_Layer: 0
   m_Name: Button_VoiceRec
   m_TagString: Untagged
@@ -25960,6 +25962,45 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967821895}
   m_CullTransparentMesh: 1
+--- !u!61 &967821900
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967821895}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &967821901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967821895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e853ae465b411941bf6c2ac7d3606c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: {fileID: 63677142}
 --- !u!1 &968962711
 GameObject:
   m_ObjectHideFlags: 0
@@ -37284,7 +37325,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 247.8684, y: 20.4965}
+  m_AnchoredPosition: {x: 254, y: 23}
   m_SizeDelta: {x: 177.0981, y: 190.6936}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1375029652
@@ -37294,7 +37335,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1375029650}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
   m_Name: 
@@ -43132,6 +43173,8 @@ GameObject:
   - component: {fileID: 1603315424}
   - component: {fileID: 1603315423}
   - component: {fileID: 1603315422}
+  - component: {fileID: 1603315425}
+  - component: {fileID: 1603315426}
   m_Layer: 0
   m_Name: Button_VoiceRec
   m_TagString: Untagged
@@ -43241,6 +43284,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1603315420}
   m_CullTransparentMesh: 1
+--- !u!114 &1603315425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603315420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca3f0153ae905248bb6fe6b7824b7b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recordButton: {fileID: 1603315420}
+  currentlyRecordingButton: {fileID: 1028540177}
+--- !u!61 &1603315426
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603315420}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -43.782143, y: -0.0000019073486}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 86.56438, y: 86.95033}
+  m_EdgeRadius: 0
 --- !u!1 &1604375298
 GameObject:
   m_ObjectHideFlags: 0
@@ -48248,7 +48331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1806248378
 Transform:
   m_ObjectHideFlags: 0
