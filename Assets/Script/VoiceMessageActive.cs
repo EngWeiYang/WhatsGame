@@ -20,6 +20,7 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
     private bool isDraggedLeft = false;
     private bool isLocked = false;
     private float elapsedTime = 0f;
+    private const float returnThreshold = 15f;
     private float elapsedTimeLocked = 0f;
     public GameObject defaultRecordingState;
     public GameObject activeRecordingState;
@@ -30,6 +31,9 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
     public Vector2 lockPosition;
     public float lockThresholdY = 200f;
     public float cancelThresholdX = -400f;
+    private bool isHorizontalDrag = false;
+    private bool isVerticalDrag = false;
+    public RectTransform phoneSizeBoundary;
 
     void Start()
     {
@@ -70,6 +74,27 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
             Vector2 currentDragPosition = eventData.position;
             Vector2 dragDelta = currentDragPosition - startDragPosition;
 
+            if (!isHorizontalDrag && !isVerticalDrag)
+            {
+                if (Mathf.Abs(dragDelta.x) > Mathf.Abs(dragDelta.y))
+                {
+                    isHorizontalDrag = true;
+                }
+                else
+                {
+                    isVerticalDrag = true;
+                }
+            }
+
+            if (isHorizontalDrag)
+            {
+                dragDelta.y = 0; // Only allow horizontal movement
+            }
+            else if (isVerticalDrag)
+            {
+                dragDelta.x = 0; // Only allow vertical movement
+            }
+
             // Check if dragged to the left beyond the threshold
             if (dragDelta.x < cancelThresholdX)
             {
@@ -87,7 +112,58 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
             // Allow dragging freely before locking
             else if (!isLocked)
             {
-                transform.position = currentDragPosition;
+                // Calculate the new position with constraints
+                Vector2 newPosition = startDragPosition + dragDelta;
+
+                // Get the button's rect transform and its size
+                RectTransform rectTransform = GetComponent<RectTransform>();
+                float buttonWidth = rectTransform.rect.width;
+                float buttonHeight = rectTransform.rect.height;
+
+                RectTransform boundaryRectTransform = phoneSizeBoundary.GetComponent<RectTransform>();
+                Vector2 boundaryMin = boundaryRectTransform.TransformPoint(boundaryRectTransform.rect.min);
+                Vector2 boundaryMax = boundaryRectTransform.TransformPoint(boundaryRectTransform.rect.max);
+
+                //Clamp the position to prevent moving out of the screen bounds
+                newPosition.x = Mathf.Clamp(newPosition.x, boundaryMin.x + buttonWidth / 2, boundaryMax.x - buttonWidth / 2);
+                newPosition.y = Mathf.Clamp(newPosition.y, buttonHeight, Screen.height - buttonHeight);
+
+                // Set the clamped position
+                transform.position = newPosition;
+
+                // Check if the button is back to its starting position level
+                if (Mathf.Abs(transform.position.x - startDragPosition.x) < returnThreshold)
+                {
+                    transform.position = new Vector2(startDragPosition.x, transform.position.y);
+                    isHorizontalDrag = false;
+                    isVerticalDrag = false;
+                }
+
+                //// Calculate the new position with constraints
+                //Vector2 newPosition = startDragPosition + dragDelta;
+
+                //// Get the button's rect transform and its size
+                //RectTransform rectTransform = GetComponent<RectTransform>();
+                //float buttonWidth = rectTransform.rect.width;
+                //float buttonHeight = rectTransform.rect.height;
+
+                //// Get the boundary image's rect transform and its size
+                
+
+                //// Clamp the position to prevent moving out of the boundary image
+                //newPosition.x = Mathf.Clamp(newPosition.x, boundaryMin.x + buttonWidth / 2, boundaryMax.x - buttonWidth / 2);
+                //newPosition.y = Mathf.Clamp(newPosition.y, buttonHeight, Screen.height - buttonHeight);
+
+                //// Set the clamped position
+                //transform.position = newPosition;
+
+                //// Check if the button is back to its starting position level
+                //if (Mathf.Abs(transform.position.x - startDragPosition.x) < returnThreshold)
+                //{
+                //    transform.position = new Vector2(startDragPosition.x, startDragPosition.y);
+                //    isHorizontalDrag = false;
+                //    isVerticalDrag = false;
+                //}
             }
         }
     }
@@ -162,11 +238,12 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
     // Reset the UI to the default state
     private void ResetUI()
     {
-        SetTransparency(recordingImage, 100f);
-        SetTransparency(recordingImage2, 100f);
-        SetTransparency(recordingImage3, 100f);
+        SetTransparency(recordingImage, 255f);
+        SetTransparency(recordingImage2, 255f);
+        SetTransparency(recordingImage3, 255f);
         HintIndicating.SetActive(true);
         activeRecordingState.SetActive(false);
+        defaultRecordingState.SetActive(true);
         fireFlyClickOnRecordingIcon.SetActive(true);
         fireFlyExplanation.SetActive(false);
         timer.text = "00:00";

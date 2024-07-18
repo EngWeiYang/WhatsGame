@@ -15323,7 +15323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &519526522
 Transform:
   m_ObjectHideFlags: 0
@@ -19382,7 +19382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &679893306
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26696,7 +26696,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 272, y: 108}
+  m_AnchoredPosition: {x: 272, y: 130}
   m_SizeDelta: {x: 109.1377, y: 109.1344}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &967821897
@@ -26834,6 +26834,7 @@ MonoBehaviour:
   lockPosition: {x: 1230, y: 230}
   lockThresholdY: 220
   cancelThresholdX: -400
+  phoneSizeBoundary: {fileID: 836140277}
 --- !u!1 &968962711
 GameObject:
   m_ObjectHideFlags: 0
@@ -30914,7 +30915,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -52.79712, y: 0}
+  m_AnchoredPosition: {x: -52.79712, y: 10}
   m_SizeDelta: {x: 534.8554, y: 88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1100562442
@@ -37289,7 +37290,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 269, y: 102.92}
+  m_AnchoredPosition: {x: 269, y: 113}
   m_SizeDelta: {x: 98.4921, y: 305.8392}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1327324941
@@ -38357,8 +38358,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.4971, y: 163.2969}
-  m_SizeDelta: {x: 677.7213, y: 525.3164}
+  m_AnchoredPosition: {x: -1.591, y: 161.0559}
+  m_SizeDelta: {x: 675.528, y: 529.7984}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1375029652
 MonoBehaviour:
@@ -44164,6 +44165,7 @@ MonoBehaviour:
   lockPosition: {x: 1230, y: 230}
   lockThresholdY: 220
   cancelThresholdX: -400
+  phoneSizeBoundary: {fileID: 0}
 --- !u!1 &1587268274
 GameObject:
   m_ObjectHideFlags: 0
@@ -45282,7 +45284,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 22.037537, y: 0}
+  m_AnchoredPosition: {x: 22.037537, y: 10}
   m_SizeDelta: {x: 684.5249, y: 88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1627131796
@@ -50145,7 +50147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806248377}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 283.24274, y: 205.26276, z: 1.5339764}
+  m_LocalPosition: {x: 283.24274, y: 100, z: 1.5339764}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

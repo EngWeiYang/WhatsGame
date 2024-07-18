@@ -12,8 +12,6 @@ public class DragButton : MonoBehaviour, IDragHandler
     private bool isLocked = false;
     public float lockThresholdY = 200f;
     public float cancelThresholdX = -400f;
-    private float elapsedTime = 0f;
-    private float elapsedTimeLocked = 0f;
     public GameObject defaultRecordingState;
     public GameObject activeRecordingState;
     public GameObject fireFlyClickOnRecordingIcon;
@@ -84,6 +82,5 @@ public class DragButton : MonoBehaviour, IDragHandler
         transform.position = startDragPosition;
         isDraggedLeft = false; // Reset the dragged left flag
         isLocked = false; // Reset the locked state
-        elapsedTime = 0f; // Reset elapsed time
     }
 }
