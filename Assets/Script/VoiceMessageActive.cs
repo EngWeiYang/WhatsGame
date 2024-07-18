@@ -10,9 +10,13 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
 {
     public TMP_Text timer;
     public TMP_Text lockedTimer;
+    public TMP_Text sentTimer;
+    public GameObject levelCompleteScreen;
+    public Animator levelCompleteAnimator;
     public Image recordingImage;
     public Image recordingImage2;
     public GameObject HintIndicating;
+    public GameObject HintIndicatorDefault;
     public Image recordingImage3;
     private Coroutine recordingCoroutine;
     private Vector2 startDragPosition;
@@ -20,11 +24,14 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
     private bool isDraggedLeft = false;
     private bool isLocked = false;
     private float elapsedTime = 0f;
+    public float recordedElapsedTime = 0f;
     private const float returnThreshold = 15f;
     private float elapsedTimeLocked = 0f;
     public GameObject defaultRecordingState;
+    public GameObject sendVoiceMessage;
     public GameObject activeRecordingState;
     public GameObject fireFlyClickOnRecordingIcon;
+    public GameObject deactivateLockedState;
     public GameObject fireFlyExplanation;
     public GameObject stateRecordVoice;
     public GameObject stateLocked;
@@ -34,6 +41,8 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
     private bool isHorizontalDrag = false;
     private bool isVerticalDrag = false;
     public RectTransform phoneSizeBoundary;
+    public List<Image> imagesToChangeTransparency;
+    public TMP_Text textToDisable;
 
     void Start()
     {
@@ -138,32 +147,6 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
                     isHorizontalDrag = false;
                     isVerticalDrag = false;
                 }
-
-                //// Calculate the new position with constraints
-                //Vector2 newPosition = startDragPosition + dragDelta;
-
-                //// Get the button's rect transform and its size
-                //RectTransform rectTransform = GetComponent<RectTransform>();
-                //float buttonWidth = rectTransform.rect.width;
-                //float buttonHeight = rectTransform.rect.height;
-
-                //// Get the boundary image's rect transform and its size
-                
-
-                //// Clamp the position to prevent moving out of the boundary image
-                //newPosition.x = Mathf.Clamp(newPosition.x, boundaryMin.x + buttonWidth / 2, boundaryMax.x - buttonWidth / 2);
-                //newPosition.y = Mathf.Clamp(newPosition.y, buttonHeight, Screen.height - buttonHeight);
-
-                //// Set the clamped position
-                //transform.position = newPosition;
-
-                //// Check if the button is back to its starting position level
-                //if (Mathf.Abs(transform.position.x - startDragPosition.x) < returnThreshold)
-                //{
-                //    transform.position = new Vector2(startDragPosition.x, startDragPosition.y);
-                //    isHorizontalDrag = false;
-                //    isVerticalDrag = false;
-                //}
             }
         }
     }
@@ -246,8 +229,6 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
         defaultRecordingState.SetActive(true);
         fireFlyClickOnRecordingIcon.SetActive(true);
         fireFlyExplanation.SetActive(false);
-        timer.text = "00:00";
-        lockedTimer.text = "00:00";
         transform.position = startDragPosition;
         isDraggedLeft = false; // Reset the dragged left flag
         isLocked = false; // Reset the locked state
@@ -270,5 +251,43 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
             color.a = alpha;
             img.color = color;
         }
+    }
+    void SetTransparencyForMultipleImages(List<Image> images, float alpha)
+    {
+        foreach (var img in images)
+        {
+            SetTransparency(img, alpha);
+        }
+    }
+    void DisableTMPText(TMP_Text tmpText)
+    {
+        if (tmpText != null)
+        {
+            tmpText.enabled = false;
+        }
+    }
+    public void SendMessage()
+    {
+        Debug.Log("SendMessage called");
+        StartCoroutine(WinScreen());
+        sendVoiceMessage.SetActive(true);
+        activeRecordingState.SetActive(false);
+        //deactivateLockedState.SetActive(false);
+        DisableTMPText(textToDisable);
+        SetTransparencyForMultipleImages(imagesToChangeTransparency, 0f);
+        defaultRecordingState.SetActive(true);
+        HintIndicatorDefault.SetActive(false);
+        sentTimer.text = lockedTimer.text;
+        timer.text = "00:00";
+        lockedTimer.text = "00:00";
+    }
+
+    IEnumerator WinScreen()
+    {
+        Debug.Log("WinScreen started");
+        yield return new WaitForSeconds(2f);
+        Debug.Log("WinScreen completed");
+        levelCompleteScreen.SetActive(true);
+        levelCompleteAnimator.SetTrigger("LevelComplete");
     }
 }
