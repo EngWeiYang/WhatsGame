@@ -36,6 +36,7 @@ public class ReplyingMessage : MonoBehaviour
     {
         SubmitText(inputField.text);
         StartCoroutine(WinScreen());
+        HintIndicatorInputText.SetActive(false);
     }
 
     IEnumerator WinScreen()

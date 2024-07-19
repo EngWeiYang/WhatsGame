@@ -31,6 +31,8 @@ public class CheckContact : MonoBehaviour
         // Set the Phone input field to only accept numeric values
         Phone.contentType = TMP_InputField.ContentType.IntegerNumber;
         Phone.characterLimit = 8;
+        Firstname.contentType = TMP_InputField.ContentType.Name;
+        Lastname.contentType = TMP_InputField.ContentType.Name;
 
         Firstname.onSelect.AddListener(OnFirstNameSelect);
         Lastname.onSelect.AddListener(OnLastNameSelect);
