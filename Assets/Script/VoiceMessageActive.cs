@@ -284,9 +284,7 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
 
     IEnumerator WinScreen()
     {
-        Debug.Log("WinScreen started");
         yield return new WaitForSeconds(2f);
-        Debug.Log("WinScreen completed");
         levelCompleteScreen.SetActive(true);
         levelCompleteAnimator.SetTrigger("LevelComplete");
     }
