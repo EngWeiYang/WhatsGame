@@ -43,7 +43,7 @@ public class ReplyingMessage : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         levelCompleteScreen.SetActive(true);
-        levelCompleteAnimator.SetTrigger("LevelComplete");
+        levelCompleteAnimator.SetTrigger("LevelCompleted");
     }
     void SubmitText(string text)
     {
