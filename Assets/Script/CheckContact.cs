@@ -6,9 +6,6 @@ using TMPro;
 
 public class CheckContact : MonoBehaviour
 {
-    public GameObject levelCompleteScreen;
-    public Animator levelCompleteAnimator;
-    public Button levelCompleteEnable;
     public TMP_InputField Firstname;
     public TMP_InputField Lastname;
     public TMP_InputField Phone;
@@ -26,6 +23,7 @@ public class CheckContact : MonoBehaviour
     public GameObject ErrorMessageTextFirstName;
     public GameObject ErrorMessageTextLastName;
     public GameObject ErrorMessageTextPhoneText;
+    public GameObject HintIndicatorSaveContact;
     void Start()
     {
         // Set the Phone input field to only accept numeric values
@@ -40,10 +38,12 @@ public class CheckContact : MonoBehaviour
         Firstname.onDeselect.AddListener(OnFirstNameUnSelect);
         Lastname.onDeselect.AddListener(OnLastNameUnSelect);
         Phone.onDeselect.AddListener(OnPhoneUnSelect);
-        levelCompleteEnable.onClick.AddListener(EnableLevelCompletion);
         Firstname.onValueChanged.AddListener(UpdateDynamicTexts);
         Lastname.onValueChanged.AddListener(UpdateDynamicTexts);
         Phone.onValueChanged.AddListener(UpdateDynamicTexts);
+        Firstname.onValueChanged.AddListener(CheckAllFieldsFilled);
+        Lastname.onValueChanged.AddListener(CheckAllFieldsFilled);
+        Phone.onValueChanged.AddListener(CheckAllFieldsFilled);
     }
     public void CheckInput()
     {
@@ -122,18 +122,25 @@ public class CheckContact : MonoBehaviour
         }
         
     }
-    void EnableLevelCompletion()
+    
+    void CheckAllFieldsFilled(string newText)
     {
+        // Check if all fields are filled
         string firstNameText = Firstname.text.Trim();
         string lastNameText = Lastname.text.Trim();
         string phoneText = Phone.text.Trim();
+
         if (!string.IsNullOrEmpty(firstNameText) &&
             !string.IsNullOrEmpty(lastNameText) &&
             !string.IsNullOrEmpty(phoneText))
         {
-            levelCompleteScreen.SetActive(true);
-            levelCompleteAnimator.SetTrigger("LevelCompleted");
-
+            // All fields are filled, show the hint indicator
+            HintIndicatorSaveContact.SetActive(true);
+        }
+        else
+        {
+            // Not all fields are filled, hide the hint indicator
+            HintIndicatorSaveContact.SetActive(false);
         }
     }
     void OnFirstNameUnSelect(string text)
