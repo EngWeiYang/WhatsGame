@@ -17,6 +17,7 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
     public Image recordingImage2;
     public GameObject HintIndicating;
     public GameObject HintIndicatorDefault;
+    public GameObject HintIndicatorLocked;
     public Image recordingImage3;
     private Coroutine recordingCoroutine;
     private Vector2 startDragPosition;
@@ -268,24 +269,17 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
     }
     public void SendMessage()
     {
-        Debug.Log("SendMessage called");
-        StartCoroutine(WinScreen());
         sendVoiceMessage.SetActive(true);
         activeRecordingState.SetActive(false);
         //deactivateLockedState.SetActive(false);
         DisableTMPText(textToDisable);
         SetTransparencyForMultipleImages(imagesToChangeTransparency, 0f);
         defaultRecordingState.SetActive(true);
+        HintIndicatorLocked.SetActive(false);
         HintIndicatorDefault.SetActive(false);
+
         sentTimer.text = lockedTimer.text;
         timer.text = "00:00";
         lockedTimer.text = "00:00";
-    }
-
-    IEnumerator WinScreen()
-    {
-        yield return new WaitForSeconds(2f);
-        levelCompleteScreen.SetActive(true);
-        levelCompleteAnimator.SetTrigger("LevelComplete");
     }
 }

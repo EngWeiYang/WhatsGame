@@ -24,6 +24,9 @@ public class AddingMembers : MonoBehaviour
     public GameObject groupDetailsScreen;
     public TMP_Text[] targetScreenTexts;
     public Button nextButton;
+    public GameObject HintIndicatorAnnie;
+    public GameObject HintIndicatorThommas;
+    public GameObject HintIndicatorBtnNext;
 
     private void Start()
     {
@@ -61,14 +64,17 @@ public class AddingMembers : MonoBehaviour
             AnnieClicked = true;
             addMember();
             chatmembers.Add("Annie");
+            HintIndicatorAnnie.gameObject.SetActive(false);
         }
         else
         {
             AnnieClicked = false;
             removeMember();
             chatmembers.Remove("Annie");
+            HintIndicatorAnnie.gameObject.SetActive(true);
         }
         UpdateUI();
+        hintIndicatorBtnNextLightUp();
     }
     private void updateThommas()
     {
@@ -77,14 +83,17 @@ public class AddingMembers : MonoBehaviour
             ThommasClicked = true;
             addMember();
             chatmembers.Add("Thommas");
+            HintIndicatorThommas.SetActive(false);
         }
         else
         {
             ThommasClicked = false;
             removeMember();
             chatmembers.Remove("Thommas");
+            HintIndicatorThommas.SetActive(true);
         }
         UpdateUI();
+        hintIndicatorBtnNextLightUp();
     }
     private void UpdateUI()
     {
@@ -116,14 +125,21 @@ public class AddingMembers : MonoBehaviour
         }
         
     }
+
+    private void hintIndicatorBtnNextLightUp()
+    {
+        HintIndicatorBtnNext.SetActive(AnnieClicked && ThommasClicked);
+    }
     private void OnSubmitButtonClick()
     {
         if (chatmembers.Count == 2)
         {
+            HintIndicatorBtnNext.SetActive(true);
             // Call the UpdateDynamicTexts method
             UpdateDynamicTexts(chatmembers);
             currentScreen.SetActive(false);
             groupDetailsScreen.SetActive(true);
+
         }
         else
         {

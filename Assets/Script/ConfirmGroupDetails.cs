@@ -11,17 +11,19 @@ public class ConfirmGroupDetails : MonoBehaviour
     public Button confirmButton; // Drag your Button object here
     public GameObject currentScreen; // Drag your current screen GameObject here
     public GameObject nextScreen;    // Drag your next screen GameObject here
+    public GameObject hintIndicatorInputfield;
+    public GameObject hintIndicatorconfirmDetails;
 
     private void Start()
     {
-        if (confirmButton != null)
-        {
-            confirmButton.onClick.AddListener(OnConfirmButtonClick);
-        }
-        else
-        {
-            Debug.LogError("Confirm button is not assigned in the Inspector!");
-        }
+        confirmButton.onClick.AddListener(OnConfirmButtonClick);
+        userInputField.onValueChanged.AddListener(hintIndicatorLightUp);
+    }
+
+    private void hintIndicatorLightUp(string text)
+    {
+        hintIndicatorInputfield.SetActive(string.IsNullOrEmpty(text));
+        hintIndicatorconfirmDetails.SetActive(!string.IsNullOrEmpty(text));
     }
 
     public void UpdateDynamicTexts(string additionalText)
@@ -43,10 +45,6 @@ public class ConfirmGroupDetails : MonoBehaviour
         {
             currentScreen.SetActive(false);
             nextScreen.SetActive(true);
-        }
-        else
-        {
-            Debug.LogError("Screen objects are not assigned in the Inspector!");
         }
     }
 }
