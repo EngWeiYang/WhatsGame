@@ -9,6 +9,7 @@ public class sendingGIFs : MonoBehaviour
     public GameObject sendGIFScreen;
     public GameObject chatScreen;
     public Animator sendGIFAnim;
+    public GameObject hintindicator;
 
 
     private void Start()
@@ -20,6 +21,7 @@ public class sendingGIFs : MonoBehaviour
     {
         sendGIFScreen.gameObject.SetActive(false);
         chatScreen.gameObject.SetActive(true);
+        hintindicator.gameObject.SetActive(false);
         sendGIFAnim.SetTrigger("sendGIF");
     }
 }

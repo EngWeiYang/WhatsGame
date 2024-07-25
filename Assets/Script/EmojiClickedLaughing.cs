@@ -19,6 +19,8 @@ public class EmojiClickedLaughing : MonoBehaviour
     public Button toNextScenario;
     public GameObject Scenario2;
     public GameObject Scenario1;
+    public GameObject hintIndicatorEmoji;
+    public GameObject hintIndicatorSendEmoji;
 
 
     void Start()
@@ -39,10 +41,13 @@ public class EmojiClickedLaughing : MonoBehaviour
         text.gameObject.SetActive(false);
         sendMessageBtn.gameObject.SetActive(true);
         defaultMessageBtn.gameObject.SetActive(false);
+        hintIndicatorEmoji.gameObject.SetActive(false);
+        hintIndicatorSendEmoji.gameObject.SetActive(true);
     }
 
     void sendMessage()
     {
+        hintIndicatorSendEmoji.gameObject.SetActive(false);
         textMessageWithEmojiLaughing.gameObject.SetActive(true);
         toNextScenario.gameObject.SetActive(true);
         Color laughingColorInText = emojiLaughinginMessage.color;
