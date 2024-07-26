@@ -11,8 +11,6 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
     public TMP_Text timer;
     public TMP_Text lockedTimer;
     public TMP_Text sentTimer;
-    public GameObject levelCompleteScreen;
-    public Animator levelCompleteAnimator;
     public Image recordingImage;
     public Image recordingImage2;
     public GameObject HintIndicating;
@@ -31,9 +29,7 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
     public GameObject defaultRecordingState;
     public GameObject sendVoiceMessage;
     public GameObject activeRecordingState;
-    public GameObject fireFlyClickOnRecordingIcon;
     public GameObject deactivateLockedState;
-    public GameObject fireFlyExplanation;
     public GameObject stateRecordVoice;
     public GameObject stateLocked;
     public Vector2 lockPosition;
@@ -228,8 +224,6 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
         HintIndicating.SetActive(true);
         activeRecordingState.SetActive(false);
         defaultRecordingState.SetActive(true);
-        fireFlyClickOnRecordingIcon.SetActive(true);
-        fireFlyExplanation.SetActive(false);
         transform.position = startDragPosition;
         isDraggedLeft = false; // Reset the dragged left flag
         isLocked = false; // Reset the locked state

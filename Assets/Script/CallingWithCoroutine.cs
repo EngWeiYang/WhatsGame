@@ -7,6 +7,8 @@ public class CallingWithCoroutine : MonoBehaviour
 {
     public GameObject screenRinging;
     public GameObject screenAnswer;
+    public GameObject fireflyhelp;
+    public GameObject fireflyhelp2;
     public Button callButton;
     private CoroutineManager coroutineManager;
     void Start()
@@ -28,7 +30,8 @@ public class CallingWithCoroutine : MonoBehaviour
         yield return new WaitForSeconds(5f);
         screenRinging.SetActive(false);
         screenAnswer.SetActive(true);
-        
+        fireflyhelp.SetActive(false);
+        fireflyhelp2.SetActive(true);
 
     }
 }

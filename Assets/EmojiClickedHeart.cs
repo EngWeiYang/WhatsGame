@@ -17,17 +17,16 @@ public class EmojiClickedHeart : MonoBehaviour
     public Animator animator;
     public GameObject defaultMessageBtn;
     public Button toNextScenario;
-    public GameObject Scenario2;
-    public GameObject Scenario3;
     public GameObject hintIndicatorEmoji;
     public GameObject hintIndicatorSendEmoji;
+    public GameObject firefly1;
+    public GameObject firefly2;
 
 
     void Start()
     {
         emojiHeartBtn.onClick.AddListener(clickedLaughingEmoji);
         sendMessageText.onClick.AddListener(sendMessage);
-        toNextScenario.onClick.AddListener(proceedToNextScenario);
         Color heartEmojiColor = emojiHeart.color;
         heartEmojiColor.a = 0f;
         emojiHeart.color = heartEmojiColor;
@@ -39,6 +38,8 @@ public class EmojiClickedHeart : MonoBehaviour
         heartEmojiColor.a = 1f;
         emojiHeart.color = heartEmojiColor;
         text.gameObject.SetActive(false);
+        firefly1.gameObject.SetActive(false);
+        firefly2.gameObject.SetActive(true);
         sendMessageBtn.gameObject.SetActive(true);
         defaultMessageBtn.gameObject.SetActive(false);
         hintIndicatorEmoji.gameObject.SetActive(false);
@@ -50,16 +51,11 @@ public class EmojiClickedHeart : MonoBehaviour
         hintIndicatorSendEmoji.gameObject.SetActive(false);
         textMessageWithEmojiHeart.gameObject.SetActive(true);
         toNextScenario.gameObject.SetActive(true);
+        firefly2.gameObject.SetActive(true);
+        emojiHeart.gameObject.SetActive (false);
         Color heartEmojiColorInText = emojiHeartinMessage.color;
         heartEmojiColorInText.a = 1f;
         emojiHeartinMessage.color = heartEmojiColorInText;
         animator.SetTrigger("heartEmojiSend");
-    }
-
-
-    void proceedToNextScenario()
-    {
-        Scenario3.gameObject.SetActive(true);
-        Scenario2.gameObject.SetActive(false);
     }
 }

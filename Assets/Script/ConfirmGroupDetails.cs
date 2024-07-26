@@ -13,6 +13,8 @@ public class ConfirmGroupDetails : MonoBehaviour
     public GameObject nextScreen;    // Drag your next screen GameObject here
     public GameObject hintIndicatorInputfield;
     public GameObject hintIndicatorconfirmDetails;
+    public GameObject fireflyhelp;
+    public GameObject fireflyhelp2;
 
     private void Start()
     {
@@ -23,7 +25,9 @@ public class ConfirmGroupDetails : MonoBehaviour
     private void hintIndicatorLightUp(string text)
     {
         hintIndicatorInputfield.SetActive(string.IsNullOrEmpty(text));
+        fireflyhelp.gameObject.SetActive(string.IsNullOrEmpty(text));
         hintIndicatorconfirmDetails.SetActive(!string.IsNullOrEmpty(text));
+        fireflyhelp2.gameObject.SetActive(!string.IsNullOrEmpty(text));
     }
 
     public void UpdateDynamicTexts(string additionalText)

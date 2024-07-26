@@ -10,6 +10,9 @@ public class sendingGIFs : MonoBehaviour
     public GameObject chatScreen;
     public Animator sendGIFAnim;
     public GameObject hintindicator;
+    public GameObject firefly1;
+    public GameObject firefly2;
+    public Button switchScenarioBtn;
 
 
     private void Start()
@@ -22,6 +25,9 @@ public class sendingGIFs : MonoBehaviour
         sendGIFScreen.gameObject.SetActive(false);
         chatScreen.gameObject.SetActive(true);
         hintindicator.gameObject.SetActive(false);
+        firefly1.gameObject.SetActive(false);
+        firefly2.gameObject.SetActive(false);
         sendGIFAnim.SetTrigger("sendGIF");
+        switchScenarioBtn.gameObject.SetActive(true);
     }
 }

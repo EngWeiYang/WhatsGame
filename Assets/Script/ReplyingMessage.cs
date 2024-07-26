@@ -19,6 +19,9 @@ public class ReplyingMessage : MonoBehaviour
     public GameObject levelCompleteScreen;
     public Animator levelCompleteAnimator;
     public Button levelCompleteEnable;
+    public GameObject fireflyStep2;
+    public GameObject fireflyStep3;
+    
 
     void Start()
     {
@@ -37,6 +40,8 @@ public class ReplyingMessage : MonoBehaviour
         SubmitText(inputField.text);
         StartCoroutine(WinScreen());
         HintIndicatorInputText.SetActive(false);
+        fireflyStep2.SetActive(false);
+        fireflyStep3.SetActive(false);
     }
 
     IEnumerator WinScreen()
@@ -100,6 +105,8 @@ public class ReplyingMessage : MonoBehaviour
             HintIndicatorSendMessage.SetActive(false);
             HintIndicatorInputText.SetActive(true);
             defaultButtonSprite.SetActive(true);
+            fireflyStep2.SetActive(true);
+            fireflyStep3.SetActive(false);
         }
         else
         {
@@ -107,6 +114,8 @@ public class ReplyingMessage : MonoBehaviour
             HintIndicatorInputText.SetActive(false);
             HintIndicatorSendMessage.SetActive(true);
             defaultButtonSprite.SetActive(false);
+            fireflyStep2.SetActive(false);
+            fireflyStep3.SetActive(true);
         }
     }
 }

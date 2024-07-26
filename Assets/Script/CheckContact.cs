@@ -24,6 +24,8 @@ public class CheckContact : MonoBehaviour
     public GameObject ErrorMessageTextLastName;
     public GameObject ErrorMessageTextPhoneText;
     public GameObject HintIndicatorSaveContact;
+    public GameObject FireflyStep3;
+    public GameObject FireflyStep4;
     void Start()
     {
         // Set the Phone input field to only accept numeric values
@@ -80,6 +82,7 @@ public class CheckContact : MonoBehaviour
         DeactivateHintIndicatorSelectContact.SetActive(false);
         ErrorMessageTextFirstName.SetActive(false);
         ErrorMessageTextLastName.SetActive(false);
+        FireflyStep4.gameObject.SetActive(false);
         ErrorMessageTextPhoneText.SetActive(false);
     }
 
@@ -136,11 +139,16 @@ public class CheckContact : MonoBehaviour
         {
             // All fields are filled, show the hint indicator
             HintIndicatorSaveContact.SetActive(true);
+            FireflyStep4.gameObject.SetActive(true);
+            FireflyStep3.gameObject.SetActive(false);
+
         }
         else
         {
             // Not all fields are filled, hide the hint indicator
             HintIndicatorSaveContact.SetActive(false);
+            FireflyStep4.gameObject.SetActive(false);
+            FireflyStep3.gameObject.SetActive(true);
         }
     }
     void OnFirstNameUnSelect(string text)
