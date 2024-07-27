@@ -1,0 +1,407 @@
+{
+    "levels": [
+        {
+            "levelId": 0,
+            "levelNames": [
+                {
+                    "levelId": 1,
+                    "En": "Level 1 - Add to Contact via Phone Number",
+                    "Cn": "1级 - 通过电话号码添加联系方式"
+                },
+                {
+                    "levelId": 2,
+                    "En": "Level 2 - Add Contact via Chat",
+                    "Cn": "第2关 - 添加联系人"
+                },
+                {
+                    "levelId": 3,
+                    "En": "Level 3 - Add Contact via QRcode",
+                    "Cn": "第2关 - 添加联系人"
+                },
+                {
+                    "levelId": 4,
+                    "En": "Level 4 - Send Message",
+                    "Cn": "第2关 - 添加联系人"
+                },
+                {
+                    "levelId": 5,
+                    "En": "Level 5 - Voice Message",
+                    "Cn": "zzz"
+                },
+                {
+                    "levelId": 6,
+                    "En": "Level 6 - Send Images/Videos",
+                    "Cn": "第2关 - 添加联系人"
+                },
+                {
+                    "levelId": 7,
+                    "En": "Level 7 - Call and Video Call",
+                    "Cn": "第2关 - 添加联系人"
+                },
+                {
+                    "levelId": 8,
+                    "En": "Level 8 - Create Group Chats",
+                    "Cn": "第2关 - 添加联系人"
+                },
+                {
+                    "levelId": 9,
+                    "En": "Level 9 - Emoji, GIFs, Stickers",
+                    "Cn": "第2关 - 添加联系人"
+                },
+                {
+                    "levelId": 10,
+                    "En": "Level 10 - Send Documents",
+                    "Cn": "第2关 - 添加联系人"
+                },
+                {
+                    "levelId": 11,
+                    "En": "Level 11 - Creating Polls",
+                    "Cn": "第2关 - 添加联系人"
+                },
+                {
+                    "levelId": 12,
+                    "En": "Level 12 - Cropping Images",
+                    "Cn": "第2关 - 添加联系人"
+                },
+                {
+                    "levelId": 13,
+                    "En": "Level 13 - Cutting Videos",
+                    "Cn": "第2关 - 添加联系人"
+                }
+            ],
+            "instructions": [
+                {
+                    "instructionId": 0,
+                    "En": "Hello there! My name is Twinkie. I am your personal guide on this journey to learn how to use WhatsApp.",
+                    "Cn": "你好呀！我的名字是Twinkie。我是您学习如何使用 WhatsApp 旅程的私人向导。"
+                },
+                {
+                    "instructionId": 1,
+                    "En": "My light will guide you where to click on the screen. So keep an eye out for it!",
+                    "Cn": "我的灯光将引导您点击屏幕上的位置。所以请留意它！"
+                },
+                {
+                    "instructionId": 2,
+                    "En": "Are you ready? Let's begin!",
+                    "Cn": "你准备好了吗？让我们开始！"
+                }
+            ],
+            "buttonText": [
+                {
+                    "buttonId": 1,
+                    "En": "Next",
+                    "Cn": "下一个"
+                },
+                {
+                    "buttonId": 2,
+                    "En": "Next level",
+                    "Cn": "下一个"
+                },
+                {
+                    "buttonId": 3,
+                    "En": "Restart",
+                    "Cn": "下一个"
+                },
+                {
+                    "buttonId": 4,
+                    "En": "Main Menu",
+                    "Cn": "下一个"
+                }
+            ]
+        },
+        {
+            "levelId": 1,
+            "instructions": [
+                {
+                    "instructionId": 0,
+                    "En": "Click on the add button.",
+                    "Cn": "欢迎来到第二关！准备好迎接更多挑战。"
+                },
+                {
+                    "instructionId": 1,
+                    "En": "Click on new contact.",
+                    "Cn": "记得在继续之前收集所有物品。"
+                },
+                {
+                    "instructionId": 2,
+                    "En": "Uh oh! Wrong button. Try again.",
+                    "Cn": "记得在继续之前收集所有物品。"
+                },
+                {
+                    "instructionId": 3,
+                    "En": "Add the required details into the box.",
+                    "Cn": "记得在继续之前收集所有物品。"
+                },
+                {
+                    "instructionId": 4,
+                    "En": "Uh oh! The first name is missing.",
+                    "Cn": "记得在继续之前收集所有物品。"
+                },
+                {
+                    "instructionId": 5,
+                    "En": "Uh oh! The last name is missing.",
+                    "Cn": "记得在继续之前收集所有物品。"
+                },
+                {
+                    "instructionId": 4,
+                    "En": "Uh oh! The phone number is missing.",
+                    "Cn": "记得在继续之前收集所有物品。"
+                }
+            ]
+        },
+        {
+            "levelId": 2,
+            "instructions": [
+                {
+                    "instructionId": 1,
+                    "En": "Click on the unknown phone number.",
+                    "Cn": "记得在继续之前收集所有物品。"
+                },
+                {
+                    "instructionId": 2,
+                    "En": "Click on add button.",
+                    "Cn": "记得在继续之前收集所有物品。"
+                },
+                {
+                    "instructionId": 3,
+                    "En": "Click on 'Create new contact'.",
+                    "Cn": "记得在继续之前收集所有物品。"
+                },
+                {
+                    "instructionId": 4,
+                    "En": "Finally, save Little's John number.",
+                    "Cn": "记得在继续之前收集所有物品。"
+                }
+            ]
+        },
+        {
+            "levelId": 3,
+            "instructions": [
+                {}
+            ]
+        },
+        {
+            "levelId": 4,
+            "instructions": [
+                {}
+            ]
+        },
+        {
+            "levelId": 5,
+            "instructions": [
+                {
+                    "instructionId": 1,
+                    "En": "Press and hold the voice recording button.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 2,
+                    "En": "Lock the voice recording. \nLock: Drag up \nCancel: Drag left",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 3,
+                    "En": "Send the voice recording.",
+                    "Cn": "zzz"
+                }
+            ]
+        },
+        {
+            "levelId": 6,
+            "instructions": [
+                {
+                    "instructionId": 1,
+                    "En": "Tap on the camera",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 2,
+                    "En": "Click on the image",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 3,
+                    "En": "Send the image of the food",
+                    "Cn": "zzz"
+                }
+            ]
+        },
+        {
+            "levelId": 7,
+            "instructions": [
+                {
+                    "instructionId": 1,
+                    "En": "Call Little John",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 2,
+                    "En": "Wait for Little John to pick up",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 3,
+                    "En": "Switch to video call",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 4,
+                    "En": "End the call"
+                }
+            ]
+        },
+        {
+            "levelId": 8,
+            "instructions": [
+                {
+                    "instructionId": 1,
+                    "En": "Click on the add button.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 2,
+                    "En": "Click on 'New group'.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 3,
+                    "En": "Add Annie and Thommas.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 4,
+                    "En": "Enter a group name.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 5,
+                    "En": "Proceed once you are done.",
+                    "Cn": "zzz"
+                }
+            ]
+        },
+        {
+            "levelId": 9,
+            "instructions": [
+                {
+                    "instructionId": 1,
+                    "En": "Click on the emoji button.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 2,
+                    "En": "Click on the laughing emoji.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 3,
+                    "En": "Send the emoji.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 4,
+                    "En": "Click on the emoji button.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 5,
+                    "En": "Click on the heart emoji.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 6,
+                    "En": "Send the emoji.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 7,
+                    "En": "Click on the emoji button.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 8,
+                    "En": "Click on the GIF tab",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 9,
+                    "En": "Click on the good morning GIF",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 10,
+                    "En": "Send the GIF.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 11,
+                    "En": "Click on the emoji button.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 12,
+                    "En": "Click on sticker tab.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 13,
+                    "En": "Click on add sticker.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 14,
+                    "En": "Add coffee mug sticker pack.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 15,
+                    "En": "Send one of the sticker.",
+                    "Cn": "zzz"
+                }
+            ]
+        },
+        {
+            "levelId": 10,
+            "instructions": [
+                {
+                    "instructionId": 1,
+                    "En": "Click on the paper clip.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 2,
+                    "En": "Click on document.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 3,
+                    "En": "Select a document.",
+                    "Cn": "zzz"
+                },
+                {
+                    "instructionId": 4,
+                    "En": "Send the document.",
+                    "Cn": "zzz"
+                }
+            ]
+        },
+        {
+            "levelId": 11,
+            "instructions": [
+                {}
+            ]
+        },
+        {
+            "levelId": 12,
+            "instructions": [
+                {}
+            ]
+        },
+        {
+            "levelId": 13,
+            "instructions": [
+                {}
+            ]
+        }
+    ]
+}
