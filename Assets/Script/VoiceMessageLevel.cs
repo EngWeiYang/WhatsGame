@@ -28,6 +28,9 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public List<Image> imagesToChangeTransparency;
     public TMP_Text textToDisable;
     public Button sendBtn;
+    public GameObject fireflyHelp1;
+    public GameObject fireflyHelp2;
+    public GameObject fireflyHelp3;
 
     // Internal State
     private Coroutine recordingCoroutine;
@@ -46,6 +49,7 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         ActivateDefaultState(); // Ensure initial state is set to default
         HintIndicating.SetActive(false);
         sendBtn.onClick.AddListener(SendMessage);
+        fireflyHelp1.gameObject.SetActive(true);
         initialButtonPosition = GetComponent<RectTransform>().anchoredPosition;
     }
 
@@ -156,6 +160,8 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
     {
         isRecording = true;
         isDraggedLeft = false;
+        fireflyHelp2.gameObject.SetActive(true);
+        fireflyHelp1.gameObject.SetActive(false);
         isLocked = false;
         elapsedTime = 0f;
         recordingCoroutine = StartCoroutine(UpdateTimer(timer));
@@ -193,6 +199,8 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         SetTransparency(recordingImage, 0f);
         SetTransparency(recordingImage2, 0f);
         HintIndicating.SetActive(false);
+        fireflyHelp2.gameObject.SetActive(false);
+        fireflyHelp3.gameObject.SetActive(true);
         SetTransparency(recordingImage3, 0f);
         stateLocked.SetActive(true);
         isLocked = true;
@@ -223,6 +231,9 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
     private void ResetUI()
     {
         HintIndicating.SetActive(false);
+        fireflyHelp1.gameObject.SetActive(true);
+        fireflyHelp2.gameObject.SetActive(false);
+        fireflyHelp3.gameObject.SetActive(false);
         ActivateDefaultState(); // Switch to default recording state
         isDraggedLeft = false; // Reset the dragged left flag
         isLocked = false; // Reset the locked state
@@ -295,6 +306,9 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public void SendMessage()
     {
         sendVoiceMessage.SetActive(true);
+        fireflyHelp1.gameObject.SetActive(false);
+        fireflyHelp2.gameObject.SetActive(false);
+        fireflyHelp3.gameObject.SetActive(false);
         stateLocked.SetActive(false);
         SetTransparencyForAllImagesAndText(stateRecordVoice, 0f);
         DisableTMPText(textToDisable);
