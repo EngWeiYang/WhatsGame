@@ -2,30 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointerDownHandler
+public class VoiceMessageActive : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
+    // UI Elements
     public TMP_Text timer;
     public TMP_Text lockedTimer;
     public TMP_Text sentTimer;
     public Image recordingImage;
     public Image recordingImage2;
+    public Image recordingImage3;
     public GameObject HintIndicating;
     public GameObject HintIndicatorDefault;
     public GameObject HintIndicatorLocked;
-    public Image recordingImage3;
-    private Coroutine recordingCoroutine;
-    private Vector2 startDragPosition;
-    private bool isRecording = false;
-    private bool isDraggedLeft = false;
-    private bool isLocked = false;
-    private float elapsedTime = 0f;
-    public float recordedElapsedTime = 0f;
-    private const float returnThreshold = 15f;
-    private float elapsedTimeLocked = 0f;
     public GameObject defaultRecordingState;
     public GameObject sendVoiceMessage;
     public GameObject activeRecordingState;
@@ -35,16 +26,33 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
     public Vector2 lockPosition;
     public float lockThresholdY = 200f;
     public float cancelThresholdX = -400f;
-    private bool isHorizontalDrag = false;
-    private bool isVerticalDrag = false;
     public RectTransform phoneSizeBoundary;
     public List<Image> imagesToChangeTransparency;
     public TMP_Text textToDisable;
 
+    // Internal State
+    private Coroutine recordingCoroutine;
+    private Vector2 startDragPosition;
+    private bool isRecording = false;
+    private bool isDraggedLeft = false;
+    private bool isLocked = false;
+    private bool isHorizontalDrag = false;
+    private bool isVerticalDrag = false;
+    private float elapsedTime = 0f;
+    private const float returnThreshold = 15f;
+
+    // UI Button Elements from VoiceMessageLevel
+    public GameObject recordButton;
+    public GameObject currentlyRecordingButton;
+
     void Start()
     {
-        // Initialize the start position
         startDragPosition = transform.position;
+        // Ensure initial state is default
+        defaultRecordingState.SetActive(true);
+        activeRecordingState.SetActive(false);
+        currentlyRecordingButton.SetActive(false);
+        recordButton.SetActive(true);
     }
 
     // Called when the pointer is pressed down
@@ -52,8 +60,15 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
     {
         if (!isRecording)
         {
+            // Change state from default to recording
+            recordButton.SetActive(false);
+            currentlyRecordingButton.SetActive(true);
+
             StartRecording();
         }
+
+        // Start dragging immediately
+        startDragPosition = eventData.position;
     }
 
     // Called when the pointer is released
@@ -115,13 +130,11 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
                 LockRecording();
                 Debug.Log("Recording locked in position");
             }
-            // Allow dragging freely before locking
             else if (!isLocked)
             {
                 // Calculate the new position with constraints
                 Vector2 newPosition = startDragPosition + dragDelta;
 
-                // Get the button's rect transform and its size
                 RectTransform rectTransform = GetComponent<RectTransform>();
                 float buttonWidth = rectTransform.rect.width;
                 float buttonHeight = rectTransform.rect.height;
@@ -130,7 +143,7 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
                 Vector2 boundaryMin = boundaryRectTransform.TransformPoint(boundaryRectTransform.rect.min);
                 Vector2 boundaryMax = boundaryRectTransform.TransformPoint(boundaryRectTransform.rect.max);
 
-                //Clamp the position to prevent moving out of the screen bounds
+                // Clamp the position to prevent moving out of the screen bounds
                 newPosition.x = Mathf.Clamp(newPosition.x, boundaryMin.x + buttonWidth / 2, boundaryMax.x - buttonWidth / 2);
                 newPosition.y = Mathf.Clamp(newPosition.y, buttonHeight, Screen.height - buttonHeight);
 
@@ -238,6 +251,7 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
             recordingCoroutine = null;
         }
     }
+
     void SetTransparency(Image img, float alpha)
     {
         if (img != null)
@@ -247,6 +261,7 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
             img.color = color;
         }
     }
+
     void SetTransparencyForMultipleImages(List<Image> images, float alpha)
     {
         foreach (var img in images)
@@ -254,6 +269,7 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
             SetTransparency(img, alpha);
         }
     }
+
     void DisableTMPText(TMP_Text tmpText)
     {
         if (tmpText != null)
@@ -261,11 +277,11 @@ public class VoiceMessageActive : MonoBehaviour, IPointerUpHandler, IDragHandler
             tmpText.enabled = false;
         }
     }
+
     public void SendMessage()
     {
         sendVoiceMessage.SetActive(true);
         activeRecordingState.SetActive(false);
-        //deactivateLockedState.SetActive(false);
         DisableTMPText(textToDisable);
         SetTransparencyForMultipleImages(imagesToChangeTransparency, 0f);
         defaultRecordingState.SetActive(true);

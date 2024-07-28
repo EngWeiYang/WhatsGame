@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
 
 public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
@@ -22,8 +19,6 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public GameObject HintIndicatorLocked;
     public GameObject defaultRecordingState;
     public GameObject sendVoiceMessage;
-    public GameObject activeRecordingState;
-    public GameObject deactivateLockedState;
     public GameObject stateRecordVoice;
     public GameObject stateLocked;
     public Vector2 lockPosition;
@@ -32,6 +27,7 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public RectTransform phoneSizeBoundary;
     public List<Image> imagesToChangeTransparency;
     public TMP_Text textToDisable;
+    public Button sendBtn;
 
     // Internal State
     private Coroutine recordingCoroutine;
@@ -43,13 +39,14 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
     private bool isVerticalDrag = false;
     private float elapsedTime = 0f;
     private const float returnThreshold = 15f;
-
-    // UI Button Elements from VoiceMessageLevel
+    private Vector2 initialButtonPosition;
 
     void Start()
     {
-        defaultRecordingState.SetActive(true);
-        activeRecordingState.SetActive(false);
+        ActivateDefaultState(); // Ensure initial state is set to default
+        HintIndicating.SetActive(false);
+        sendBtn.onClick.AddListener(SendMessage);
+        initialButtonPosition = GetComponent<RectTransform>().anchoredPosition;
     }
 
     // Called when the pointer is pressed down
@@ -57,13 +54,9 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
     {
         if (!isRecording)
         {
-            // Change state from default to recording
-            defaultRecordingState.SetActive(false);
-            activeRecordingState.SetActive(true);
             startDragPosition = eventData.position;
             StartRecording();
         }
-        // Start dragging immediately
         isHorizontalDrag = false;
         isVerticalDrag = false;
     }
@@ -82,9 +75,7 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
                 Debug.Log("Recording continues in locked position");
             }
         }
-        // Revert to default state
-        defaultRecordingState.SetActive(true);
-        activeRecordingState.SetActive(false);
+        ActivateDefaultState(); // Switch back to default recording state
     }
 
     // Called when the pointer is dragged
@@ -121,7 +112,6 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
             {
                 isDraggedLeft = true;
                 StopRecording();
-                ResetUI();
                 Debug.Log("Recording cancelled due to drag left");
             }
             // Check if dragged upwards beyond the lock threshold
@@ -169,7 +159,9 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         isLocked = false;
         elapsedTime = 0f;
         recordingCoroutine = StartCoroutine(UpdateTimer(timer));
-        Debug.Log("Recording started");
+        ActivateRecordingState();// Switch to active recording state
+        HintIndicating.SetActive(true);
+        //Debug.Log("Recording started");
     }
 
     // Stop the recording process
@@ -186,6 +178,7 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         if (isDraggedLeft)
         {
             Debug.Log("Recording cancelled");
+            ResetUI();
         }
         else if (!isLocked)
         {
@@ -229,15 +222,12 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
     // Reset the UI to the default state
     private void ResetUI()
     {
-        SetTransparency(recordingImage, 255f);
-        SetTransparency(recordingImage2, 255f);
-        SetTransparency(recordingImage3, 255f);
-        HintIndicating.SetActive(true);
-        activeRecordingState.SetActive(false);
-        defaultRecordingState.SetActive(true);
+        HintIndicating.SetActive(false);
+        ActivateDefaultState(); // Switch to default recording state
         isDraggedLeft = false; // Reset the dragged left flag
         isLocked = false; // Reset the locked state
         elapsedTime = 0f; // Reset elapsed time
+        ResetButtonPosition(); // Reset the button position
     }
 
     private void StopRecordingCoroutine()
@@ -249,7 +239,40 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         }
     }
 
-    void SetTransparency(Image img, float alpha)
+    private void ActivateDefaultState()
+    {
+        // Adjust transparency for images and TMP texts within the default recording state
+        SetTransparencyForAllImagesAndText(defaultRecordingState, 1f);
+        SetTransparencyForAllImagesAndText(stateRecordVoice, 0f);
+        Debug.Log("Activated Default State");
+    }
+
+    private void ActivateRecordingState()
+    {
+        // Adjust transparency for images and TMP texts within the active recording state
+        SetTransparencyForAllImagesAndText(defaultRecordingState, 0f);
+        SetTransparencyForAllImagesAndText(stateRecordVoice, 1f);
+        Debug.Log("Activated Recording State");
+    }
+
+    private void SetTransparencyForAllImagesAndText(GameObject obj, float alpha)
+    {
+        // Set transparency for all Image components
+        Image[] images = obj.GetComponentsInChildren<Image>();
+        foreach (var img in images)
+        {
+            SetTransparency(img, alpha);
+        }
+
+        // Set transparency for all TMP_Text components
+        TMP_Text[] texts = obj.GetComponentsInChildren<TMP_Text>();
+        foreach (var txt in texts)
+        {
+            SetTextTransparency(txt, alpha);
+        }
+    }
+
+    private void SetTransparency(Image img, float alpha)
     {
         if (img != null)
         {
@@ -259,7 +282,32 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         }
     }
 
-    void SetTransparencyForMultipleImages(List<Image> images, float alpha)
+    private void SetTextTransparency(TMP_Text text, float alpha)
+    {
+        if (text != null)
+        {
+            Color color = text.color;
+            color.a = alpha;
+            text.color = color;
+        }
+    }
+
+    public void SendMessage()
+    {
+        sendVoiceMessage.SetActive(true);
+        stateLocked.SetActive(false);
+        SetTransparencyForAllImagesAndText(stateRecordVoice, 0f);
+        DisableTMPText(textToDisable);
+        SetTransparencyForMultipleImages(imagesToChangeTransparency, 0f);
+        SetTransparencyForAllImagesAndText(defaultRecordingState, 1f);
+        HintIndicatorLocked.SetActive(false);
+        HintIndicatorDefault.SetActive(false);
+        sentTimer.text = lockedTimer.text;
+        timer.text = "00:00";
+        lockedTimer.text = "00:00";
+    }
+
+    private void SetTransparencyForMultipleImages(List<Image> images, float alpha)
     {
         foreach (var img in images)
         {
@@ -267,7 +315,7 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         }
     }
 
-    void DisableTMPText(TMP_Text tmpText)
+    private void DisableTMPText(TMP_Text tmpText)
     {
         if (tmpText != null)
         {
@@ -275,17 +323,9 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         }
     }
 
-    public void SendMessage()
+    private void ResetButtonPosition()
     {
-        sendVoiceMessage.SetActive(true);
-        activeRecordingState.SetActive(false);
-        DisableTMPText(textToDisable);
-        SetTransparencyForMultipleImages(imagesToChangeTransparency, 0f);
-        defaultRecordingState.SetActive(true);
-        HintIndicatorLocked.SetActive(false);
-        HintIndicatorDefault.SetActive(false);
-        sentTimer.text = lockedTimer.text;
-        timer.text = "00:00";
-        lockedTimer.text = "00:00";
+        GetComponent<RectTransform>().anchoredPosition = initialButtonPosition;
+        GetComponent<Button>().interactable = true;
     }
 }

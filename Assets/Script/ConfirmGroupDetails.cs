@@ -49,6 +49,7 @@ public class ConfirmGroupDetails : MonoBehaviour
         {
             currentScreen.SetActive(false);
             nextScreen.SetActive(true);
+            fireflyhelp2.SetActive(false);
         }
     }
 }
