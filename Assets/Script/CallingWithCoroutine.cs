@@ -21,6 +21,7 @@ public class CallingWithCoroutine : MonoBehaviour
     // Update is called once per frame
     void CallingandAnswering()
     {
+        fireflyhelp.SetActive(false);
         screenRinging.SetActive(true);
         coroutineManager.StartManagedCoroutine(FromRingingToAnswering());
     }
