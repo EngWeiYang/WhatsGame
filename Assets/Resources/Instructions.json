@@ -5,67 +5,67 @@
             "levelNames": [
                 {
                     "levelId": 1,
-                    "En": "Level 1 - Add to Contact via Phone Number",
+                    "En": "1.     Add to Contact via Phone Number",
                     "Cn": "1级 - 通过电话号码添加联系方式"
                 },
                 {
                     "levelId": 2,
-                    "En": "Level 2 - Add Contact via Chat",
+                    "En": "2.     Add Contact via Chat",
                     "Cn": "第2关 - 添加联系人"
                 },
                 {
                     "levelId": 3,
-                    "En": "Level 3 - Add Contact via QRcode",
+                    "En": "3.     Add Contact via QRcode",
                     "Cn": "第2关 - 添加联系人"
                 },
                 {
                     "levelId": 4,
-                    "En": "Level 4 - Send Message",
+                    "En": "4.     Send Message",
                     "Cn": "第2关 - 添加联系人"
                 },
                 {
                     "levelId": 5,
-                    "En": "Level 5 - Voice Message",
+                    "En": "5.     Voice Message",
                     "Cn": "zzz"
                 },
                 {
                     "levelId": 6,
-                    "En": "Level 6 - Send Images/Videos",
+                    "En": "6.     Send Images/Videos",
                     "Cn": "第2关 - 添加联系人"
                 },
                 {
                     "levelId": 7,
-                    "En": "Level 7 - Call and Video Call",
+                    "En": "7.     Call and Video Call",
                     "Cn": "第2关 - 添加联系人"
                 },
                 {
                     "levelId": 8,
-                    "En": "Level 8 - Create Group Chats",
+                    "En": "8.     Create Group Chats",
                     "Cn": "第2关 - 添加联系人"
                 },
                 {
                     "levelId": 9,
-                    "En": "Level 9 - Emoji, GIFs, Stickers",
+                    "En": "9.     Emoji, GIFs, Stickers",
                     "Cn": "第2关 - 添加联系人"
                 },
                 {
                     "levelId": 10,
-                    "En": "Level 10 - Send Documents",
+                    "En": "10.     Send Documents",
                     "Cn": "第2关 - 添加联系人"
                 },
                 {
                     "levelId": 11,
-                    "En": "Level 11 - Creating Polls",
+                    "En": "11.     Creating Polls",
                     "Cn": "第2关 - 添加联系人"
                 },
                 {
                     "levelId": 12,
-                    "En": "Level 12 - Cropping Images",
+                    "En": "12.     Cropping Images",
                     "Cn": "第2关 - 添加联系人"
                 },
                 {
                     "levelId": 13,
-                    "En": "Level 13 - Cutting Videos",
+                    "En": "13.     Cutting Videos",
                     "Cn": "第2关 - 添加联系人"
                 }
             ],
@@ -106,6 +106,33 @@
                     "buttonId": 4,
                     "En": "Main Menu",
                     "Cn": "下一个"
+                }
+            ],
+            "levelSelectText": [
+                {
+                    "textId": 1,
+                    "En": "Levels",
+                    "Cn": "zzz"
+                },
+                {
+                    "textId": 2,
+                    "En": "Difficulty",
+                    "Cn": "zzz"
+                },
+                {
+                    "textId": 3,
+                    "En": "Easy",
+                    "Cn": "zzz"
+                },
+                {
+                    "textId": 4,
+                    "En": "Medium",
+                    "Cn": "zzz"
+                },
+                {
+                    "textId": 5,
+                    "En": "Hard",
+                    "Cn": "zzz"
                 }
             ]
         },
