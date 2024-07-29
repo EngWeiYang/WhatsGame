@@ -9,6 +9,9 @@ public class Cropper : MonoBehaviour
     public RectTransform cropArea; // Crop area
     public Button sendButton; // Button to trigger the crop and send
     public RawImage resultDisplay; // RawImage to display the cropped image
+    public GameObject textBox;
+    public GameObject chatscreen;
+    public GameObject imageCropped;
 
     private void Start()
     {
@@ -34,21 +37,15 @@ public class Cropper : MonoBehaviour
         Vector2 cropSize = cropArea.rect.size;
         Vector2 cropPosition = cropArea.anchoredPosition - photoTransform.anchoredPosition;
 
-        // Calculate scaling factors if necessary
-        Vector2 photoScale = photoTransform.localScale;
-        Vector2 cropAreaScale = cropArea.localScale;
+        // Calculate the aspect ratio of the photo display relative to the original texture
+        float photoAspectRatioX = originalTexture.width / photoSize.x;
+        float photoAspectRatioY = originalTexture.height / photoSize.y;
 
-        // Convert crop area position and size to texture coordinates
-        int x = Mathf.FloorToInt((cropPosition.x / photoSize.x) * originalTexture.width);
-        int y = Mathf.FloorToInt((cropPosition.y / photoSize.y) * originalTexture.height);
-        int width = Mathf.FloorToInt((cropSize.x / photoSize.x) * originalTexture.width);
-        int height = Mathf.FloorToInt((cropSize.y / photoSize.y) * originalTexture.height);
-
-        // Apply scaling
-        x = Mathf.FloorToInt(x / photoScale.x);
-        y = Mathf.FloorToInt(y / photoScale.y);
-        width = Mathf.FloorToInt(width / photoScale.x);
-        height = Mathf.FloorToInt(height / photoScale.y);
+        // Adjust crop position to be in texture coordinates
+        int x = Mathf.FloorToInt((cropPosition.x + (photoSize.x / 2) - (cropSize.x / 2)) * photoAspectRatioX);
+        int y = Mathf.FloorToInt((cropPosition.y + (photoSize.y / 2) - (cropSize.y / 2)) * photoAspectRatioY);
+        int width = Mathf.FloorToInt(cropSize.x * photoAspectRatioX);
+        int height = Mathf.FloorToInt(cropSize.y * photoAspectRatioY);
 
         // Ensure cropping area is within texture bounds
         x = Mathf.Clamp(x, 0, originalTexture.width - 1);
@@ -70,6 +67,9 @@ public class Cropper : MonoBehaviour
         {
             // Set the cropped texture to the result display
             resultDisplay.texture = croppedTexture;
+            textBox.gameObject.SetActive(true);
+            chatscreen.gameObject.SetActive(true);
+            imageCropped.gameObject.SetActive(false);
             resultDisplay.gameObject.SetActive(true); // Ensure the RawImage is visible
         }
     }
