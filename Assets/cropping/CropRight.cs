@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CropTop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
+public class CropRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     public Transform cropBox;
     private RectTransform cropBoxRectTransform;
-    private RectTransform handleTopRectTransform;
+    private RectTransform handleRightRectTransform;
     private Canvas canvas;
 
     public HeightManager heightManager;
@@ -15,12 +15,12 @@ public class CropTop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
     private bool dragStarted = false;
 
     //Calculation
-    private float originalYPos = 342;
+    private float originalXPos = 428.1f;
     private float difference;
 
     private void Awake()
     {
-        handleTopRectTransform = GetComponent<RectTransform>();
+        handleRightRectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
         cropBoxRectTransform = cropBox.GetComponent<RectTransform>();
     }
@@ -34,20 +34,22 @@ public class CropTop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
     {
         dragStarted = false;
 
-        heightManager.height = cropBoxRectTransform.sizeDelta.y;
-        originalYPos = handleTopRectTransform.localPosition.y;
-        heightManager.originalYPosCropBox = cropBoxRectTransform.localPosition.y;
+        heightManager.width = cropBoxRectTransform.sizeDelta.x;
+        originalXPos = handleRightRectTransform.localPosition.x;
+        heightManager.originalXPosCropBox = cropBoxRectTransform.localPosition.x;
     }
 
     private void Update()
     {
         if (dragStarted)
         {
-            cropBoxRectTransform.localPosition = new Vector3(cropBoxRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
-
-            cropBoxRectTransform.sizeDelta = new Vector2(cropBoxRectTransform.sizeDelta.x, heightManager.height + difference);
-
-            difference = -(originalYPos - handleTopRectTransform.anchoredPosition.y);
+            //Position
+            cropBoxRectTransform.localPosition = new Vector3(heightManager.originalXPosCropBox + difference / 2, cropBoxRectTransform.anchoredPosition.y, 0);
+    
+            //Scale
+            cropBoxRectTransform.sizeDelta = new Vector2(heightManager.width + difference, cropBoxRectTransform.sizeDelta.y);
+    
+            difference = -(originalXPos - handleRightRectTransform.anchoredPosition.x);
         }
     }
 
@@ -60,6 +62,6 @@ public class CropTop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
             canvas.worldCamera,
             out localMousePosition);
 
-        handleTopRectTransform.anchoredPosition = new Vector2(handleTopRectTransform.anchoredPosition.x, localMousePosition.y);
+        handleRightRectTransform.anchoredPosition = new Vector2(localMousePosition.x, handleRightRectTransform.anchoredPosition.y);
     }
 }

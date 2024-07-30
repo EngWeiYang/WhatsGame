@@ -48,6 +48,8 @@ public class CropBottom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
             //Scale
             cropBoxRectTransform.sizeDelta = new Vector2(cropBoxRectTransform.sizeDelta.x, heightManager.height - difference);
+
+            difference = -(originalYPos - handleBottomRectTransform.anchoredPosition.y);
         }
     }
 
@@ -61,8 +63,5 @@ public class CropBottom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             out localMousePosition);
 
         handleBottomRectTransform.anchoredPosition = new Vector2(handleBottomRectTransform.anchoredPosition.x, localMousePosition.y);
-
-        difference = -(originalYPos - handleBottomRectTransform.anchoredPosition.y);
-        //-300 - 
     }
 }
