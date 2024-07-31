@@ -26,6 +26,10 @@ public class CheckContact : MonoBehaviour
     public GameObject HintIndicatorSaveContact;
     public GameObject FireflyStep3;
     public GameObject FireflyStep4;
+    private CoroutineManager coroutineManager;
+    public GameObject levelCompleteScreen;
+    public Animator levelCompleteAnimator;
+    public Button levelCompleteEnable;
     void Start()
     {
         // Set the Phone input field to only accept numeric values
@@ -33,7 +37,8 @@ public class CheckContact : MonoBehaviour
         Phone.characterLimit = 8;
         Firstname.contentType = TMP_InputField.ContentType.Name;
         Lastname.contentType = TMP_InputField.ContentType.Name;
-
+        GameObject coroutineManagerObject = GameObject.Find("CoroutineManager");
+        coroutineManager = coroutineManagerObject.GetComponent<CoroutineManager>();
         Firstname.onSelect.AddListener(OnFirstNameSelect);
         Lastname.onSelect.AddListener(OnLastNameSelect);
         Phone.onSelect.AddListener(OnPhoneSelect);
@@ -46,6 +51,7 @@ public class CheckContact : MonoBehaviour
         Firstname.onValueChanged.AddListener(CheckAllFieldsFilled);
         Lastname.onValueChanged.AddListener(CheckAllFieldsFilled);
         Phone.onValueChanged.AddListener(CheckAllFieldsFilled);
+        levelCompleteEnable.onClick.AddListener(WinScreenAfterInputsAreFilled);
     }
     public void CheckInput()
     {
@@ -150,6 +156,29 @@ public class CheckContact : MonoBehaviour
             FireflyStep4.gameObject.SetActive(false);
             FireflyStep3.gameObject.SetActive(true);
         }
+    }
+
+    void WinScreenAfterInputsAreFilled()
+    {
+        string firstNameText = Firstname.text.Trim();
+        string lastNameText = Lastname.text.Trim();
+        string phoneText = Phone.text.Trim();
+
+        if (!string.IsNullOrEmpty(firstNameText) &&
+            !string.IsNullOrEmpty(lastNameText) &&
+            !string.IsNullOrEmpty(phoneText))
+        {
+            // Enable the level complete screen and trigger the animatio
+            coroutineManager.StartManagedCoroutine(WinScreenCoroutine());
+        }
+    }
+    IEnumerator WinScreenCoroutine()
+    {
+        // Wait for the animation to finish (assumes the animation length is 2 seconds)
+        yield return new WaitForSeconds(1f);
+        levelCompleteScreen.SetActive(true);
+        levelCompleteAnimator.SetTrigger("LevelCompleted");
+
     }
     void OnFirstNameUnSelect(string text)
     {
