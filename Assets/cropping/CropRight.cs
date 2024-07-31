@@ -6,8 +6,16 @@ using UnityEngine.EventSystems;
 public class CropRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     public Transform cropBox;
+    public Transform topHandle;
+    public Transform bottomHandle;
+    public Transform topRightHandle;
+    public Transform bottomRightHandle;
     private RectTransform cropBoxRectTransform;
+    private RectTransform topRightHandleRectTransform;
     private RectTransform handleRightRectTransform;
+    private RectTransform bottomRightHandleRectTransform;
+    private RectTransform topHandleRectTransform;
+    private RectTransform bottomHandleRectTransform;
     private Canvas canvas;
 
     public HeightManager heightManager;
@@ -23,6 +31,10 @@ public class CropRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
         handleRightRectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
         cropBoxRectTransform = cropBox.GetComponent<RectTransform>();
+        topRightHandleRectTransform = topRightHandle.GetComponent<RectTransform>();
+        bottomRightHandleRectTransform = bottomRightHandle.GetComponent<RectTransform>();
+        topHandleRectTransform = topHandle.GetComponent<RectTransform>();
+        bottomHandleRectTransform = bottomHandle.GetComponent<RectTransform>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -50,6 +62,9 @@ public class CropRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
             cropBoxRectTransform.sizeDelta = new Vector2(heightManager.width + difference, cropBoxRectTransform.sizeDelta.y);
     
             difference = -(originalXPos - handleRightRectTransform.anchoredPosition.x);
+
+            bottomRightHandleRectTransform.anchoredPosition = new Vector2(handleRightRectTransform.anchoredPosition.x, bottomHandleRectTransform.anchoredPosition.y);
+            topRightHandleRectTransform.anchoredPosition = new Vector2(handleRightRectTransform.anchoredPosition.x, topHandleRectTransform.anchoredPosition.y);
         }
     }
 

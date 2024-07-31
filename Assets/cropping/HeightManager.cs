@@ -10,18 +10,13 @@ public class HeightManager : MonoBehaviour
     public float width = 857.08f;
     public float originalXPosCropBox = -5.915761e-06f;
 
-    public float originalTopRightXPosCropBox = -5.915761e-06f;
-    public float originalTopRightYPosCropBox = 0;
 
-    public float originalTopLeftXPosCropBox = -5.915761e-06f;
-    public float originalTopLeftYPosCropBox = 0;
+    //Rescaling right handle using Top handle
 
-    public float originalBottomRightXPosCropBox = -5.915761e-06f;
-    public float originalBottomRightYPosCropBox = 0;
-
-    public float originalBottomLeftXPosCropBox = -5.915761e-06f;
-    public float originalBottomLeftYPosCropBox = 0;
+    public float reScaleRightHandleWidth = 77.4763f;
 
 
+    //repositioning top right and left handle
+    public float topRightHandleYposition = 330.2446f;
 
 }

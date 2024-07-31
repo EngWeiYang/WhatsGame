@@ -6,6 +6,14 @@ using UnityEngine.EventSystems;
 public class CropTop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     public Transform cropBox;
+    public Transform rightHandle;
+    public Transform leftHandle;
+    public Transform topRightHandle;
+    public Transform topLeftHandle;
+    private RectTransform rightHandleRectTransform;
+    private RectTransform leftHandleRectTransform;
+    private RectTransform topRightHandleRectTransform;
+    private RectTransform topLeftHandleRectTransform;
     private RectTransform cropBoxRectTransform;
     private RectTransform handleTopRectTransform;
     private Canvas canvas;
@@ -23,6 +31,10 @@ public class CropTop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
         handleTopRectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
         cropBoxRectTransform = cropBox.GetComponent<RectTransform>();
+        rightHandleRectTransform = rightHandle.GetComponent<RectTransform>();
+        leftHandleRectTransform = leftHandle.GetComponent<RectTransform>();
+        topRightHandleRectTransform = topRightHandle.GetComponent<RectTransform>();
+        topLeftHandleRectTransform = topLeftHandle.GetComponent<RectTransform>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -43,11 +55,17 @@ public class CropTop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
     {
         if (dragStarted)
         {
+            //position
             cropBoxRectTransform.localPosition = new Vector3(cropBoxRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
-
+            
+            //scaling
             cropBoxRectTransform.sizeDelta = new Vector2(cropBoxRectTransform.sizeDelta.x, heightManager.height + difference);
-
+            
             difference = -(originalYPos - handleTopRectTransform.anchoredPosition.y);
+
+            topRightHandleRectTransform.anchoredPosition = new Vector2(rightHandleRectTransform.anchoredPosition.x, handleTopRectTransform.anchoredPosition.y);
+
+            topLeftHandleRectTransform.anchoredPosition = new Vector2(leftHandleRectTransform.anchoredPosition.x, handleTopRectTransform.anchoredPosition.y);
         }
     }
 

@@ -15,8 +15,8 @@ public class CropBottomLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     private bool dragStarted = false;
 
     //Calculation
-    private float originalXPos = -425;
-    private float originalYPos = -330;
+    private float originalXPos = -428;
+    private float originalYPos = -335;
     private float differencex;
     private float differencey;
 
@@ -38,18 +38,18 @@ public class CropBottomLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
         heightManager.height = cropBoxRectTransform.sizeDelta.y;
         originalYPos = handleBottomLeftRectTransform.localPosition.y;
-        heightManager.originalBottomLeftYPosCropBox = cropBoxRectTransform.localPosition.y;
+        heightManager.originalYPosCropBox = cropBoxRectTransform.localPosition.y;
 
         heightManager.width = cropBoxRectTransform.sizeDelta.x;
         originalXPos = handleBottomLeftRectTransform.localPosition.x;
-        heightManager.originalBottomLeftXPosCropBox = cropBoxRectTransform.localPosition.x;
+        heightManager.originalXPosCropBox = cropBoxRectTransform.localPosition.x;
     }
 
     private void Update()
     {
         if (dragStarted)
         {
-            cropBoxRectTransform.localPosition = new Vector3((heightManager.originalBottomLeftXPosCropBox + differencex / 2), (heightManager.originalBottomLeftYPosCropBox + differencey / 2), 0);
+            cropBoxRectTransform.localPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
 
             cropBoxRectTransform.sizeDelta = new Vector2(heightManager.width - differencex, heightManager.height - differencey);
 

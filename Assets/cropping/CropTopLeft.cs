@@ -38,18 +38,18 @@ public class CropTopLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         heightManager.height = cropBoxRectTransform.sizeDelta.y;
         originalYPos = handleTopLeftRectTransform.localPosition.y;
-        heightManager.originalTopLeftYPosCropBox = cropBoxRectTransform.localPosition.y;
+        heightManager.originalYPosCropBox = cropBoxRectTransform.localPosition.y;
 
         heightManager.width = cropBoxRectTransform.sizeDelta.x;
         originalXPos = handleTopLeftRectTransform.localPosition.x;
-        heightManager.originalTopLeftXPosCropBox = cropBoxRectTransform.localPosition.x;
+        heightManager.originalXPosCropBox = cropBoxRectTransform.localPosition.x;
     }
 
     private void Update()
     {
         if (dragStarted)
         {
-            cropBoxRectTransform.localPosition = new Vector3((heightManager.originalTopLeftXPosCropBox + differencex / 2), (heightManager.originalTopLeftYPosCropBox + differencey / 2), 0);
+            cropBoxRectTransform.localPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
 
             cropBoxRectTransform.sizeDelta = new Vector2(heightManager.width - differencex, heightManager.height + differencey);
 
