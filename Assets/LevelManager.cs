@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //levels[LevelSelect.currLevel].SetActive(true);
+        levels[LevelSelect.currLevel].SetActive(true);
     }
 
     // Update is called once per frame
