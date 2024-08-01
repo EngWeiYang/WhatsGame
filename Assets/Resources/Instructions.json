@@ -455,17 +455,17 @@
                 },
                 {
                     "instructionId": 13,
-                    "En": "Click on add sticker.",
+                    "En": "Click on the sticker Little John sent you.",
                     "Cn": "zzz"
                 },
                 {
                     "instructionId": 14,
-                    "En": "Add coffee mug sticker pack.",
+                    "En": "Add the sticker to your favourite.",
                     "Cn": "zzz"
                 },
                 {
                     "instructionId": 15,
-                    "En": "Send one of the sticker.",
+                    "En": "Send the sticker back to Little John.",
                     "Cn": "zzz"
                 }
             ]
