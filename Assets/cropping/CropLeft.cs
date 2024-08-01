@@ -8,8 +8,8 @@ public class CropLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     public Transform cropBox;
     public Transform bottomLeftHandle;
     public Transform topLeftHandle;
-    public Transform tophandle;
-    public Transform bottomhandle;
+    public Transform topHandle;
+    public Transform bottomHandle;
     private RectTransform cropBoxRectTransform;
     private RectTransform handleLeftRectTransform;
     private RectTransform bottomLeftHandleRectTransform;
@@ -23,7 +23,7 @@ public class CropLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     private bool dragStarted = false;
 
     //Calculation
-    private float originalXPos = -428f;
+    private float originalXPos = -420;
     private float difference;
 
     private void Awake()
@@ -31,23 +31,25 @@ public class CropLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         handleLeftRectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
         cropBoxRectTransform = cropBox.GetComponent<RectTransform>();
-        bottomHandleRectTransform = bottomLeftHandle.GetComponent<RectTransform>();
+        bottomHandleRectTransform = bottomHandle.GetComponent<RectTransform>();
         bottomLeftHandleRectTransform = bottomLeftHandle.GetComponent<RectTransform>();
         topLeftHandleRectTransform = topLeftHandle.GetComponent<RectTransform>();   
-        topHandleRectTransform = tophandle.GetComponent<RectTransform>();
+        topHandleRectTransform = topHandle.GetComponent<RectTransform>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         dragStarted = true;
+        originalXPos = handleLeftRectTransform.localPosition.x;
+        
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         dragStarted = false;
-
+        heightManager.reScaleTopBottomHandleWidth = topHandleRectTransform.sizeDelta.x;
+        heightManager.reScaleTopBottomHandleWidth = bottomHandleRectTransform.sizeDelta.x;
         heightManager.width = cropBoxRectTransform.sizeDelta.x;
-        originalXPos = handleLeftRectTransform.localPosition.x;
         heightManager.originalXPosCropBox = cropBoxRectTransform.localPosition.x;
     }
 
@@ -57,9 +59,13 @@ public class CropLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         {
             //Position
             cropBoxRectTransform.localPosition = new Vector3(heightManager.originalXPosCropBox + difference / 2, cropBoxRectTransform.anchoredPosition.y, 0);
+            topHandleRectTransform.localPosition = new Vector3(heightManager.originalXPosCropBox + difference / 2, topHandleRectTransform.anchoredPosition.y, 0);
+            bottomHandleRectTransform.localPosition = new Vector3(heightManager.originalXPosCropBox + difference / 2, bottomHandleRectTransform.anchoredPosition.y, 0);
 
             //Scale
             cropBoxRectTransform.sizeDelta = new Vector2(heightManager.width - difference, cropBoxRectTransform.sizeDelta.y);
+            topHandleRectTransform.sizeDelta = new Vector2(heightManager.reScaleTopBottomHandleWidth - difference, topHandleRectTransform.sizeDelta.y);
+            bottomHandleRectTransform.sizeDelta = new Vector2(heightManager.reScaleTopBottomHandleWidth - difference, bottomHandleRectTransform.sizeDelta.y);
 
             difference = -(originalXPos - handleLeftRectTransform.anchoredPosition.x);
 

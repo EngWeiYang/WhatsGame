@@ -13,10 +13,9 @@ public class HeightManager : MonoBehaviour
 
     //Rescaling right handle using Top handle
 
-    public float reScaleRightHandleWidth = 77.4763f;
-
-
-    //repositioning top right and left handle
-    public float topRightHandleYposition = 330.2446f;
+    public float reScaleRightHandleHeight = 645;
+    public float reScaleRightHandleWidth = 32;
+    public float reScaleTopBottomHeight = 27;
+    public float reScaleTopBottomHandleWidth = 808;
 
 }

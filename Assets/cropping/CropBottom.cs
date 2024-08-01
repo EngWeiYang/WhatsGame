@@ -23,7 +23,7 @@ public class CropBottom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     private bool dragStarted = false;
 
     //Calculation
-    private float originalYPos = -342;
+    private float originalYPos = -344;
     private float difference;
 
     private void Awake()
@@ -40,6 +40,8 @@ public class CropBottom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     public void OnPointerDown(PointerEventData eventData)
     {
         dragStarted = true;
+        originalYPos = handleBottomRectTransform.localPosition.y;
+        
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -47,7 +49,8 @@ public class CropBottom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         dragStarted = false;
 
         heightManager.height = cropBoxRectTransform.sizeDelta.y;
-        originalYPos = handleBottomRectTransform.localPosition.y;
+        heightManager.reScaleRightHandleHeight = rightHandleRectTransform.sizeDelta.y;
+        heightManager.reScaleRightHandleHeight = leftHandleRectTransform.sizeDelta.y;
         heightManager.originalYPosCropBox = cropBoxRectTransform.localPosition.y;
     }
 
@@ -57,15 +60,18 @@ public class CropBottom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         {
             //Position
             cropBoxRectTransform.localPosition = new Vector3(cropBoxRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
-
+            rightHandleRectTransform.localPosition = new Vector3(rightHandleRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
+            leftHandleRectTransform.localPosition = new Vector3(leftHandleRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
             //Scale
             cropBoxRectTransform.sizeDelta = new Vector2(cropBoxRectTransform.sizeDelta.x, heightManager.height - difference);
+            rightHandleRectTransform.sizeDelta = new Vector2(rightHandleRectTransform.sizeDelta.x, heightManager.reScaleRightHandleHeight - difference);
+            leftHandleRectTransform.sizeDelta = new Vector2(leftHandleRectTransform.sizeDelta.x, heightManager.reScaleRightHandleHeight - difference);
 
             difference = -(originalYPos - handleBottomRectTransform.anchoredPosition.y);
 
 
-            //bottomRightHandleRectTransform.anchoredPosition = new Vector2(rightHandleRectTransform.anchoredPosition.x, handleBottomRectTransform.anchoredPosition.y);
-            //bottomLeftHandleRectTransform.anchoredPosition = new Vector2(leftHandleRectTransform.anchoredPosition.x, handleBottomRectTransform.anchoredPosition.y);
+            bottomRightHandleRectTransform.anchoredPosition = new Vector2(rightHandleRectTransform.anchoredPosition.x, handleBottomRectTransform.anchoredPosition.y);
+            bottomLeftHandleRectTransform.anchoredPosition = new Vector2(leftHandleRectTransform.anchoredPosition.x, handleBottomRectTransform.anchoredPosition.y);
         }
     }
 

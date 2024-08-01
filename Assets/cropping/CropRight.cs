@@ -23,7 +23,7 @@ public class CropRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     private bool dragStarted = false;
 
     //Calculation
-    private float originalXPos = 428.1f;
+    private float originalXPos = 420;
     private float difference;
 
     private void Awake()
@@ -40,14 +40,16 @@ public class CropRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     public void OnPointerDown(PointerEventData eventData)
     {
         dragStarted = true;
+        originalXPos = handleRightRectTransform.localPosition.x;
+        
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         dragStarted = false;
-
+        heightManager.reScaleTopBottomHandleWidth = topHandleRectTransform.sizeDelta.x;
+        heightManager.reScaleTopBottomHandleWidth = bottomHandleRectTransform.sizeDelta.x;
         heightManager.width = cropBoxRectTransform.sizeDelta.x;
-        originalXPos = handleRightRectTransform.localPosition.x;
         heightManager.originalXPosCropBox = cropBoxRectTransform.localPosition.x;
     }
 
@@ -57,10 +59,14 @@ public class CropRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
         {
             //Position
             cropBoxRectTransform.localPosition = new Vector3(heightManager.originalXPosCropBox + difference / 2, cropBoxRectTransform.anchoredPosition.y, 0);
-    
+            topHandleRectTransform.localPosition = new Vector3(heightManager.originalXPosCropBox + difference / 2, topHandleRectTransform.anchoredPosition.y,  0);
+            bottomHandleRectTransform.localPosition = new Vector3(heightManager.originalXPosCropBox + difference / 2, bottomHandleRectTransform.anchoredPosition.y,  0);
+
             //Scale
             cropBoxRectTransform.sizeDelta = new Vector2(heightManager.width + difference, cropBoxRectTransform.sizeDelta.y);
-    
+            topHandleRectTransform.sizeDelta = new Vector2(heightManager.reScaleTopBottomHandleWidth + difference, topHandleRectTransform.sizeDelta.y);
+            bottomHandleRectTransform.sizeDelta = new Vector2(heightManager.reScaleTopBottomHandleWidth + difference, bottomHandleRectTransform.sizeDelta.y);
+
             difference = -(originalXPos - handleRightRectTransform.anchoredPosition.x);
 
             bottomRightHandleRectTransform.anchoredPosition = new Vector2(handleRightRectTransform.anchoredPosition.x, bottomHandleRectTransform.anchoredPosition.y);
