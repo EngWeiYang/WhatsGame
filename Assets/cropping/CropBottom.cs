@@ -64,8 +64,8 @@ public class CropBottom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             difference = -(originalYPos - handleBottomRectTransform.anchoredPosition.y);
 
 
-            bottomRightHandleRectTransform.anchoredPosition = new Vector2(rightHandleRectTransform.anchoredPosition.x, handleBottomRectTransform.anchoredPosition.y);
-            bottomLeftHandleRectTransform.anchoredPosition = new Vector2(leftHandleRectTransform.anchoredPosition.x, handleBottomRectTransform.anchoredPosition.y);
+            //bottomRightHandleRectTransform.anchoredPosition = new Vector2(rightHandleRectTransform.anchoredPosition.x, handleBottomRectTransform.anchoredPosition.y);
+            //bottomLeftHandleRectTransform.anchoredPosition = new Vector2(leftHandleRectTransform.anchoredPosition.x, handleBottomRectTransform.anchoredPosition.y);
         }
     }
 

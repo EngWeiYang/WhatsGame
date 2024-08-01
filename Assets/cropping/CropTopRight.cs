@@ -7,11 +7,15 @@ public class CropTopRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 {
     public Transform cropBox;
     public Transform topHandle;
+    public Transform topLeftHandle;
+    public Transform bottomRightHandle;
     public Transform rightHandle;
     private RectTransform cropBoxRectTransform;
     private RectTransform handleTopRightRectTransform;
     private RectTransform topHandleRectTransform;
     private RectTransform rightHandleRectTransform;
+    private RectTransform topLeftHandleRectTransform;
+    private RectTransform bottomRightHandleRectTransform;
     private Canvas canvas;
 
     public HeightManager heightManager;
@@ -19,8 +23,8 @@ public class CropTopRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     private bool dragStarted = false;
 
     //Calculation
-    private float originalXPos = 425;
-    private float originalYPos = 330;
+    private float originalXPos = 413.4666f;
+    private float originalYPos = 330.2446f;
     private float differencex;
     private float differencey;
 
@@ -31,6 +35,8 @@ public class CropTopRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         cropBoxRectTransform = cropBox.GetComponent<RectTransform>();
         topHandleRectTransform = topHandle.GetComponent<RectTransform>();
         rightHandleRectTransform = rightHandle.GetComponent<RectTransform>();
+        topLeftHandleRectTransform = topLeftHandle.GetComponent<RectTransform>();
+        bottomRightHandleRectTransform = bottomRightHandle.GetComponent<RectTransform>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -55,15 +61,18 @@ public class CropTopRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         if (dragStarted)
         {
+            differencex = -(originalXPos - handleTopRightRectTransform.anchoredPosition.x);
+            differencey = -(originalYPos - handleTopRightRectTransform.anchoredPosition.y);
+            
             cropBoxRectTransform.localPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2) , (heightManager.originalYPosCropBox + differencey / 2), 0);
 
             cropBoxRectTransform.sizeDelta = new Vector2(heightManager.width + differencex, heightManager.height + differencey);
 
-            differencex = -(originalXPos - handleTopRightRectTransform.anchoredPosition.x);
-            differencey = -(originalYPos - handleTopRightRectTransform.anchoredPosition.y);
-
             topHandleRectTransform.anchoredPosition = new Vector2(topHandleRectTransform.anchoredPosition.x, handleTopRightRectTransform.anchoredPosition.y);
-            rightHandleRectTransform.anchoredPosition = new Vector2(rightHandleRectTransform.anchoredPosition.x, handleTopRightRectTransform.anchoredPosition.y);
+            rightHandleRectTransform.anchoredPosition = new Vector2(handleTopRightRectTransform.anchoredPosition.x, rightHandleRectTransform.anchoredPosition.y);
+            topLeftHandleRectTransform.anchoredPosition = new Vector2(topLeftHandleRectTransform.anchoredPosition.x, handleTopRightRectTransform.anchoredPosition.y);
+            bottomRightHandleRectTransform.anchoredPosition = new Vector2(handleTopRightRectTransform.anchoredPosition.x, bottomRightHandleRectTransform.anchoredPosition.y);
+
         }
     }
 
