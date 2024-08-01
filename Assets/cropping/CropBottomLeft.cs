@@ -6,8 +6,16 @@ using UnityEngine.EventSystems;
 public class CropBottomLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     public Transform cropBox;
+    public Transform leftHandle;
+    public Transform topLeftHandle;
+    public Transform bottomHandle;
+    public Transform bottomRightHandle;
     private RectTransform cropBoxRectTransform;
     private RectTransform handleBottomLeftRectTransform;
+    private RectTransform topLeftHandleRectTransform;
+    private RectTransform bottomHandleRectTransform;
+    private RectTransform bottomRightRectTransform;
+    private RectTransform leftHandleRectTransform;
     private Canvas canvas;
 
     public HeightManager heightManager;
@@ -15,8 +23,8 @@ public class CropBottomLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     private bool dragStarted = false;
 
     //Calculation
-    private float originalXPos = -428;
-    private float originalYPos = -335;
+    private float originalXPos = -414.8619f;
+    private float originalYPos = -331.2695f;
     private float differencex;
     private float differencey;
 
@@ -25,6 +33,11 @@ public class CropBottomLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         handleBottomLeftRectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
         cropBoxRectTransform = cropBox.GetComponent<RectTransform>();
+        leftHandleRectTransform = leftHandle.GetComponent<RectTransform>();
+        topLeftHandleRectTransform = topLeftHandle.GetComponent<RectTransform>();
+        bottomHandleRectTransform = bottomHandle.GetComponent<RectTransform>();
+        bottomRightRectTransform = bottomRightHandle.GetComponent<RectTransform>();
+        
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -55,6 +68,11 @@ public class CropBottomLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
             differencex = -(originalXPos - handleBottomLeftRectTransform.anchoredPosition.x);
             differencey = -(originalYPos - handleBottomLeftRectTransform.anchoredPosition.y);
+
+            bottomHandleRectTransform.anchoredPosition = new Vector2(bottomHandleRectTransform.anchoredPosition.x, handleBottomLeftRectTransform.anchoredPosition.y);
+            leftHandleRectTransform.anchoredPosition = new Vector2(handleBottomLeftRectTransform.anchoredPosition.x, leftHandleRectTransform.anchoredPosition.y);
+            topLeftHandleRectTransform.anchoredPosition = new Vector2(handleBottomLeftRectTransform.anchoredPosition.x, topLeftHandleRectTransform.anchoredPosition.y);
+            bottomRightRectTransform.anchoredPosition = new Vector2(bottomRightRectTransform.anchoredPosition.x, handleBottomLeftRectTransform.anchoredPosition.y);
         }
     }
 

@@ -6,8 +6,16 @@ using UnityEngine.EventSystems;
 public class CropTopLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     public Transform cropBox;
+    public Transform topHandle;
+    public Transform leftHandle;
+    public Transform topRightHandle;
+    public Transform bottomLeftHandle;
     private RectTransform cropBoxRectTransform;
+    private RectTransform topHandleRectTransform;
+    private RectTransform leftHandleRectTransform;
     private RectTransform handleTopLeftRectTransform;
+    private RectTransform topRightHandleRectTransform;
+    private RectTransform bottomLeftHandleRectTransform;
     private Canvas canvas;
 
     public HeightManager heightManager;
@@ -15,8 +23,8 @@ public class CropTopLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private bool dragStarted = false;
 
     //Calculation
-    private float originalXPos = -425;
-    private float originalYPos = 330;
+    private float originalXPos = -426.4792f;
+    private float originalYPos = 335.4922f;
     private float differencex;
     private float differencey;
 
@@ -25,6 +33,10 @@ public class CropTopLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         handleTopLeftRectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
         cropBoxRectTransform = cropBox.GetComponent<RectTransform>();
+        topHandleRectTransform = topHandle.GetComponent<RectTransform>();
+        leftHandleRectTransform = leftHandle.GetComponent<RectTransform>();
+        topRightHandleRectTransform = topRightHandle.GetComponent<RectTransform>();
+        bottomLeftHandleRectTransform = bottomLeftHandle.GetComponent<RectTransform>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -55,6 +67,11 @@ public class CropTopLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
             differencex = -(originalXPos - handleTopLeftRectTransform.anchoredPosition.x);
             differencey = -(originalYPos - handleTopLeftRectTransform.anchoredPosition.y);
+
+            topHandleRectTransform.anchoredPosition = new Vector2(topHandleRectTransform.anchoredPosition.x, handleTopLeftRectTransform.anchoredPosition.y);
+            leftHandleRectTransform.anchoredPosition = new Vector2(handleTopLeftRectTransform.anchoredPosition.x, leftHandleRectTransform.anchoredPosition.y);
+            topRightHandleRectTransform.anchoredPosition = new Vector2(topRightHandleRectTransform.anchoredPosition.x, handleTopLeftRectTransform.anchoredPosition.y);
+            bottomLeftHandleRectTransform.anchoredPosition = new Vector2(handleTopLeftRectTransform.anchoredPosition.x, bottomLeftHandleRectTransform.anchoredPosition.y);
         }
     }
 
