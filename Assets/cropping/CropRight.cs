@@ -24,6 +24,7 @@ public class CropRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
 
     //Calculation
     private float originalXPos = 420;
+    private float minValue = -420;
     private float difference;
 
     private void Awake()
@@ -40,6 +41,7 @@ public class CropRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     public void OnPointerDown(PointerEventData eventData)
     {
         dragStarted = true;
+
         originalXPos = handleRightRectTransform.localPosition.x;
         
     }
@@ -83,6 +85,8 @@ public class CropRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
             canvas.worldCamera,
             out localMousePosition);
 
-        handleRightRectTransform.anchoredPosition = new Vector2(localMousePosition.x, handleRightRectTransform.anchoredPosition.y);
+        handleRightRectTransform.anchoredPosition = new Vector2(Mathf.Clamp(localMousePosition.x, minValue, 420), handleRightRectTransform.anchoredPosition.y);
+
+       
     }
 }

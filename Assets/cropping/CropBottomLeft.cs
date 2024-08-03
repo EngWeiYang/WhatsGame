@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -28,7 +29,9 @@ public class CropBottomLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
     //Calculation
     private float originalXPos = -420;
+    private float maxValueX = 420;
     private float originalYPos = -340;
+    private float maxValueY = 340;
     private float differencex;
     private float differencey;
 
@@ -104,6 +107,9 @@ public class CropBottomLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHand
             canvas.worldCamera,
             out localMousePosition);
 
-        handleBottomLeftRectTransform.anchoredPosition = new Vector2(localMousePosition.x, localMousePosition.y);
+        handleBottomLeftRectTransform.anchoredPosition = new Vector2(Mathf.Clamp(localMousePosition.x, -420, maxValueX), Mathf.Clamp(localMousePosition.y, -340, maxValueY));
+        
+        
+
     }
 }

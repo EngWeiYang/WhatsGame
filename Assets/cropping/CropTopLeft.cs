@@ -29,6 +29,8 @@ public class CropTopLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     //Calculation
     private float originalXPos = -420;
     private float originalYPos = 340;
+    private float maxValueX = 420;
+    private float minValueY = -340;
     private float differencex;
     private float differencey;
 
@@ -104,6 +106,7 @@ public class CropTopLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             canvas.worldCamera,
             out localMousePosition);
 
-        handleTopLeftRectTransform.anchoredPosition = new Vector2(localMousePosition.x, localMousePosition.y);
+        handleTopLeftRectTransform.anchoredPosition = new Vector2(Mathf.Clamp(localMousePosition.x, -420, maxValueX),Mathf.Clamp(localMousePosition.y, minValueY, 340));
+        
     }
 }

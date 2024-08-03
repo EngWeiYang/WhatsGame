@@ -23,8 +23,9 @@ public class CropTop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
     private bool dragStarted = false;
 
     //Calculation
-    private float originalYPos = 344;
+    private float originalYPos = 342;
     private float difference;
+    private float minValue = -342;
 
     private void Awake()
     {
@@ -61,6 +62,9 @@ public class CropTop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
             cropBoxRectTransform.localPosition = new Vector3(cropBoxRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
             rightHandleRectTransform.localPosition = new Vector3(rightHandleRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
             leftHandleRectTransform.localPosition = new Vector3(leftHandleRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
+           
+
+
             //scaling
             cropBoxRectTransform.sizeDelta = new Vector2(cropBoxRectTransform.sizeDelta.x, heightManager.height + difference);
             rightHandleRectTransform.sizeDelta = new Vector2(rightHandleRectTransform.sizeDelta.x, heightManager.reScaleRightHandleHeight + difference);
@@ -84,6 +88,7 @@ public class CropTop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
             canvas.worldCamera,
             out localMousePosition);
 
-        handleTopRectTransform.anchoredPosition = new Vector2(handleTopRectTransform.anchoredPosition.x, localMousePosition.y);
+        handleTopRectTransform.anchoredPosition = new Vector2(handleTopRectTransform.anchoredPosition.x, Mathf.Clamp(localMousePosition.y, minValue, 342));
+       
     }
 }
