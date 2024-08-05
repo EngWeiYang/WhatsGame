@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 public class LevelSelect : MonoBehaviour
 {
     public Level[] level;
-    public Sprite completeStar;
     public Sprite incompleteStar;
+    public Sprite greenStar;
+    public Sprite orangeStar;
+    public Sprite redStar;
     public static int currLevel;
 
     public void OnClickLevel(int levelNum)
@@ -22,7 +24,18 @@ public class LevelSelect : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("Level" + i + "Complete", 0) == 1)
             {
-                level[i].star.sprite = completeStar;
+                if (level[i].star.gameObject.tag == "Easy")
+                {
+                    level[i].star.sprite = greenStar;
+                }
+                else if(level[i].star.gameObject.tag == "Medium")
+                {
+                    level[i].star.sprite = orangeStar;
+                }
+                else if(level[i].star.gameObject.tag == "Hard")
+                {
+                    level[i].star.sprite = redStar;
+                }
             }
             else
             {
