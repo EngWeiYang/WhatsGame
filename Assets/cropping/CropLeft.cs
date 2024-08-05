@@ -41,8 +41,9 @@ public class CropLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     public void OnPointerDown(PointerEventData eventData)
     {
         dragStarted = true;
-
-        originalXPos = handleLeftRectTransform.localPosition.x;
+        heightManager.originalXPosCropBox = cropBoxRectTransform.anchoredPosition.x;
+        originalXPos = handleLeftRectTransform.anchoredPosition.x;
+        Debug.Log(originalXPos);
         
     }
 
@@ -52,7 +53,6 @@ public class CropLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         heightManager.reScaleTopBottomHandleWidth = topHandleRectTransform.sizeDelta.x;
         heightManager.reScaleTopBottomHandleWidth = bottomHandleRectTransform.sizeDelta.x;
         heightManager.width = cropBoxRectTransform.sizeDelta.x;
-        heightManager.originalXPosCropBox = cropBoxRectTransform.localPosition.x;
     }
 
     private void Update()
@@ -60,9 +60,9 @@ public class CropLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         if (dragStarted)
         {
             //Position
-            cropBoxRectTransform.localPosition = new Vector3(heightManager.originalXPosCropBox + difference / 2, cropBoxRectTransform.anchoredPosition.y, 0);
-            topHandleRectTransform.localPosition = new Vector3(heightManager.originalXPosCropBox + difference / 2, topHandleRectTransform.anchoredPosition.y, 0);
-            bottomHandleRectTransform.localPosition = new Vector3(heightManager.originalXPosCropBox + difference / 2, bottomHandleRectTransform.anchoredPosition.y, 0);
+            cropBoxRectTransform.anchoredPosition = new Vector3(heightManager.originalXPosCropBox + difference / 2, cropBoxRectTransform.anchoredPosition.y, 0);
+            topHandleRectTransform.anchoredPosition = new Vector3(heightManager.originalXPosCropBox + difference / 2, topHandleRectTransform.anchoredPosition.y, 0);
+            bottomHandleRectTransform.anchoredPosition = new Vector3(heightManager.originalXPosCropBox + difference / 2, bottomHandleRectTransform.anchoredPosition.y, 0);
 
             //Scale
             cropBoxRectTransform.sizeDelta = new Vector2(heightManager.width - difference, cropBoxRectTransform.sizeDelta.y);
