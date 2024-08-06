@@ -28,10 +28,10 @@ public class CropBottomLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     private bool dragStarted = false;
 
     //Calculation
-    private float originalXPos = -420;
-    private float maxValueX = 420;
-    private float originalYPos = -340;
-    private float maxValueY = 340;
+    private float originalXPos = -321.51f;
+    private float maxValueX = 321.51f;
+    private float originalYPos = -298;
+    private float maxValueY = 298;
     private float differencex;
     private float differencey;
 
@@ -52,9 +52,10 @@ public class CropBottomLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public void OnPointerDown(PointerEventData eventData)
     {
         dragStarted = true;
-        originalYPos = handleBottomLeftRectTransform.localPosition.y;
-        originalXPos = handleBottomLeftRectTransform.localPosition.x;
-       
+        originalYPos = handleBottomLeftRectTransform.anchoredPosition.y;
+        originalXPos = handleBottomLeftRectTransform.anchoredPosition.x;
+        heightManager.originalYPosCropBox = cropBoxRectTransform.anchoredPosition.y;
+        heightManager.originalXPosCropBox = cropBoxRectTransform.anchoredPosition.x;
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -66,19 +67,18 @@ public class CropBottomLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         heightManager.reScaleRightHandleHeight = leftHandleRectTransform.sizeDelta.y;
         heightManager.height = cropBoxRectTransform.sizeDelta.y;
         heightManager.width = cropBoxRectTransform.sizeDelta.x;
-        heightManager.originalYPosCropBox = cropBoxRectTransform.localPosition.y;
-        heightManager.originalXPosCropBox = cropBoxRectTransform.localPosition.x;
+        
     }
 
     private void Update()
     {
         if (dragStarted)
         {
-            cropBoxRectTransform.localPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
-            leftHandleRectTransform.localPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
-            rightHandleRectTransform.localPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
-            bottomHandleRectTransform.localPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
-            topHandleRectTransform.localPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
+            cropBoxRectTransform.anchoredPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
+            leftHandleRectTransform.anchoredPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
+            rightHandleRectTransform.anchoredPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
+            bottomHandleRectTransform.anchoredPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
+            topHandleRectTransform.anchoredPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
 
             cropBoxRectTransform.sizeDelta = new Vector2(heightManager.width - differencex, heightManager.height - differencey);
             bottomHandleRectTransform.sizeDelta = new Vector2(heightManager.reScaleTopBottomHandleWidth - differencex, bottomHandleRectTransform.sizeDelta.y);
@@ -107,7 +107,7 @@ public class CropBottomLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHand
             canvas.worldCamera,
             out localMousePosition);
 
-        handleBottomLeftRectTransform.anchoredPosition = new Vector2(Mathf.Clamp(localMousePosition.x, -420, maxValueX), Mathf.Clamp(localMousePosition.y, -340, maxValueY));
+        handleBottomLeftRectTransform.anchoredPosition = new Vector2(Mathf.Clamp(localMousePosition.x, -321.51f, maxValueX), Mathf.Clamp(localMousePosition.y, -298, maxValueY));
         
         
 

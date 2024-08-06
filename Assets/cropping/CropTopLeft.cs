@@ -50,34 +50,33 @@ public class CropTopLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         dragStarted = true;
-        originalYPos = handleTopLeftRectTransform.localPosition.y;
-        
-        originalXPos = handleTopLeftRectTransform.localPosition.x;
-        
+        originalYPos = handleTopLeftRectTransform.anchoredPosition.y;
+        heightManager.originalXPosCropBox = cropBoxRectTransform.anchoredPosition.x;
+        originalXPos = handleTopLeftRectTransform.anchoredPosition.x;
+        heightManager.originalYPosCropBox = cropBoxRectTransform.anchoredPosition.y;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         dragStarted = false;
-        heightManager.originalYPosCropBox = cropBoxRectTransform.localPosition.y;
         heightManager.reScaleTopBottomHandleWidth = topHandleRectTransform.sizeDelta.x;
         heightManager.reScaleTopBottomHandleWidth = bottomHandleRectTransform.sizeDelta.x;
         heightManager.reScaleRightHandleHeight = rightHandleRectTransform.sizeDelta.y;
         heightManager.reScaleRightHandleHeight = leftHandleRectTransform.sizeDelta.y;
         heightManager.height = cropBoxRectTransform.sizeDelta.y;
         heightManager.width = cropBoxRectTransform.sizeDelta.x;
-        heightManager.originalXPosCropBox = cropBoxRectTransform.localPosition.x;
+        
     }
 
     private void Update()
     {
         if (dragStarted)
         {
-            cropBoxRectTransform.localPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
-            leftHandleRectTransform.localPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
-            topHandleRectTransform.localPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
-            bottomHandleRectTransform.localPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
-            rightHandleRectTransform.localPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
+            cropBoxRectTransform.anchoredPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
+            leftHandleRectTransform.anchoredPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
+            topHandleRectTransform.anchoredPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
+            bottomHandleRectTransform.anchoredPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
+            rightHandleRectTransform.anchoredPosition = new Vector3((heightManager.originalXPosCropBox + differencex / 2), (heightManager.originalYPosCropBox + differencey / 2), 0);
 
             cropBoxRectTransform.sizeDelta = new Vector2(heightManager.width - differencex, heightManager.height + differencey);
             topHandleRectTransform.sizeDelta = new Vector2(heightManager.reScaleTopBottomHandleWidth - differencex, topHandleRectTransform.sizeDelta.y);

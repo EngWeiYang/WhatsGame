@@ -23,8 +23,8 @@ public class CropBottom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     private bool dragStarted = false;
 
     //Calculation
-    private float originalYPos = -342;
-    private float maxValue = 342;
+    private float originalYPos = -295;
+    private float maxValue = 295;
     private float difference;
 
     private void Awake()
@@ -42,8 +42,8 @@ public class CropBottom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     {
         dragStarted = true;
 
-        originalYPos = handleBottomRectTransform.localPosition.y;
-        
+        originalYPos = handleBottomRectTransform.anchoredPosition.y;
+        heightManager.originalYPosCropBox = cropBoxRectTransform.anchoredPosition.y;
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -53,7 +53,6 @@ public class CropBottom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         heightManager.height = cropBoxRectTransform.sizeDelta.y;
         heightManager.reScaleRightHandleHeight = rightHandleRectTransform.sizeDelta.y;
         heightManager.reScaleRightHandleHeight = leftHandleRectTransform.sizeDelta.y;
-        heightManager.originalYPosCropBox = cropBoxRectTransform.localPosition.y;
     }
 
     private void Update()
@@ -61,9 +60,9 @@ public class CropBottom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         if (dragStarted)
         {
             //Position
-            cropBoxRectTransform.localPosition = new Vector3(cropBoxRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
-            rightHandleRectTransform.localPosition = new Vector3(rightHandleRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
-            leftHandleRectTransform.localPosition = new Vector3(leftHandleRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
+            cropBoxRectTransform.anchoredPosition = new Vector3(cropBoxRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
+            rightHandleRectTransform.anchoredPosition = new Vector3(rightHandleRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
+            leftHandleRectTransform.anchoredPosition = new Vector3(leftHandleRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
             //Scale
             cropBoxRectTransform.sizeDelta = new Vector2(cropBoxRectTransform.sizeDelta.x, heightManager.height - difference);
             rightHandleRectTransform.sizeDelta = new Vector2(rightHandleRectTransform.sizeDelta.x, heightManager.reScaleRightHandleHeight - difference);
@@ -86,6 +85,6 @@ public class CropBottom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             canvas.worldCamera,
             out localMousePosition);
 
-        handleBottomRectTransform.anchoredPosition = new Vector2(handleBottomRectTransform.anchoredPosition.x, Mathf.Clamp(localMousePosition.y, -342, maxValue));
+        handleBottomRectTransform.anchoredPosition = new Vector2(handleBottomRectTransform.anchoredPosition.x, Mathf.Clamp(localMousePosition.y, -295, maxValue));
     }
 }

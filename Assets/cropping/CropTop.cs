@@ -23,9 +23,9 @@ public class CropTop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
     private bool dragStarted = false;
 
     //Calculation
-    private float originalYPos = 342;
+    private float originalYPos = 295;
     private float difference;
-    private float minValue = -342;
+    private float minValue = -295;
 
     private void Awake()
     {
@@ -41,8 +41,8 @@ public class CropTop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
     public void OnPointerDown(PointerEventData eventData)
     {
         dragStarted = true;
-        originalYPos = handleTopRectTransform.localPosition.y;
-        
+        originalYPos = handleTopRectTransform.anchoredPosition.y;
+        heightManager.originalYPosCropBox = cropBoxRectTransform.anchoredPosition.y;
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -51,7 +51,7 @@ public class CropTop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
         heightManager.reScaleRightHandleHeight = rightHandleRectTransform.sizeDelta.y;
         heightManager.reScaleRightHandleHeight = leftHandleRectTransform.sizeDelta.y;
         heightManager.height = cropBoxRectTransform.sizeDelta.y;
-        heightManager.originalYPosCropBox = cropBoxRectTransform.localPosition.y;
+        
     }
 
     private void Update()
@@ -59,9 +59,9 @@ public class CropTop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
         if (dragStarted)
         {
             //position
-            cropBoxRectTransform.localPosition = new Vector3(cropBoxRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
-            rightHandleRectTransform.localPosition = new Vector3(rightHandleRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
-            leftHandleRectTransform.localPosition = new Vector3(leftHandleRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
+            cropBoxRectTransform.anchoredPosition = new Vector3(cropBoxRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
+            rightHandleRectTransform.anchoredPosition = new Vector3(rightHandleRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
+            leftHandleRectTransform.anchoredPosition = new Vector3(leftHandleRectTransform.anchoredPosition.x, heightManager.originalYPosCropBox + difference / 2, 0);
            
 
 
