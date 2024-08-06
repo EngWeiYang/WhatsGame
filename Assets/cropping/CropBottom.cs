@@ -23,8 +23,8 @@ public class CropBottom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     private bool dragStarted = false;
 
     //Calculation
-    private float originalYPos = -295;
-    private float maxValue = 295;
+    private float originalYPos = -342;
+    private float maxValue = 342;
     private float difference;
 
     private void Awake()
@@ -85,6 +85,6 @@ public class CropBottom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             canvas.worldCamera,
             out localMousePosition);
 
-        handleBottomRectTransform.anchoredPosition = new Vector2(handleBottomRectTransform.anchoredPosition.x, Mathf.Clamp(localMousePosition.y, -295, maxValue));
+        handleBottomRectTransform.anchoredPosition = new Vector2(handleBottomRectTransform.anchoredPosition.x, Mathf.Clamp(localMousePosition.y, -342, maxValue));
     }
 }

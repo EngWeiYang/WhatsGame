@@ -15,12 +15,16 @@ public class Cropper : MonoBehaviour
 
     private void Start()
     {
-        sendButton.onClick.AddListener(CropAndSend);
+        if (sendButton != null)
+        {
+            sendButton.onClick.AddListener(CropAndSend);
+        }
+        
     }
 
     private void CropAndSend()
     {
-        if (photoDisplay.texture is Texture2D originalTexture && originalTexture != null)
+        if (photoDisplay != null && photoDisplay.texture is Texture2D originalTexture && originalTexture != null)
         {
             Texture2D croppedTexture = Crop(originalTexture);
             if (croppedTexture != null)
@@ -28,11 +32,22 @@ public class Cropper : MonoBehaviour
                 Send(croppedTexture);
             }
         }
+        else
+        {
+            Debug.LogError("Photo Display or its Texture is not assigned or invalid");
+
+        }
     }
 
     private Texture2D Crop(Texture2D originalTexture)
     {
         RectTransform photoTransform = photoDisplay.GetComponent<RectTransform>();
+        if (photoTransform == null)
+        {
+            Debug.LogError("Photo Display does not have a RectTransform component");
+            return null;
+        }
+
         Vector2 photoSize = photoTransform.rect.size;
         Vector2 cropSize = cropArea.rect.size;
         Vector2 cropPosition = cropArea.anchoredPosition - photoTransform.anchoredPosition;
@@ -67,10 +82,14 @@ public class Cropper : MonoBehaviour
         {
             // Set the cropped texture to the result display
             resultDisplay.texture = croppedTexture;
-            textBox.gameObject.SetActive(true);
-            chatscreen.gameObject.SetActive(true);
-            imageCropped.gameObject.SetActive(false);
+            if (textBox != null) textBox.SetActive(true);
+            if (chatscreen != null) chatscreen.SetActive(true);
+            if (imageCropped != null) imageCropped.SetActive(false);
             resultDisplay.gameObject.SetActive(true); // Ensure the RawImage is visible
+        }
+        else
+        {
+            Debug.LogError("Result Display is not assigned in the Inspector");
         }
     }
 }

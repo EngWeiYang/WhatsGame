@@ -23,9 +23,9 @@ public class CropTop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
     private bool dragStarted = false;
 
     //Calculation
-    private float originalYPos = 295;
+    private float originalYPos = 342;
     private float difference;
-    private float minValue = -295;
+    private float minValue = -342;
 
     private void Awake()
     {

@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class HeightManager : MonoBehaviour
 {
-    public float height = 685.5f;
-    public float originalYPosCropBox = -46f;
+    public float height = 857.08f;
+    public float originalYPosCropBox = 0;
 
-    public float width = 675.75f;
+    public float width = 685.5f;
     public float originalXPosCropBox = 0;
 
 
     //Rescaling right handle using Top handle
 
     public float reScaleRightHandleHeight = 645;
-    public float reScaleRightHandleWidth = 32.916f;
+    public float reScaleRightHandleWidth = 32;
     public float reScaleTopBottomHeight = 27;
-    public float reScaleTopBottomHandleWidth = 603.85f;
+    public float reScaleTopBottomHandleWidth = 808;
 
 
 
