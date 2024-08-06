@@ -14,6 +14,7 @@ public class LevelSelect : MonoBehaviour
 
     public void OnClickLevel(int levelNum)
     {
+        Checker.firstTimeInScene = false;
         currLevel = levelNum;
         SceneManager.LoadScene("Levels");
     }
