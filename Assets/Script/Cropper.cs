@@ -9,8 +9,9 @@ public class Cropper : MonoBehaviour
     public RectTransform cropArea; // Crop area
     public Button sendButton; // Button to trigger the crop and send
     public RawImage resultDisplay; // RawImage to display the cropped image
+    public RawImage resultDisplayBeforeSending; // RawImage to display the cropped image
     public GameObject textBox;
-    public GameObject chatscreen;
+    public GameObject imagescreen;
     public GameObject imageCropped;
 
     private void Start()
@@ -82,8 +83,9 @@ public class Cropper : MonoBehaviour
         {
             // Set the cropped texture to the result display
             resultDisplay.texture = croppedTexture;
+            resultDisplayBeforeSending.texture = croppedTexture;
             if (textBox != null) textBox.SetActive(true);
-            if (chatscreen != null) chatscreen.SetActive(true);
+            if (imagescreen != null) imagescreen.SetActive(true);
             if (imageCropped != null) imageCropped.SetActive(false);
             resultDisplay.gameObject.SetActive(true); // Ensure the RawImage is visible
         }

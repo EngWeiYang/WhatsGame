@@ -7,8 +7,8 @@ using TMPro;
 public class EmojiClickedLaughing : MonoBehaviour
 {
     public Button laughingEmojiBtn;
-    public Image emojiLaughing;
-    public Image emojiLaughinginMessage;
+    public TMP_Text emojiLaughing;
+    public TMP_Text emojiLaughinginMessage;
     public TMP_Text text;
     public GameObject sendMessageBtn;
     public GameObject textMessageWithEmojiLaughing;
