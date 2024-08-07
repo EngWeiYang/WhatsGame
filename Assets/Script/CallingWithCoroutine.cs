@@ -11,11 +11,15 @@ public class CallingWithCoroutine : MonoBehaviour
     public GameObject fireflyhelp2;
     public Button callButton;
     private CoroutineManager coroutineManager;
+    public GameObject profilepic;
+    private SlideAnim slideAnim;
+
     void Start()
     {
         callButton.onClick.AddListener(CallingandAnswering);
         GameObject coroutineManagerObject = GameObject.Find("CoroutineManager");
         coroutineManager = coroutineManagerObject.GetComponent<CoroutineManager>();
+        slideAnim = profilepic.GetComponent<SlideAnim>();
     }
 
     // Update is called once per frame
@@ -29,6 +33,8 @@ public class CallingWithCoroutine : MonoBehaviour
     {
         // Wait for the animation to finish (ADD IN AUDIO LATER)
         yield return new WaitForSeconds(5f);
+        slideAnim.TriggerSlideAnimation();
+        yield return new WaitForSeconds(0.9f);
         screenRinging.SetActive(false);
         screenAnswer.SetActive(true);
         fireflyhelp.SetActive(false);
