@@ -27,6 +27,7 @@ public class videoCropRight : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     private float originalXValue = 290;
     private float minXValue = -225;
     private float difference;
+    private float differenceBetweenHandles = 80;
     private float croppedTime;
     private float croppedVideoStorage;
     private float VideoTiming = 50f;
@@ -90,7 +91,7 @@ public class videoCropRight : MonoBehaviour, IPointerDownHandler, IPointerUpHand
             videoDuration.text = "0:" + croppedTime.ToString("#");
             videoDurationStorage.text = croppedVideoStorage.ToString("#") + "kB";
 
-            spaceBetweenHandles = (handleLeftRectTransform.anchoredPosition.x - videoCropperRightRectTransform.anchoredPosition.x) / 2;
+            spaceBetweenHandles = (handleLeftRectTransform.anchoredPosition.x + differenceBetweenHandles);
         }
     }
 

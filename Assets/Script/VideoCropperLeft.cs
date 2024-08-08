@@ -27,6 +27,7 @@ public class VideoCropperLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     private float originalXValue = -290;
     private float minXValue = 225;
     private float difference;
+    private float differenceBetweenHandles = 80;
     private float croppedTime;
     private float croppedVideoStorage;
     private float VideoTiming = 50f;
@@ -90,7 +91,7 @@ public class VideoCropperLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             videoDuration.text = "0:" + croppedTime.ToString("#");
             videoDurationStorage.text = croppedVideoStorage.ToString("#") + "kB";
 
-            spaceBetweenHandles = (handleRightRectTransform.anchoredPosition.x - videoCropperLeftRectTransform.anchoredPosition.x) / 2;
+            spaceBetweenHandles = (handleRightRectTransform.anchoredPosition.x - differenceBetweenHandles);
         }
     }
 
@@ -103,6 +104,6 @@ public class VideoCropperLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             canvas.worldCamera,
             out localMousePosition);
 
-        videoCropperLeftRectTransform.anchoredPosition = new Vector2(Mathf.Clamp(localMousePosition.x, -290, minXValue), videoCropperLeftRectTransform.anchoredPosition.y);
+        videoCropperLeftRectTransform.anchoredPosition = new Vector2(Mathf.Clamp(localMousePosition.x, -290, spaceBetweenHandles), videoCropperLeftRectTransform.anchoredPosition.y);
     }
 }
