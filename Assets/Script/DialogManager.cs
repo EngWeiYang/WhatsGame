@@ -38,7 +38,7 @@ public class DialogManager : MonoBehaviour
     {
         public int levelId;
         public List<Instruction> instructions;
-    }
+    }   
 
     [System.Serializable]
     public class LevelsData
@@ -91,7 +91,7 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    void DisplayTextByLevelAndId(int levelId, int instructionId)
+    public void DisplayTextByLevelAndId(int levelId, int instructionId)
     {
         Debug.Log($"Attempting to display instruction ID: {instructionId} for level ID: {levelId}");
 
