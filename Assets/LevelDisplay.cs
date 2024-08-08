@@ -1,47 +1,59 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+
+[System.Serializable]
+public class LevelName
+{
+    public int levelId;
+    public string En;
+    public string Cn;
+}
+
+[System.Serializable]
+public class Levels
+{
+    public int levelId;
+    public List<LevelName> levelNames;
+}
+
+[System.Serializable]
+public class LevelsData
+{
+    public List<Levels> levels;
+}
 
 public class LevelDisplay : MonoBehaviour
 {
-    [Serializable]
-    public class LevelName
-    {
-        public int levelId;
-        public string En;
-        public string Cn;
-    }
-
-    [Serializable]
-    public class Level
-    {
-        public int levelId;
-        public List<LevelName> levelNames;
-    }
-
-    [Serializable]
-    public class LevelsData
-    {
-        public List<Level> levels;
-    }
-
-    public TextAsset jsonFile; // Assign the JSON file in the Inspector
+    public TextMeshProUGUI[] levelTextObjects; // Assign these in the Inspector
+    public TextAsset jsonFile; // Assign this in the Inspector
 
     void Start()
     {
-        // Load and parse the JSON data
+        LoadLevelNames();
+    }
+
+    void LoadLevelNames()
+    {
+        // Parse the JSON data
         LevelsData data = JsonUtility.FromJson<LevelsData>(jsonFile.text);
 
-        // Example: Accessing level names for levelId 0
-        foreach (var level in data.levels)
+        // Assuming you want to load level names from the first level in the JSON
+        List<LevelName> levelNames = data.levels[0].levelNames;
+
+        // Assign the level names to the TextMeshPro objects
+        for (int i = 0; i < levelTextObjects.Length; i++)
         {
-            if (level.levelId == 0)
+            if (i < levelNames.Count)
             {
-                foreach (var levelName in level.levelNames)
-                {
-                    Debug.Log($"Level ID: {levelName.levelId}, En: {levelName.En}, Cn: {levelName.Cn}");
-                }
+                levelTextObjects[i].text = levelNames[i].En; // Assign English names
+                // levelTextObjects[i].text = levelNames[i].Cn; // Uncomment to assign Chinese names
+            }
+            else
+            {
+                levelTextObjects[i].text = "N/A"; // Fallback if there are not enough levels
             }
         }
     }

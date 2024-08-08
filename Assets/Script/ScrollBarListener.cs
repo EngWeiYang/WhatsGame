@@ -5,15 +5,13 @@ using TMPro;
 public class ScrollBarListener : MonoBehaviour
 {
     public Scrollbar scrollbar;
-    public TextMeshProUGUI textToChange;
-    public TextMeshProUGUI textShadowToChange;
 
-    public Color easyColor;
-    public Color mediumColor;
-    public Color hardColor;
-    public Color easyShadow;
-    public Color mediumShadow;
-    public Color hardShadow;
+    public GameObject easyFront;
+    public GameObject easyBack;
+    public GameObject mediumFront;
+    public GameObject mediumBack;
+    public GameObject hardFront;
+    public GameObject hardBack;
 
     public float easyThreshold;  // Threshold for easy
     public float mediumThreshold;  // Threshold for medium
@@ -24,8 +22,12 @@ public class ScrollBarListener : MonoBehaviour
         if (scrollbar != null)
         {
             scrollbar.onValueChanged.AddListener(OnScrollBarValueChanged);
-            ChangeFrontTextAndColor("Easy", easyColor);
-            ChangeShadowTextAndColor("Easy", easyShadow);
+            easyFront.SetActive(true);
+            easyBack.SetActive(true);
+            mediumFront.SetActive(false);
+            mediumBack.SetActive(false);
+            hardFront.SetActive(false);
+            hardBack.SetActive(false);
         }
     }
 
@@ -35,38 +37,30 @@ public class ScrollBarListener : MonoBehaviour
         
         if (value <= easyThreshold && value >= mediumThreshold) 
         {
-            ChangeFrontTextAndColor("Easy", easyColor);
-            ChangeShadowTextAndColor("Easy", easyShadow);
+            easyFront.SetActive(true);
+            easyBack.SetActive(true);
+            mediumFront.SetActive(false);
+            mediumBack.SetActive(false);
+            hardFront.SetActive(false);
+            hardBack.SetActive(false);
         }
         else if (value <= mediumThreshold && value >= hardThreshold)
         {
-            ChangeFrontTextAndColor("Medium", mediumColor);
-            ChangeShadowTextAndColor("Medium", mediumShadow);
+            easyFront.SetActive(false);
+            easyBack.SetActive(false);
+            mediumFront.SetActive(true);
+            mediumBack.SetActive(true);
+            hardFront.SetActive(false);
+            hardBack.SetActive(false);
         }
         else if (value <= hardThreshold)
         {
-            ChangeFrontTextAndColor("Hard", hardColor);
-            ChangeShadowTextAndColor("Hard", hardShadow);
-        }
-    }
-
-    void ChangeFrontTextAndColor(string newText, Color newColor)
-    {
-        if (textToChange != null)
-        {
-            newColor.a = 1f;
-            textToChange.text = newText;
-            textToChange.color = newColor;
-        }
-    }
-
-    void ChangeShadowTextAndColor(string newText, Color newColor)
-    {
-        if (textShadowToChange != null)
-        {
-            newColor.a = 1f; 
-            textShadowToChange.text = newText;
-            textShadowToChange.color = newColor;
+            easyFront.SetActive(false);
+            easyBack.SetActive(false);
+            mediumFront.SetActive(false);
+            mediumBack.SetActive(false);
+            hardFront.SetActive(true);
+            hardBack.SetActive(true);
         }
     }
 }

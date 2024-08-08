@@ -1,3 +1,54 @@
 {
-    
+    "buttonText":[
+        {
+            "buttonId": 1,
+            "En": "Play",
+            "Cn": "Wan"
+        },
+        {
+            "buttonId": 2,
+            "En": "Difficulty:",
+            "Cn": "Zzz:"
+        },
+        {
+            "buttonId": 3,
+            "En": "Difficulty:",
+            "Cn": "Zzz:"
+        },
+        {
+            "buttonId": 4,
+            "En": "Easy",
+            "Cn": "Zzz:"
+        },
+        {
+            "buttonId": 5,
+            "En": "Easy",
+            "Cn": "Zzz:"
+        },
+        {
+            "buttonId": 6,
+            "En": "Medium",
+            "Cn": "Zzz:"
+        },
+        {
+            "buttonId": 7,
+            "En": "Medium",
+            "Cn": "Zzz:"
+        },
+        {
+            "buttonId": 8,
+            "En": "Hard",
+            "Cn": "Zzz:"
+        },
+        {
+            "buttonId": 9,
+            "En": "Hard",
+            "Cn": "Zzz:"
+        },
+        {
+            "buttonId": 10,
+            "En": "LEVELS",
+            "Cn": "Zzz:"
+        }
+    ]
 }
