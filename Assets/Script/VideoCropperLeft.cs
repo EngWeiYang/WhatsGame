@@ -17,16 +17,22 @@ public class VideoCropperLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     private RectTransform videoCropperImageMaskRectTransform;
     private RectTransform videoCropperLeftRectTransform;
     private RectTransform videoPhotoRectTransform;
+
+    public Transform handleRight;
+    private RectTransform handleRightRectTransform;
+
     private Canvas canvas;
     private bool isDragging = false;
 
     private float originalXValue = -290;
     private float minXValue = 225;
     private float difference;
+    private float differenceBetweenHandles = 80;
     private float croppedTime;
     private float croppedVideoStorage;
     private float VideoTiming = 50f;
     private float videoStorage = 503;
+    private float spaceBetweenHandles;
 
     public HeightManager heightManager;
 
@@ -35,6 +41,9 @@ public class VideoCropperLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         videoDuration.text = "0:" + VideoTiming.ToString("#");
         videoDurationStorage.text = videoStorage.ToString() + "kB";
         videoCropperLeftRectTransform = GetComponent<RectTransform>();
+
+        handleRightRectTransform = handleRight.GetComponent<RectTransform>();
+
         canvas = GetComponentInParent<Canvas>();
         videoCropperRectTransform = videoCropper.GetComponent<RectTransform>();
         videoCropperImageRectTransform = videoCropperImage.GetComponent<RectTransform>();
@@ -45,12 +54,14 @@ public class VideoCropperLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     public void OnPointerDown(PointerEventData eventData)
     {
         isDragging = true;
+
+        videoPhotoRectTransform.anchorMin = new Vector2(1, 0.5f);
+        videoPhotoRectTransform.anchorMax = new Vector2(1, 0.5f);
+        videoPhotoRectTransform.anchoredPosition = new Vector2(290 - handleRightRectTransform.anchoredPosition.x - (285.1787f), videoPhotoRectTransform.anchoredPosition.y);
+
         originalXValue = videoCropperLeftRectTransform.localPosition.x;
         heightManager.videoCropperWidth = videoCropperImageRectTransform.sizeDelta.x;
         heightManager.originalXPosVideoCropper = videoCropperImageRectTransform.localPosition.x;
-        videoPhotoRectTransform.anchorMin = new Vector2(1,0.5f);
-        videoPhotoRectTransform.anchoredPosition = new Vector2 (-290, videoPhotoRectTransform.anchoredPosition.y);
-        videoPhotoRectTransform.anchorMax = new Vector2(1, 0.5f);
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -79,6 +90,8 @@ public class VideoCropperLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
             videoDuration.text = "0:" + croppedTime.ToString("#");
             videoDurationStorage.text = croppedVideoStorage.ToString("#") + "kB";
+
+            spaceBetweenHandles = (handleRightRectTransform.anchoredPosition.x - differenceBetweenHandles);
         }
     }
 
@@ -91,8 +104,6 @@ public class VideoCropperLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             canvas.worldCamera,
             out localMousePosition);
 
-        videoCropperLeftRectTransform.anchoredPosition = new Vector2(Mathf.Clamp(localMousePosition.x, -290, minXValue), videoCropperLeftRectTransform.anchoredPosition.y);
-
-
+        videoCropperLeftRectTransform.anchoredPosition = new Vector2(Mathf.Clamp(localMousePosition.x, -290, spaceBetweenHandles), videoCropperLeftRectTransform.anchoredPosition.y);
     }
 }
