@@ -20,6 +20,7 @@ public class EmojiClickedLaughing : MonoBehaviour
     public GameObject Scenario2;
     public GameObject Scenario1;
     public GameObject hintIndicatorEmoji;
+    public GameObject hintIndicatorEmojiClick;
     public GameObject hintIndicatorSendEmoji;
     public GameObject firefly1;
     public GameObject firefly2;
@@ -42,6 +43,7 @@ public class EmojiClickedLaughing : MonoBehaviour
         emojiLaughing.color = laughingColor;
         text.gameObject.SetActive(false);
         sendMessageBtn.gameObject.SetActive(true);
+        hintIndicatorEmojiClick.gameObject.SetActive(false);
         firefly1.gameObject.SetActive(false);
         firefly2.gameObject.SetActive(true);
         defaultMessageBtn.gameObject.SetActive(false);

@@ -35,6 +35,8 @@ public class CheckContact : MonoBehaviour
         // Set the Phone input field to only accept numeric values
         Phone.contentType = TMP_InputField.ContentType.IntegerNumber;
         Phone.characterLimit = 8;
+        Firstname.characterLimit = 20;
+        Lastname.characterLimit = 20;
         Firstname.contentType = TMP_InputField.ContentType.Name;
         Lastname.contentType = TMP_InputField.ContentType.Name;
         GameObject coroutineManagerObject = GameObject.Find("CoroutineManager");

@@ -20,6 +20,7 @@ public class ConfirmGroupDetails : MonoBehaviour
     {
         confirmButton.onClick.AddListener(OnConfirmButtonClick);
         userInputField.onValueChanged.AddListener(hintIndicatorLightUp);
+        userInputField.characterLimit = 20;
     }
 
     private void hintIndicatorLightUp(string text)

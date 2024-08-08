@@ -18,6 +18,7 @@ public class EmojiClickedHeart : MonoBehaviour
     public GameObject defaultMessageBtn;
     public Button toNextScenario;
     public GameObject hintIndicatorEmoji;
+    public GameObject hintIndicatorEmojiClicked;
     public GameObject hintIndicatorSendEmoji;
     public GameObject firefly1;
     public GameObject firefly2;
@@ -44,6 +45,7 @@ public class EmojiClickedHeart : MonoBehaviour
         defaultMessageBtn.gameObject.SetActive(false);
         hintIndicatorEmoji.gameObject.SetActive(false);
         hintIndicatorSendEmoji.gameObject.SetActive(true);
+        hintIndicatorEmojiClicked.gameObject.SetActive(false);
     }
 
     void sendMessage()

@@ -27,7 +27,7 @@ public class ReplyingMessage : MonoBehaviour
     {
         // Add a listener to detect when the input field value changes
         inputField.onValueChanged.AddListener(UpdateButtonState);
-        // Add a listener to the send button click event
+        inputField.characterLimit = 20;
         sendButton.onClick.AddListener(OnSendButtonClick);
 
         // Initialize button state
