@@ -10,7 +10,7 @@ public class ButtonSendPolling : MonoBehaviour
     public TMP_Text[] dynamicTexts;          // Array of text components to update
     public Button confirmPollingDetails;     // Button to confirm and submit
     private List<string> PollingOptionsAndNames; // List of polling options and names (not used in this version)
-    public GameObject disablePollingDetailsScreen;
+    //public GameObject disablePollingDetailsScreen;
     public GameObject pollingText;
 
     // Start is called before the first frame update
@@ -21,7 +21,7 @@ public class ButtonSendPolling : MonoBehaviour
 
     private void OnConfirmButtonClick()
     {
-        disablePollingDetailsScreen.SetActive(false);
+        //disablePollingDetailsScreen.SetActive(false);
         pollingText.SetActive(true);
         List<string> userInputs = new List<string>();
 

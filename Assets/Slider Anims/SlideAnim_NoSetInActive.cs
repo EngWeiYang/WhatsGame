@@ -18,4 +18,10 @@ public class SlideAnim_NoSetInActive : MonoBehaviour
         // Set the trigger parameter to start the animation
         animator.SetTrigger("Button pressed");
     }
+
+    public void TriggerSlideDownAnimation()
+    {
+        // Set the trigger parameter to start the animation
+        animator.SetTrigger("Button pressed2");
+    }
 }
