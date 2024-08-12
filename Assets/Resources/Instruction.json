@@ -394,6 +394,97 @@
             "instructionId": 4,
             "En": "Send the document.",
             "Cn": "zzz"
+        },
+        {
+            "levelId": 10,
+            "instructionId": 0,
+            "En": "You ask your family to go out for dinner. Create a poll to let them choose where they would prefer to eat.",
+            "Cn": "Zzz"
+        },
+        {
+            "levelId": 10,
+            "instructionId": 1,
+            "En": "Press on the paper clip",
+            "Cn": "Zzz"
+        },
+        {
+            "levelId": 10,
+            "instructionId": 2,
+            "En": "Press on Poll",
+            "Cn": "Zzz"
+        },
+        {
+            "levelId": 10,
+            "instructionId": 3,
+            "En": "Input the question and options",
+            "Cn": "Zzz"
+        },
+        {
+            "levelId": 10,
+            "instructionId": 4,
+            "En": "Send when ready",
+            "Cn": "Zzz"
+        },
+        {
+            "levelId": 11,
+            "instructionId": 0,
+            "En": "You went to the market and saw some apples Little John would like. Crop the photo you took to only show the apples.",
+            "Cn": "Zzz"
+        },
+        {
+            "levelId": 11,
+            "instructionId": 1,
+            "En": "Click on the camera.",
+            "Cn": "Zzz"
+        },
+        {
+            "levelId": 11,
+            "instructionId": 2,
+            "En": "Click on the image you want to crop.",
+            "Cn": "Zzz"
+        },
+        {
+            "levelId": 11,
+            "instructionId": 3,
+            "En": "Click on the crop button.",
+            "Cn": "Zzz"
+        },
+        {
+            "levelId": 11,
+            "instructionId": 4,
+            "En": "Adjust till you seem fit.",
+            "Cn": "Zzz"
+        },
+        {
+            "levelId": 12,
+            "instructionId": 0,
+            "En": "You recorded a video but you forgot to stop recording. Cut the video to remove the excess.",
+            "Cn": "Zzz"
+        },
+        {
+            "levelId": 11,
+            "instructionId": 1,
+            "En": "Click on the camera.",
+            "Cn": "Zzz"
+        },
+        {
+            "levelId": 11,
+            "instructionId": 2,
+            "En": "Click on video you want to cut.",
+            "Cn": "Zzz"
+        },
+        {
+            "levelId": 11,
+            "instructionId": 3,
+            "En": "At the top, drag the box to your desired length.",
+            "Cn": "Zzz"
+        },
+        {
+            "levelId": 11,
+            "instructionId": 4,
+            "En": "Send when ready",
+            "Cn": "Zzz"
         }
+
     ]
 }
