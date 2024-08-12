@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 public class ButtonSendPolling : MonoBehaviour
 {
@@ -12,11 +13,30 @@ public class ButtonSendPolling : MonoBehaviour
     private List<string> PollingOptionsAndNames; // List of polling options and names (not used in this version)
     //public GameObject disablePollingDetailsScreen;
     public GameObject pollingText;
-
+    public GameObject levelCompleteScreen;
+    public Animator levelCompleteAnimator;
+    public Button levelCompleteEnable;
+    private CoroutineManager coroutineManager;
+    public GameObject hintIndicatorQuestion;
+    public GameObject hintIndicatorOption1;
+    public GameObject hintIndicatorOption2;
+    public GameObject hintIndicatorbuttonSend;
     // Start is called before the first frame update
     void Start()
     {
+        GameObject coroutineManagerObject = GameObject.Find("CoroutineManager");
+        coroutineManager = coroutineManagerObject.GetComponent<CoroutineManager>();
         confirmPollingDetails.onClick.AddListener(OnConfirmButtonClick);
+        if (userInputFields.Length > 0)
+        {
+            userInputFields[0].onSelect.AddListener(Option1Select);
+            userInputFields[0].onDeselect.AddListener(Option1DeSelect);
+            userInputFields[1].onSelect.AddListener(Option2Select);
+            userInputFields[1].onDeselect.AddListener(Option2DeSelect);
+            userInputFields[2].onSelect.AddListener(QuestionFieldSelect);
+            userInputFields[2].onDeselect.AddListener(QuestionFieldDeSelect);
+            levelCompleteEnable.onClick.AddListener(WinScreenAfterInputsAreFilled);
+        }
     }
 
     private void OnConfirmButtonClick()
@@ -52,5 +72,103 @@ public class ButtonSendPolling : MonoBehaviour
                 dynamicTexts[i].text = string.Empty; // Clear text if not enough inputs
             }
         }
+    }
+
+
+    void Option1Select(string text)
+    {
+        string Option1Text = text.Trim();
+        if (string.IsNullOrEmpty(Option1Text))
+        {
+            hintIndicatorOption1.SetActive(true);
+        }
+    }
+    void Option1DeSelect(string text)
+    {
+        string Option1Text = text.Trim();
+        if (!string.IsNullOrEmpty(Option1Text))
+        {
+            hintIndicatorOption1.SetActive(false);
+        }
+    }
+    void Option2Select(string text)
+    {
+        string Option2Text = text.Trim();
+        if (string.IsNullOrEmpty(Option2Text))
+        {
+            hintIndicatorOption2.SetActive(true);
+        }
+    }
+    void Option2DeSelect(string text)
+    {
+        string Option2Text = text.Trim();
+        if (!string.IsNullOrEmpty(Option2Text))
+        {
+            hintIndicatorOption2.SetActive(false);
+        }
+    }
+    void QuestionFieldSelect(string text)
+    {
+        string questionFieldText = text.Trim();
+        if (string.IsNullOrEmpty(questionFieldText))
+        {
+            hintIndicatorQuestion.SetActive(true);
+        }
+    }
+    void QuestionFieldDeSelect(string text)
+    {
+        string questionFieldText = text.Trim();
+        if (!string.IsNullOrEmpty(questionFieldText))
+        {
+            hintIndicatorQuestion.SetActive(false);
+        }
+    }
+    void CheckAllFieldsFilled(string newText)
+    {
+        // Check if all fields are filled
+        string Option1Text = userInputFields[0].text.Trim();
+        string Option2Text = userInputFields[1].text.Trim();
+        string questionFieldText = userInputFields[2].text.Trim();
+
+        if (!string.IsNullOrEmpty(Option1Text) &&
+            !string.IsNullOrEmpty(Option2Text) &&
+            !string.IsNullOrEmpty(questionFieldText))
+        {
+            // All fields are filled, show the hint indicator
+            hintIndicatorbuttonSend.SetActive(true);
+            //FireflyStep4.gameObject.SetActive(true);
+            //FireflyStep3.gameObject.SetActive(false);
+
+        }
+        else
+        {
+            // Not all fields are filled, hide the hint indicator
+            hintIndicatorbuttonSend.SetActive(false);
+            //FireflyStep4.gameObject.SetActive(false);
+            //FireflyStep3.gameObject.SetActive(true);
+        }
+    }
+
+    void WinScreenAfterInputsAreFilled()
+    {
+        string Option1Text = userInputFields[0].text.Trim();
+        string Option2Text = userInputFields[1].text.Trim();
+        string questionFieldText = userInputFields[2].text.Trim();
+
+        if (!string.IsNullOrEmpty(Option1Text) &&
+            !string.IsNullOrEmpty(Option2Text) &&
+            !string.IsNullOrEmpty(questionFieldText))
+        {
+            // Enable the level complete screen and trigger the animatio
+            coroutineManager.StartManagedCoroutine(WinScreenCoroutine());
+        }
+    }
+    IEnumerator WinScreenCoroutine()
+    {
+        // Wait for the animation to finish (assumes the animation length is 2 seconds)
+        yield return new WaitForSeconds(2f);
+        levelCompleteScreen.SetActive(true);
+        levelCompleteAnimator.SetTrigger("LevelCompleted");
+
     }
 }
