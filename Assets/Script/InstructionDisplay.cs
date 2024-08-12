@@ -29,14 +29,13 @@ public class InstructionDisplay : MonoBehaviour
 
     private Instruction[] levelInstructions;
     private int currentInstructionIndex = 0;
-    public static Instruction[] level0Instructions { get; private set; }
 
     void Start()
     {
         LevelSelect.currLevel = -1;
         // Load and parse JSON data
-        InstructionsData data = JsonUtility.FromJson<InstructionsData>(jsonFile.text);
-        levelInstructions = data.instructions
+        InstructionsData level0 = JsonUtility.FromJson<InstructionsData>(jsonFile.text);
+        levelInstructions = level0.instructions
     .Where(instr => instr.levelId == LevelSelect.currLevel)
     .ToArray();
 

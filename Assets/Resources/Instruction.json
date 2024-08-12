@@ -404,25 +404,19 @@
         {
             "levelId": 10,
             "instructionId": 1,
-            "En": "Press on the paper clip",
+            "En": "Press on the paper clip.",
             "Cn": "Zzz"
         },
         {
             "levelId": 10,
             "instructionId": 2,
-            "En": "Press on Poll",
+            "En": "Press on Poll.",
             "Cn": "Zzz"
         },
         {
             "levelId": 10,
             "instructionId": 3,
-            "En": "Input the question and options",
-            "Cn": "Zzz"
-        },
-        {
-            "levelId": 10,
-            "instructionId": 4,
-            "En": "Send when ready",
+            "En": "Input the question and options. Send when ready",
             "Cn": "Zzz"
         },
         {
@@ -456,6 +450,12 @@
             "Cn": "Zzz"
         },
         {
+            "levelId": 11,
+            "instructionId": 5,
+            "En": "Send the image.",
+            "Cn": "Zzz"
+        },
+        {
             "levelId": 12,
             "instructionId": 0,
             "En": "You recorded a video but you forgot to stop recording. Cut the video to remove the excess.",
@@ -476,15 +476,8 @@
         {
             "levelId": 11,
             "instructionId": 3,
-            "En": "At the top, drag the box to your desired length.",
-            "Cn": "Zzz"
-        },
-        {
-            "levelId": 11,
-            "instructionId": 4,
-            "En": "Send when ready",
+            "En": "At the top, adjust to your desired length and send",
             "Cn": "Zzz"
         }
-
     ]
 }
