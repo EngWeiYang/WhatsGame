@@ -20,13 +20,17 @@ public class LevelInstructionManager : MonoBehaviour
     public TextMeshProUGUI chatBubbleTitle;
     public TextMeshProUGUI chatBubbleBody;
 
+    List<LevelName> levelNames;
+
+    private int currentInstruction = 0;
+
     private void Start()
     {
         introduction.SetActive(true);
         instruction.SetActive(false);
 
         LevelsData data = JsonUtility.FromJson<LevelsData>(jsonFile_LevelName.text);
-        List<LevelName>  levelNames = data.levels[0].levelNames;
+        levelNames = data.levels[0].levelNames;
 
         scenarioIntroTitleTextBox.text = levelNames[LevelSelect.currLevel].En;
         chatBubbleTitle.text = levelNames[LevelSelect.currLevel].En;
@@ -40,5 +44,38 @@ public class LevelInstructionManager : MonoBehaviour
         {
             Debug.Log($"Instruction ID: {instruction.instructionId}, En: {instruction.En}, Cn: {instruction.Cn}");
         }
+    }
+
+    private void Update()
+    {
+        //Debug.Log(levelInstructions.Length);
+        if (currentInstruction <= levelInstructions.Length)
+        {
+            Instruction instruction = levelInstructions[currentInstruction];
+            if (currentInstruction == 0)
+            {
+                scenarioIntroTextBox.text = levelInstructions[currentInstruction].En;
+            }
+            else
+            {
+                chatBubbleBody.text = levelInstructions[currentInstruction].En;
+            }
+        }
+        else
+        {
+            instruction.SetActive(false);
+        }
+    }
+
+    public void BeginLevel()
+    {
+        introduction.SetActive (false);
+        instruction.SetActive (true);;
+    }
+
+    public void NextInstruction()
+    {
+        currentInstruction += 1;
+        Debug.Log(currentInstruction);
     }
 }

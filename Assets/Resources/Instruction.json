@@ -39,31 +39,7 @@
         {
             "levelId": 0,
             "instructionId": 3,
-            "En": "Uh oh! Wrong button. Try again.",
-            "Cn": "记得在继续之前收集所有物品。"
-        },
-        {
-            "levelId": 0,
-            "instructionId": 4,
-            "En": "Add the required details into the box.",
-            "Cn": "记得在继续之前收集所有物品。"
-        },
-        {
-            "levelId": 0,
-            "instructionId": 5,
-            "En": "Uh oh! The first name is missing.",
-            "Cn": "记得在继续之前收集所有物品。"
-        },
-        {
-            "levelId": 0,
-            "instructionId": 6,
-            "En": "Uh oh! The last name is missing.",
-            "Cn": "记得在继续之前收集所有物品。"
-        },
-        {
-            "levelId": 0,
-            "instructionId": 7,
-            "En": "Uh oh! The phone number is missing.",
+            "En": "Add the required details into the box and Save",
             "Cn": "记得在继续之前收集所有物品。"
         },
         {
