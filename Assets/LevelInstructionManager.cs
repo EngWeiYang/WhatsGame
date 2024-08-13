@@ -22,7 +22,7 @@ public class LevelInstructionManager : MonoBehaviour
 
     List<LevelName> levelNames;
 
-    private int currentInstruction = 0;
+    public int currentInstruction = 0;
 
     private void Start()
     {
@@ -51,7 +51,7 @@ public class LevelInstructionManager : MonoBehaviour
         //Debug.Log(levelInstructions.Length);
         if (currentInstruction <= levelInstructions.Length)
         {
-            Instruction instruction = levelInstructions[currentInstruction];
+            Instruction instruction = levelInstructions[currentInstruction];    
             if (currentInstruction == 0)
             {
                 scenarioIntroTextBox.text = levelInstructions[currentInstruction].En;
