@@ -12,6 +12,7 @@ public class VideoCropperBtnSend : MonoBehaviour
     public Button sendButton;                // Assign in the Inspector
     public GameObject chatScreen;
     public GameObject cropScene;
+    public GameObject camScreen;
     public GameObject levelCompleteScreen;
     public Animator levelCompleteAnimator;
     public Button levelCompleteEnable;
@@ -32,6 +33,7 @@ public class VideoCropperBtnSend : MonoBehaviour
         videoDurationTextTarget.text = cropRightScript.videoDuration.text;
         videoDurationTextTarget.text = cropperLeftScript.videoDuration.text;
         cropScene.gameObject.SetActive(false);
+        camScreen.gameObject.SetActive(false);
         chatScreen.gameObject.SetActive(true);
         videoSent.gameObject.SetActive(true);
     }
