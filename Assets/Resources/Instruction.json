@@ -65,13 +65,7 @@
             "instructionId": 3,
             "En": "Click on 'Create new contact'.",
             "Cn": "记得在继续之前收集所有物品。"
-        },
-        {
-            "levelId": 1,
-            "instructionId": 4,
-            "En": "Finally, save Little's John number.",
-            "Cn": "记得在继续之前收集所有物品。"
-        },  
+        }, 
         {
             "levelId": 2,
             "instructionId": 0,
@@ -93,18 +87,12 @@
         {
             "levelId": 2,
             "instructionId": 3,
-            "En": "Drag the QR code into the scanner.",
+            "En": "Drag the QR code into the scanner and 'Add to contacts'",
             "Cn": "zzz"
         },
         {
             "levelId": 2,
             "instructionId": 4,
-            "En": "Click on 'Add to contacts'.",
-            "Cn": "zzz"
-        },
-        {
-            "levelId": 2,
-            "instructionId": 5,
             "En": "Save the number.",
             "Cn": "zzz"
         },
@@ -135,7 +123,7 @@
         {
             "levelId": 4,
             "instructionId": 0,
-            "En": "You are walking home from the market and want to send Little John a message. Since you are holding groceries in one hand, making it hard to type, send a voice message to Little John.",
+            "En": "You carrying groceries on your way home and cannot type. Send Little John a voice message.",
             "Cn": "记得在继续之前收集所有物品。"
         },
         {

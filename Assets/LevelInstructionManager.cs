@@ -30,6 +30,8 @@ public class LevelInstructionManager : MonoBehaviour
         instruction.SetActive(false);
 
         LevelsData data = JsonUtility.FromJson<LevelsData>(jsonFile_LevelName.text);
+
+
         levelNames = data.levels[0].levelNames;
 
         scenarioIntroTitleTextBox.text = levelNames[LevelSelect.currLevel].En;
@@ -49,9 +51,9 @@ public class LevelInstructionManager : MonoBehaviour
     private void Update()
     {
         //Debug.Log(levelInstructions.Length);
-        if (currentInstruction <= levelInstructions.Length)
+        if (currentInstruction < levelInstructions.Length)
         {
-            Instruction instruction = levelInstructions[currentInstruction];    
+            Instruction instruction = levelInstructions[currentInstruction];
             if (currentInstruction == 0)
             {
                 scenarioIntroTextBox.text = levelInstructions[currentInstruction].En;
@@ -69,13 +71,18 @@ public class LevelInstructionManager : MonoBehaviour
 
     public void BeginLevel()
     {
-        introduction.SetActive (false);
-        instruction.SetActive (true);;
+        introduction.SetActive(false);
+        instruction.SetActive(true); ;
     }
 
     public void NextInstruction()
     {
         currentInstruction += 1;
         Debug.Log(currentInstruction);
+    }
+
+    public void PreviousInstruction()
+    {
+        currentInstruction -= 1;
     }
 }

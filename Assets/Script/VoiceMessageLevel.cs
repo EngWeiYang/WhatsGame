@@ -44,8 +44,13 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
     private const float returnThreshold = 15f;
     private Vector2 initialButtonPosition;
 
+    public LevelInstructionManager levelInstructionManager;
+
+    private bool isCalled = false;
+
     void Start()
     {
+        isCalled = false;
         ActivateDefaultState(); // Ensure initial state is set to default
         HintIndicating.SetActive(false);
         sendBtn.onClick.AddListener(SendMessage);
@@ -63,6 +68,8 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         }
         isHorizontalDrag = false;
         isVerticalDrag = false;
+
+        levelInstructionManager.NextInstruction();
     }
 
     // Called when the pointer is released
@@ -72,6 +79,7 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         {
             if (!isLocked)
             {
+                levelInstructionManager.PreviousInstruction();
                 StopRecording();
             }
             else
@@ -114,6 +122,7 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
             // Check if dragged to the left beyond the threshold
             if (dragDelta.x < cancelThresholdX)
             {
+                levelInstructionManager.PreviousInstruction();
                 isDraggedLeft = true;
                 StopRecording();
                 Debug.Log("Recording cancelled due to drag left");
@@ -121,6 +130,11 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
             // Check if dragged upwards beyond the lock threshold
             else if (dragDelta.y > lockThresholdY)
             {
+                if (!isCalled)
+                {
+                    isCalled = true;
+                    levelInstructionManager.NextInstruction();
+                }
                 LockRecording();
                 Debug.Log("Recording locked in position");
             }
@@ -255,7 +269,7 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         // Adjust transparency for images and TMP texts within the default recording state
         SetTransparencyForAllImagesAndText(defaultRecordingState, 1f);
         SetTransparencyForAllImagesAndText(stateRecordVoice, 0f);
-        Debug.Log("Activated Default State");
+        //Debug.Log("Activated Default State");
     }
 
     private void ActivateRecordingState()
@@ -263,7 +277,7 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         // Adjust transparency for images and TMP texts within the active recording state
         SetTransparencyForAllImagesAndText(defaultRecordingState, 0f);
         SetTransparencyForAllImagesAndText(stateRecordVoice, 1f);
-        Debug.Log("Activated Recording State");
+        //Debug.Log("Activated Recording State");
     }
 
     private void SetTransparencyForAllImagesAndText(GameObject obj, float alpha)

@@ -21,7 +21,10 @@ public class ReplyingMessage : MonoBehaviour
     public Button levelCompleteEnable;
     public GameObject fireflyStep2;
     public GameObject fireflyStep3;
-    
+
+    public LevelInstructionManager levelInstructionManager;
+    private bool isCalled = false;
+
 
     void Start()
     {
@@ -33,6 +36,8 @@ public class ReplyingMessage : MonoBehaviour
         // Initialize button state
         UpdateButtonState(inputField.text);
         chatBubblePrefab.SetActive(false);
+
+        isCalled = false;
     }
 
     void OnSendButtonClick()
@@ -116,6 +121,12 @@ public class ReplyingMessage : MonoBehaviour
             defaultButtonSprite.SetActive(false);
             fireflyStep2.SetActive(false);
             fireflyStep3.SetActive(true);
+            
+            if (!isCalled) {
+                isCalled = true;
+                levelInstructionManager.NextInstruction();
+            }
+            
         }
     }
 }
