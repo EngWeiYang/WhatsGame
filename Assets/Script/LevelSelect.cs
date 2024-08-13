@@ -11,12 +11,26 @@ public class LevelSelect : MonoBehaviour
     public Sprite orangeStar;
     public Sprite redStar;
     public static int currLevel;
+    public GameObject loadingScreen;
 
     public void OnClickLevel(int levelNum)
     {
+        StartCoroutine(LoadAsynchronusly(levelNum));
+    }
+
+    IEnumerator LoadAsynchronusly(int levelNum)
+    {
+        //Loading screen
+        loadingScreen.SetActive(true);
+        Debug.Log("Loading..");
+
+        yield return new WaitForSeconds(0.5f);
+
         Checker.firstTimeInScene = false;
         currLevel = levelNum;
-        SceneManager.LoadScene("Levels");
+        AsyncOperation operation = SceneManager.LoadSceneAsync("Levels");
+
+        yield return null;
     }
 
     void Start()

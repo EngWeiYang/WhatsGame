@@ -49,6 +49,11 @@
             "buttonId": 10,
             "En": "LEVELS",
             "Cn": "Zzz:"
+        },
+        {
+            "buttonId": 11,
+            "En": "LOADING",
+            "Cn": "zzz"
         }
     ]
 }
