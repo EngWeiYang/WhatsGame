@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
+    //Storing microphone initial size
+    private Vector3 initialScale;
+
     // UI Elements
     public TMP_Text timer;
     public TMP_Text lockedTimer;
@@ -47,6 +50,7 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public LevelInstructionManager levelInstructionManager;
 
     private bool isCalled = false;
+    public ShrinkWithDrag objectToShrink;
 
     void Start()
     {
@@ -56,6 +60,9 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         sendBtn.onClick.AddListener(SendMessage);
         fireflyHelp1.gameObject.SetActive(true);
         initialButtonPosition = GetComponent<RectTransform>().anchoredPosition;
+
+        // Store the initial scale of the microphone button
+        initialScale = transform.localScale;
     }
 
     // Called when the pointer is pressed down
@@ -117,6 +124,16 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
             else if (isVerticalDrag)
             {
                 dragDelta.x = 0; // Only allow vertical movement
+            }
+
+            // Scale the microphone as it's dragged upward
+            if (dragDelta.y > 0) // Only scale down when dragging up
+            {
+                float scaleFactor = Mathf.Max(0.5f, 1 - (dragDelta.y / lockThresholdY) * 0.5f); // Scale between 1 and 0.5
+                transform.localScale = initialScale * scaleFactor;
+
+                // Adjust the height of the other object
+                objectToShrink.AdjustHeight(dragDelta.y);
             }
 
             // Check if dragged to the left beyond the threshold
@@ -253,6 +270,12 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         isLocked = false; // Reset the locked state
         elapsedTime = 0f; // Reset elapsed time
         ResetButtonPosition(); // Reset the button position
+
+        // Reset the scale of the microphone button to its original scale
+        transform.localScale = initialScale;
+
+        // Reset the height of the other object
+        objectToShrink.ResetHeight();
     }
 
     private void StopRecordingCoroutine()
