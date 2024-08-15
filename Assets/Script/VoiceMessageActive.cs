@@ -30,6 +30,9 @@ public class VoiceMessageActive : MonoBehaviour, IPointerDownHandler, IPointerUp
     public List<Image> imagesToChangeTransparency;
     public TMP_Text textToDisable;
 
+    //Locking game object
+    public ShrinkWithDrag objectToShrink;
+
     // Internal State
     private Coroutine recordingCoroutine;
     private Vector2 startDragPosition;
@@ -171,7 +174,32 @@ public class VoiceMessageActive : MonoBehaviour, IPointerDownHandler, IPointerUp
         recordingCoroutine = StartCoroutine(UpdateTimer(timer));
         defaultRecordingState.SetActive(false);
         activeRecordingState.SetActive(true);
+
+        // Lock the top position of the objectToShrink
+        LockTopPositionOfObjectToShrink();
+        
         Debug.Log("Recording started");
+    }
+
+    private void LockTopPositionOfObjectToShrink()
+    {
+        if (objectToShrink != null)
+        {
+            RectTransform rectTransform = objectToShrink.GetComponent<RectTransform>();
+            if (rectTransform != null)
+            {
+                // Calculate the initial top edge position
+                Vector3 initialTopEdge = rectTransform.position + new Vector3(0, rectTransform.rect.height / 2, 0);
+                
+                // Set the anchor to the top
+                rectTransform.anchorMin = new Vector2(rectTransform.anchorMin.x, 1);
+                rectTransform.anchorMax = new Vector2(rectTransform.anchorMax.x, 1);
+                rectTransform.pivot = new Vector2(rectTransform.pivot.x, 1);
+
+                // Reset position to keep the top edge fixed
+                rectTransform.position = initialTopEdge;
+            }
+        }
     }
 
     // Stop the recording process

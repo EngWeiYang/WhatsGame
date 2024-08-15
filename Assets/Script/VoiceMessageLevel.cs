@@ -51,6 +51,7 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
     private bool isCalled = false;
     public ShrinkWithDrag objectToShrink;
+    public GameObject deactivatehint;
 
     void Start()
     {
@@ -129,7 +130,7 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
             // Scale the microphone as it's dragged upward
             if (dragDelta.y > 0) // Only scale down when dragging up
             {
-                float scaleFactor = Mathf.Max(0.5f, 1 - (dragDelta.y / lockThresholdY) * 0.5f); // Scale between 1 and 0.5
+                float scaleFactor = Mathf.Max(0f, 1 - (dragDelta.y / lockThresholdY)); // Scale between 1 and 0.3
                 transform.localScale = initialScale * scaleFactor;
 
                 // Adjust the height of the other object
@@ -300,7 +301,32 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         // Adjust transparency for images and TMP texts within the active recording state
         SetTransparencyForAllImagesAndText(defaultRecordingState, 0f);
         SetTransparencyForAllImagesAndText(stateRecordVoice, 1f);
+
+        // Lock the top position of the objectToShrink
+        LockTopPositionOfObjectToShrink();
+        deactivatehint.SetActive(false);
         //Debug.Log("Activated Recording State");
+    }
+
+    private void LockTopPositionOfObjectToShrink()
+    {
+        if (objectToShrink != null)
+        {
+            RectTransform rectTransform = objectToShrink.GetComponent<RectTransform>();
+            if (rectTransform != null)
+            {
+                // Calculate the initial top edge position
+                Vector3 initialTopEdge = rectTransform.position + new Vector3(0, rectTransform.rect.height / 2, 0);
+                
+                // Set the anchor to the top
+                rectTransform.anchorMin = new Vector2(rectTransform.anchorMin.x, 1);
+                rectTransform.anchorMax = new Vector2(rectTransform.anchorMax.x, 1);
+                rectTransform.pivot = new Vector2(rectTransform.pivot.x, 1);
+
+                // Reset position to keep the top edge fixed
+                rectTransform.position = initialTopEdge;
+            }
+        }
     }
 
     private void SetTransparencyForAllImagesAndText(GameObject obj, float alpha)
