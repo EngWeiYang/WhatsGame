@@ -24,6 +24,8 @@ public class EmojiClickedLaughing : MonoBehaviour
     public GameObject hintIndicatorSendEmoji;
     public GameObject fireflyInstructions;
     public GameObject fireflyScenario;
+    public GameObject scenenario1;
+    public GameObject scenenario2;
     private CoroutineManager coroutineManager;
 
 
@@ -72,11 +74,11 @@ public class EmojiClickedLaughing : MonoBehaviour
     IEnumerator ScenarioFlow()
     {
         yield return new WaitForSeconds(1f);
-        // Wait for the animation to finish (assumes the animation length is 2 seconds)
+        scenenario1.gameObject.SetActive(false);
+        scenenario2.gameObject.SetActive(true);
         fireflyInstructions.gameObject.SetActive(false);
         fireflyScenario.gameObject.SetActive(true);
         
-
     }
 
 }

@@ -12,6 +12,8 @@ public class sendingGIFs : MonoBehaviour
     public GameObject hintindicator;
     public GameObject fireflyInstructions;
     public GameObject fireflyScenario;
+    public GameObject scenenario3;
+    public GameObject scenenario4;
     private CoroutineManager coroutineManager;
 
 
@@ -39,7 +41,8 @@ public class sendingGIFs : MonoBehaviour
     IEnumerator ScenarioFlow()
     {
         yield return new WaitForSeconds(1f);
-        // Wait for the animation to finish (assumes the animation length is 2 seconds)
+        scenenario3.gameObject.SetActive(false);
+        scenenario4.gameObject.SetActive(true);
         fireflyInstructions.gameObject.SetActive(false);
         fireflyScenario.gameObject.SetActive(true);
     }

@@ -21,6 +21,8 @@ public class EmojiClickedHeart : MonoBehaviour
     public GameObject hintIndicatorSendEmoji;
     public GameObject fireflyInstructions;
     public GameObject fireflyScenario;
+    public GameObject scenenario2;
+    public GameObject scenenario3;
     private CoroutineManager coroutineManager;
 
 
@@ -68,7 +70,8 @@ public class EmojiClickedHeart : MonoBehaviour
     IEnumerator ScenarioFlow()
     {
         yield return new WaitForSeconds(1f);
-        // Wait for the animation to finish (assumes the animation length is 2 seconds)
+        scenenario2.gameObject.SetActive(false);
+        scenenario3.gameObject.SetActive(true);
         fireflyInstructions.gameObject.SetActive(false);
         fireflyScenario.gameObject.SetActive(true);
 
