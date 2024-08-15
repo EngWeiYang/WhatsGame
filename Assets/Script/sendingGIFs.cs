@@ -10,14 +10,17 @@ public class sendingGIFs : MonoBehaviour
     public GameObject chatScreen;
     public Animator sendGIFAnim;
     public GameObject hintindicator;
-    public GameObject firefly1;
-    public GameObject firefly2;
-    public Button switchScenarioBtn;
+    public GameObject fireflyInstructions;
+    public GameObject fireflyScenario;
+    private CoroutineManager coroutineManager;
 
 
     private void Start()
     {
         sendGIFBtn.onClick.AddListener(confirmSendGIF);
+        sendGIFBtn.onClick.AddListener(EnableScenarioFlow);
+        GameObject coroutineManagerObject = GameObject.Find("CoroutineManager");
+        coroutineManager = coroutineManagerObject.GetComponent<CoroutineManager>();
     }
 
     void confirmSendGIF()
@@ -25,9 +28,19 @@ public class sendingGIFs : MonoBehaviour
         sendGIFScreen.gameObject.SetActive(false);
         chatScreen.gameObject.SetActive(true);
         hintindicator.gameObject.SetActive(false);
-        firefly1.gameObject.SetActive(false);
-        firefly2.gameObject.SetActive(false);
         sendGIFAnim.SetTrigger("sendGIF");
-        switchScenarioBtn.gameObject.SetActive(true);
+    }
+
+    void EnableScenarioFlow()
+    {
+        // Enable the level complete screen and trigger the animatio
+        coroutineManager.StartManagedCoroutine(ScenarioFlow());
+    }
+    IEnumerator ScenarioFlow()
+    {
+        yield return new WaitForSeconds(1f);
+        // Wait for the animation to finish (assumes the animation length is 2 seconds)
+        fireflyInstructions.gameObject.SetActive(false);
+        fireflyScenario.gameObject.SetActive(true);
     }
 }

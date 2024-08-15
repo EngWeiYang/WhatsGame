@@ -16,18 +16,21 @@ public class EmojiClickedHeart : MonoBehaviour
     public Button sendMessageText;
     public Animator animator;
     public GameObject defaultMessageBtn;
-    public Button toNextScenario;
     public GameObject hintIndicatorEmoji;
     public GameObject hintIndicatorEmojiClicked;
     public GameObject hintIndicatorSendEmoji;
-    public GameObject firefly1;
-    public GameObject firefly2;
+    public GameObject fireflyInstructions;
+    public GameObject fireflyScenario;
+    private CoroutineManager coroutineManager;
 
 
     void Start()
     {
         emojiHeartBtn.onClick.AddListener(clickedLaughingEmoji);
         sendMessageText.onClick.AddListener(sendMessage);
+        sendMessageText.onClick.AddListener(EnableScenarioFlow);
+        GameObject coroutineManagerObject = GameObject.Find("CoroutineManager");
+        coroutineManager = coroutineManagerObject.GetComponent<CoroutineManager>();
         Color heartEmojiColor = emojiHeart.color;
         heartEmojiColor.a = 0f;
         emojiHeart.color = heartEmojiColor;
@@ -39,8 +42,6 @@ public class EmojiClickedHeart : MonoBehaviour
         heartEmojiColor.a = 1f;
         emojiHeart.color = heartEmojiColor;
         text.gameObject.SetActive(false);
-        firefly1.gameObject.SetActive(false);
-        firefly2.gameObject.SetActive(true);
         sendMessageBtn.gameObject.SetActive(true);
         defaultMessageBtn.gameObject.SetActive(false);
         hintIndicatorEmoji.gameObject.SetActive(false);
@@ -52,12 +53,25 @@ public class EmojiClickedHeart : MonoBehaviour
     {
         hintIndicatorSendEmoji.gameObject.SetActive(false);
         textMessageWithEmojiHeart.gameObject.SetActive(true);
-        toNextScenario.gameObject.SetActive(true);
-        firefly2.gameObject.SetActive(true);
         emojiHeart.gameObject.SetActive (false);
         Color heartEmojiColorInText = emojiHeartinMessage.color;
         heartEmojiColorInText.a = 1f;
         emojiHeartinMessage.color = heartEmojiColorInText;
         animator.SetTrigger("heartEmojiSend");
+    }
+
+    void EnableScenarioFlow()
+    {
+        // Enable the level complete screen and trigger the animatio
+        coroutineManager.StartManagedCoroutine(ScenarioFlow());
+    }
+    IEnumerator ScenarioFlow()
+    {
+        yield return new WaitForSeconds(1f);
+        // Wait for the animation to finish (assumes the animation length is 2 seconds)
+        fireflyInstructions.gameObject.SetActive(false);
+        fireflyScenario.gameObject.SetActive(true);
+
+
     }
 }
