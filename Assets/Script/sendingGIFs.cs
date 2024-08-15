@@ -40,7 +40,7 @@ public class sendingGIFs : MonoBehaviour
     }
     IEnumerator ScenarioFlow()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         scenenario3.gameObject.SetActive(false);
         scenenario4.gameObject.SetActive(true);
         fireflyInstructions.gameObject.SetActive(false);

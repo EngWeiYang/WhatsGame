@@ -177,7 +177,7 @@
         {
             "levelId": 6,
             "instructionId": 0,
-            "En": "Little John is busy with school and cannot come visit. Call him to check up on him. Switch to video call.",
+            "En": "Little John is busy with school and cannot come visit. Call him to check up on him.",
             "Cn": "记得在继续之前收集所有物品。"
         },
         {
@@ -242,7 +242,7 @@
         {
             "levelId": 8,
             "instructionId": 0,
-            "En": "Little John sent you something funny, reply him using emojis.",
+            "En": "Little John sent you something funny, reply to him using emojis.",
             "Cn": "记得在继续之前收集所有物品。"
         },
         {

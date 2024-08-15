@@ -69,7 +69,7 @@ public class EmojiClickedHeart : MonoBehaviour
     }
     IEnumerator ScenarioFlow()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         scenenario2.gameObject.SetActive(false);
         scenenario3.gameObject.SetActive(true);
         fireflyInstructions.gameObject.SetActive(false);

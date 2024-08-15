@@ -73,7 +73,7 @@ public class EmojiClickedLaughing : MonoBehaviour
     }
     IEnumerator ScenarioFlow()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         scenenario1.gameObject.SetActive(false);
         scenenario2.gameObject.SetActive(true);
         fireflyInstructions.gameObject.SetActive(false);
