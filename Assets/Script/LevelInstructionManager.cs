@@ -94,7 +94,7 @@ public class LevelInstructionManager : MonoBehaviour
     public void NextInstruction()
     {
         currentInstruction += 1;
-        Debug.Log(currentInstruction);
+        //Debug.Log(currentInstruction);
     }
 
     public void PreviousInstruction()
