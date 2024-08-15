@@ -11,10 +11,4 @@ public class LevelManager : MonoBehaviour
     {
         levels[LevelSelect.currLevel].SetActive(true);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

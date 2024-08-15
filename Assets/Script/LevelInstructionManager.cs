@@ -4,7 +4,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static DialogManager;
 
 public class LevelInstructionManager : MonoBehaviour
 {

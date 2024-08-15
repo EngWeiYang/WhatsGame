@@ -65,7 +65,13 @@
             "instructionId": 3,
             "En": "Click on 'Create new contact'.",
             "Cn": "记得在继续之前收集所有物品。"
-        }, 
+        },
+        {
+            "levelId": 1,
+            "instructionId": 4,
+            "En": "Click on Save.",
+            "Cn": "记得在继续之前收集所有物品。"
+        },
         {
             "levelId": 2,
             "instructionId": 0,
@@ -236,7 +242,7 @@
         {
             "levelId": 8,
             "instructionId": 0,
-            "En": "Little John sent you a funny video, reply him with an emoji.",
+            "En": "You will run thorugh different scenarios to utilze the Emoji,GIF, and Sticker function.",
             "Cn": "记得在继续之前收集所有物品。"
         },
         {

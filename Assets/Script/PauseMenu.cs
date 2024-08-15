@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     public void ReturnToMenu()
     {
         SceneManager.LoadScene("MainMenu");
