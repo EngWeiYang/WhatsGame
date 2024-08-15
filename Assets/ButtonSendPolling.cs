@@ -21,6 +21,11 @@ public class ButtonSendPolling : MonoBehaviour
     public GameObject hintIndicatorOption1;
     public GameObject hintIndicatorOption2;
     public GameObject hintIndicatorbuttonSend;
+    public GameObject thisButton;
+
+    public LevelInstructionManager levelInstructionManager;
+    private bool isCalled = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -138,6 +143,11 @@ public class ButtonSendPolling : MonoBehaviour
             hintIndicatorbuttonSend.SetActive(true);
             //FireflyStep4.gameObject.SetActive(true);
             //FireflyStep3.gameObject.SetActive(false);
+            if (!isCalled)
+            {
+                levelInstructionManager.NextInstruction();
+                isCalled = true;
+            }
 
         }
         else

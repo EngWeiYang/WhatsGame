@@ -14,6 +14,7 @@ public class CallingWithCoroutine : MonoBehaviour
     public GameObject profilepic;
     private SlideAnim slideAnim;
 
+    public LevelInstructionManager levelInstructionManager;
     void Start()
     {
         callButton.onClick.AddListener(CallingandAnswering);
@@ -39,6 +40,7 @@ public class CallingWithCoroutine : MonoBehaviour
         screenAnswer.SetActive(true);
         fireflyhelp.SetActive(false);
         fireflyhelp2.SetActive(true);
+        levelInstructionManager.NextInstruction();
 
     }
 }

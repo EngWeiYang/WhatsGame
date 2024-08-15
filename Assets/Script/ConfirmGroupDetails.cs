@@ -16,6 +16,8 @@ public class ConfirmGroupDetails : MonoBehaviour
     public GameObject fireflyhelp;
     public GameObject fireflyhelp2;
 
+    public LevelInstructionManager levelInstructionManager;
+    public bool isChanged = false;
     private void Start()
     {
         confirmButton.onClick.AddListener(OnConfirmButtonClick);
@@ -25,6 +27,11 @@ public class ConfirmGroupDetails : MonoBehaviour
 
     private void hintIndicatorLightUp(string text)
     {
+        if (!isChanged)
+        {
+            isChanged = true;
+            levelInstructionManager.NextInstruction();
+        }
         hintIndicatorInputfield.SetActive(string.IsNullOrEmpty(text));
         fireflyhelp.gameObject.SetActive(string.IsNullOrEmpty(text));
         hintIndicatorconfirmDetails.SetActive(!string.IsNullOrEmpty(text));

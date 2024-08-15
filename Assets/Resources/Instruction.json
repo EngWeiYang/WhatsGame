@@ -236,7 +236,7 @@
         {
             "levelId": 8,
             "instructionId": 0,
-            "En": "You will go through different scenarios to utilize Emojis, GIFs, and Stickers.",
+            "En": "Little John sent you a funny video, reply him with an emoji.",
             "Cn": "记得在继续之前收集所有物品。"
         },
         {
@@ -380,7 +380,13 @@
         {
             "levelId": 10,
             "instructionId": 3,
-            "En": "Input the question and options. Send when ready",
+            "En": "Input the question and options.",
+            "Cn": "Zzz"
+        },
+        {
+            "levelId": 10,
+            "instructionId": 3,
+            "En": "Send when ready",
             "Cn": "Zzz"
         },
         {
@@ -410,7 +416,7 @@
         {
             "levelId": 11,
             "instructionId": 4,
-            "En": "Adjust till you seem fit.",
+            "En": "Adjust till you seem fit and save",
             "Cn": "Zzz"
         },
         {
@@ -426,19 +432,19 @@
             "Cn": "Zzz"
         },
         {
-            "levelId": 11,
+            "levelId": 12,
             "instructionId": 1,
             "En": "Click on the camera.",
             "Cn": "Zzz"
         },
         {
-            "levelId": 11,
+            "levelId": 12,
             "instructionId": 2,
             "En": "Click on video you want to cut.",
             "Cn": "Zzz"
         },
         {
-            "levelId": 11,
+            "levelId": 12,
             "instructionId": 3,
             "En": "At the top, adjust to your desired length and send",
             "Cn": "Zzz"
