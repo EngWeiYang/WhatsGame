@@ -11,6 +11,7 @@ public class LevelInstructionManager : MonoBehaviour
     public TextAsset jsonFile_LevelName;// Assign this in the Inspector
     private Instruction[] levelInstructions;
 
+    public GameObject fireFlyCanvas;
     public GameObject introduction;
     public GameObject instruction;
 
@@ -25,6 +26,7 @@ public class LevelInstructionManager : MonoBehaviour
 
     private void Start()
     {
+        fireFlyCanvas.SetActive(true);
         introduction.SetActive(true);
         instruction.SetActive(false);
 
@@ -53,13 +55,28 @@ public class LevelInstructionManager : MonoBehaviour
         if (currentInstruction < levelInstructions.Length)
         {
             Instruction instruction = levelInstructions[currentInstruction];
-            if (currentInstruction == 0)
+
+            if (LevelSelect.currLevel == 8)
             {
-                scenarioIntroTextBox.text = levelInstructions[currentInstruction].En;
+                if (currentInstruction == 0 || currentInstruction == 4 || currentInstruction == 8 || currentInstruction == 12)
+                {
+                    scenarioIntroTextBox.text = levelInstructions[currentInstruction].En;
+                }
+                else
+                {
+                    chatBubbleBody.text = levelInstructions[currentInstruction].En;
+                }
             }
             else
             {
-                chatBubbleBody.text = levelInstructions[currentInstruction].En;
+                if (currentInstruction == 0)
+                {
+                    scenarioIntroTextBox.text = levelInstructions[currentInstruction].En;
+                }
+                else
+                {
+                    chatBubbleBody.text = levelInstructions[currentInstruction].En;
+                }
             }
         }
         else

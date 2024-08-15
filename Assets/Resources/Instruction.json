@@ -242,7 +242,7 @@
         {
             "levelId": 8,
             "instructionId": 0,
-            "En": "You will run thorugh different scenarios to utilze the Emoji,GIF, and Sticker function.",
+            "En": "Little John sent you something funny, reply him using emojis.",
             "Cn": "记得在继续之前收集所有物品。"
         },
         {
@@ -266,73 +266,79 @@
         {
             "levelId": 8,
             "instructionId": 4,
-            "En": "Click on the emoji button.",
+            "En": "Little John is sick, send him an emoji to make him feel better.",
             "Cn": "zzz"
         },
         {
             "levelId": 8,
             "instructionId": 5,
-            "En": "Click on the heart emoji.",
+            "En": "Click on the symbol category.",
             "Cn": "zzz"
         },
         {
             "levelId": 8,
             "instructionId": 6,
-            "En": "Send the emoji.",
+            "En": "Click on the red heart emoji.",
             "Cn": "zzz"
         },
         {
             "levelId": 8,
             "instructionId": 7,
-            "En": "Click on the emoji button.",
+            "En": "Send the emoji.",
             "Cn": "zzz"
         },
         {
             "levelId": 8,
             "instructionId": 8,
-            "En": "Click on the GIF tab",
+            "En": "Little John sent you a good morning message, reply him with a GIF.",
             "Cn": "zzz"
         },
         {
             "levelId": 8,
             "instructionId": 9,
-            "En": "Click on the good morning GIF",
+            "En": "Click on the GIF tab.",
             "Cn": "zzz"
         },
         {
             "levelId": 8,
             "instructionId": 10,
-            "En": "Send the GIF.",
+            "En": "Click on the good morning GIF.",
             "Cn": "zzz"
         },
         {
             "levelId": 8,
             "instructionId": 11,
-            "En": "Click on the emoji button.",
+            "En": "Send the GIF.",
             "Cn": "zzz"
         },
         {
             "levelId": 8,
             "instructionId": 12,
-            "En": "Click on sticker tab.",
-            "Cn": "zzz"
-        },
-        {
-            "levelId": 8,
-            "instructionId": 13,
-            "En": "Click on the sticker Little John sent you.",
+            "En": "Little John sent you a cool sticker, add it to you sticker collection.",
             "Cn": "zzz"
         },
         {
             "levelId": 8,
             "instructionId": 14,
-            "En": "Add the sticker to your favourite.",
+            "En": "Click on the sticker Little John sent.",
             "Cn": "zzz"
         },
         {
             "levelId": 8,
             "instructionId": 15,
-            "En": "Send the sticker back to Little John.",
+            "En": "Add the sticker to favourite.",
+            "Cn": "zzz"
+        },
+        {
+            "levelId": 8,
+            "instructionId": 16,
+            "En": "Press the sticker tab.",
+            "Cn": "zzz"
+        },
+        {
+            "levelId": 8,
+            "instructionId": 17,
+            "En": "Send the sticker to Little John",
             "Cn": "zzz"
         },
         {
