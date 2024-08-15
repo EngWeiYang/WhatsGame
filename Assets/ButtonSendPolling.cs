@@ -29,11 +29,15 @@ public class ButtonSendPolling : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hintIndicatorbuttonSend.gameObject.SetActive(false);
         GameObject coroutineManagerObject = GameObject.Find("CoroutineManager");
         coroutineManager = coroutineManagerObject.GetComponent<CoroutineManager>();
         confirmPollingDetails.onClick.AddListener(OnConfirmButtonClick);
         if (userInputFields.Length > 0)
         {
+            userInputFields[0].onValueChanged.AddListener(CheckAllFieldsFilled);
+            userInputFields[1].onValueChanged.AddListener(CheckAllFieldsFilled);
+            userInputFields[2].onValueChanged.AddListener(CheckAllFieldsFilled);
             userInputFields[0].onSelect.AddListener(Option1Select);
             userInputFields[0].onDeselect.AddListener(Option1DeSelect);
             userInputFields[1].onSelect.AddListener(Option2Select);

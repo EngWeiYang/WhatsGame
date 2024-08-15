@@ -89,9 +89,6 @@ public class Cropper : MonoBehaviour
             if (imageCropped != null) imageCropped.SetActive(false);
             resultDisplay.gameObject.SetActive(true); // Ensure the RawImage is visible
         }
-        else
-        {
-            Debug.LogError("Result Display is not assigned in the Inspector");
-        }
+        
     }
 }

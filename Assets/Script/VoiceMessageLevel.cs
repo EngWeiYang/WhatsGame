@@ -17,9 +17,7 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public Image recordingImage;
     public Image recordingImage2;
     public Image recordingImage3;
-    public GameObject HintIndicating;
     public GameObject HintIndicatorDefault;
-    public GameObject HintIndicatorLocked;
     public GameObject defaultRecordingState;
     public GameObject sendVoiceMessage;
     public GameObject stateRecordVoice;
@@ -51,13 +49,13 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
     private bool isCalled = false;
     public ShrinkWithDrag objectToShrink;
-    public GameObject deactivatehint;
+    public GameObject deactivateDefaultStateHint;
+
 
     void Start()
     {
         isCalled = false;
         ActivateDefaultState(); // Ensure initial state is set to default
-        HintIndicating.SetActive(false);
         sendBtn.onClick.AddListener(SendMessage);
         fireflyHelp1.gameObject.SetActive(true);
         initialButtonPosition = GetComponent<RectTransform>().anchoredPosition;
@@ -198,7 +196,6 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         elapsedTime = 0f;
         recordingCoroutine = StartCoroutine(UpdateTimer(timer));
         ActivateRecordingState();// Switch to active recording state
-        HintIndicating.SetActive(true);
         //Debug.Log("Recording started");
     }
 
@@ -230,7 +227,6 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
     {
         SetTransparency(recordingImage, 0f);
         SetTransparency(recordingImage2, 0f);
-        HintIndicating.SetActive(false);
         fireflyHelp2.gameObject.SetActive(false);
         fireflyHelp3.gameObject.SetActive(true);
         SetTransparency(recordingImage3, 0f);
@@ -262,7 +258,6 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
     // Reset the UI to the default state
     private void ResetUI()
     {
-        HintIndicating.SetActive(false);
         fireflyHelp1.gameObject.SetActive(true);
         fireflyHelp2.gameObject.SetActive(false);
         fireflyHelp3.gameObject.SetActive(false);
@@ -293,6 +288,7 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         // Adjust transparency for images and TMP texts within the default recording state
         SetTransparencyForAllImagesAndText(defaultRecordingState, 1f);
         SetTransparencyForAllImagesAndText(stateRecordVoice, 0f);
+        deactivateDefaultStateHint.SetActive(true);
         //Debug.Log("Activated Default State");
     }
 
@@ -304,7 +300,7 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
         // Lock the top position of the objectToShrink
         LockTopPositionOfObjectToShrink();
-        deactivatehint.SetActive(false);
+        deactivateDefaultStateHint.SetActive(false);
         //Debug.Log("Activated Recording State");
     }
 
@@ -377,7 +373,6 @@ public class VoiceMessageLevel : MonoBehaviour, IPointerDownHandler, IPointerUpH
         DisableTMPText(textToDisable);
         SetTransparencyForMultipleImages(imagesToChangeTransparency, 0f);
         SetTransparencyForAllImagesAndText(defaultRecordingState, 1f);
-        HintIndicatorLocked.SetActive(false);
         HintIndicatorDefault.SetActive(false);
         sentTimer.text = lockedTimer.text;
         timer.text = "00:00";
