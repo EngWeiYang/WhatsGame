@@ -8,11 +8,10 @@ using System.Security.Cryptography;
 public class ReplyingMessage : MonoBehaviour
 {
     public TMP_InputField inputField;  // Reference to the input field
-    public GameObject chatContent;  // Parent object to hold chat bubbles
-    public GameObject chatBubblePrefab;  // Prefab of the chat bubble
+    public Transform bot;
     public Button sendButton; // Reference to the send button
     public GameObject sendButtonSprite;
-    public GameObject parentChatBubble;
+    public GameObject chatBubble;
     public GameObject defaultButtonSprite;
     public GameObject HintIndicatorSendMessage;
     public GameObject HintIndicatorInputText;
@@ -21,7 +20,8 @@ public class ReplyingMessage : MonoBehaviour
     public Button levelCompleteEnable;
     public GameObject fireflyStep2;
     public GameObject fireflyStep3;
-    private TouchScreenKeyboard keyboard;
+    public GameObject keyboard;
+    private RectTransform botRectTransform;
     //public LevelInstructionManager levelInstructionManager;
     private bool isCalled = false;
 
@@ -32,12 +32,18 @@ public class ReplyingMessage : MonoBehaviour
         inputField.onValueChanged.AddListener(UpdateButtonState);
         inputField.characterLimit = 20;
         sendButton.onClick.AddListener(OnSendButtonClick);
-
+        inputField.onSelect.AddListener(activateKeyboard);
+        botRectTransform = bot.GetComponent<RectTransform>();
         // Initialize button state
         UpdateButtonState(inputField.text);
-        chatBubblePrefab.SetActive(false);
+     
 
         isCalled = false;
+    }
+
+     void activateKeyboard(string text)
+    {
+        botRectTransform.anchoredPosition = new Vector2(0, 495);
     }
 
     void OnSendButtonClick()
@@ -47,6 +53,8 @@ public class ReplyingMessage : MonoBehaviour
         HintIndicatorInputText.SetActive(false);
         fireflyStep2.SetActive(false);
         fireflyStep3.SetActive(false);
+        botRectTransform.anchoredPosition = new Vector2(0, 0);
+        keyboard.gameObject.SetActive(false);
     }
 
     IEnumerator WinScreen()
@@ -59,19 +67,10 @@ public class ReplyingMessage : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(text))
         {
-            // Instantiate a new chat bubble from the prefab
-            GameObject newBubble = Instantiate(chatBubblePrefab, parentChatBubble.transform);
-            chatBubblePrefab.SetActive(true);
+            chatBubble.SetActive(true);
             // Find the TextMeshProUGUI component in the new chat bubble and set the text
-            TMP_Text bubbleText = newBubble.GetComponentInChildren<TMP_Text>();
+            TMP_Text bubbleText = chatBubble.GetComponentInChildren<TMP_Text>();
             bubbleText.text = text;
-
-            // Adjust the size of the chat bubble
-            AdjustBubbleSize(newBubble, bubbleText);
-
-            // Activate the chat bubble prefab
-            newBubble.SetActive(true);
-
             // Clear the input field
             inputField.text = string.Empty;
 
@@ -80,27 +79,6 @@ public class ReplyingMessage : MonoBehaviour
         }
     }
 
-    void AdjustBubbleSize(GameObject bubble, TMP_Text bubbleText)
-    {
-        // Force the text to update its mesh
-        bubbleText.ForceMeshUpdate();
-
-        // Get the preferred size of the text
-        Vector2 textSize = bubbleText.GetPreferredValues(bubbleText.text);
-
-        // Apply padding or adjustments as necessary
-        float padding = 20f; // Adjust this value as needed
-
-        // Calculate the final size of the bubble considering text size and padding
-        Vector2 bubbleSize = new Vector2(textSize.x + padding, textSize.y + padding);
-
-        // Update the size of the bubble without affecting position
-        RectTransform bubbleRect = bubble.GetComponent<RectTransform>();
-        bubbleRect.sizeDelta = bubbleSize;
-
-        //Ensure the position remains unchanged by resetting anchoredPosition
-        bubbleRect.anchoredPosition = Vector2.zero;
-    }
 
     void UpdateButtonState(string text)
     {

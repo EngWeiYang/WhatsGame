@@ -9,7 +9,7 @@ public class vkEnabler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ShowVirtualKeyboard();
+        //ShowVirtualKeyboard();
     }
 
     // Update is called once per frame

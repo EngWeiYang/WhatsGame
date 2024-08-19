@@ -30,6 +30,7 @@ public class CheckContact : MonoBehaviour
     public GameObject levelCompleteScreen;
     public Animator levelCompleteAnimator;
     public Button levelCompleteEnable;
+    public GameObject keyboard;
     void Start()
     {
         // Set the Phone input field to only accept numeric values
@@ -92,6 +93,7 @@ public class CheckContact : MonoBehaviour
         ErrorMessageTextLastName.SetActive(false);
         FireflyStep4.gameObject.SetActive(false);
         ErrorMessageTextPhoneText.SetActive(false);
+        keyboard.gameObject.SetActive(false);
     }
 
     //private void ClearAllFields()
