@@ -21,8 +21,8 @@ public class ReplyingMessage : MonoBehaviour
     public Button levelCompleteEnable;
     public GameObject fireflyStep2;
     public GameObject fireflyStep3;
-
-    public LevelInstructionManager levelInstructionManager;
+    private TouchScreenKeyboard keyboard;
+    //public LevelInstructionManager levelInstructionManager;
     private bool isCalled = false;
 
 
@@ -30,6 +30,7 @@ public class ReplyingMessage : MonoBehaviour
     {
         // Add a listener to detect when the input field value changes
         inputField.onValueChanged.AddListener(UpdateButtonState);
+        inputField.onSelect.AddListener(activateKeyboard);
         inputField.characterLimit = 20;
         sendButton.onClick.AddListener(OnSendButtonClick);
 
@@ -38,6 +39,11 @@ public class ReplyingMessage : MonoBehaviour
         chatBubblePrefab.SetActive(false);
 
         isCalled = false;
+    }
+    void activateKeyboard(string text)
+    {
+        Debug.Log("hi");
+        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
     }
 
     void OnSendButtonClick()
@@ -124,7 +130,7 @@ public class ReplyingMessage : MonoBehaviour
             
             if (!isCalled) {
                 isCalled = true;
-                levelInstructionManager.NextInstruction();
+                //levelInstructionManager.NextInstruction();
             }
             
         }
