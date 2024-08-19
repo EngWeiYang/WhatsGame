@@ -33,7 +33,7 @@ public class ReplyingMessage : MonoBehaviour
         inputField.characterLimit = 20;
         sendButton.onClick.AddListener(OnSendButtonClick);
         inputField.onSelect.AddListener(activateKeyboard);
-        botRectTransform = bot.GetComponent<RectTransform>();
+        //botRectTransform = bot.GetComponent<RectTransform>();
         // Initialize button state
         UpdateButtonState(inputField.text);
      

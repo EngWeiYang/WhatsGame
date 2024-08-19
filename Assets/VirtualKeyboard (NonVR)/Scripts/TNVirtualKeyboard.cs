@@ -13,7 +13,7 @@ public class TNVirtualKeyboard : MonoBehaviour
 	
 	public GameObject vkCanvas;
 	
-	public TMP_InputField targetText;
+	public TMP_InputField[] inputFields;
 	
 	
     // Start is called before the first frame update
@@ -32,12 +32,14 @@ public class TNVirtualKeyboard : MonoBehaviour
 	
 	public void KeyPress(string k){
 		words += k;
-		targetText.text = words;	
+		
+		//targetText.text = words;
+			
 	}
 	
 	public void Del(){
 		words = words.Remove(words.Length - 1, 1);
-		targetText.text = words;	
+		//targetText.text = words;	
 	}
 	
 	public void ShowVirtualKeyboard(){

@@ -20,6 +20,6 @@ public class vkEnabler : MonoBehaviour
 	
 	public void ShowVirtualKeyboard(){
         TNVirtualKeyboard.instance.ShowVirtualKeyboard();
-        TNVirtualKeyboard.instance.targetText = gameObject.GetComponent<TMP_InputField>();
+        //TNVirtualKeyboard.instance.targetText = gameObject.GetComponent<TMP_InputField>();
     }
 }
