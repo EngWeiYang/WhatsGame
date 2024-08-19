@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class ConfirmGroupDetails : MonoBehaviour
 {
-    public TMP_InputField userInputField;
-    public TMP_Text[] dynamicTexts; // Drag your dynamic TMP_Text objects here
+    public InputField userInputField;
+    public Text[] dynamicTexts; // Drag your dynamic TMP_Text objects here
     public Button confirmButton; // Drag your Button object here
     public GameObject currentScreen; // Drag your current screen GameObject here
     public GameObject nextScreen;    // Drag your next screen GameObject here

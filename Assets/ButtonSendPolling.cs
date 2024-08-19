@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using static System.Net.Mime.MediaTypeNames;
+using UnityEngine.EventSystems;
 
 public class ButtonSendPolling : MonoBehaviour
 {
-    public TMP_InputField[] userInputFields; // Array of input fields
-    public TMP_Text[] dynamicTexts;          // Array of text components to update
+    public InputField[] userInputFields; // Array of input fields
+    public Text[] dynamicTexts;         // Array of text components to update
     public Button confirmPollingDetails;     // Button to confirm and submit
     private List<string> PollingOptionsAndNames; // List of polling options and names (not used in this version)
     //public GameObject disablePollingDetailsScreen;
@@ -21,7 +21,7 @@ public class ButtonSendPolling : MonoBehaviour
     public GameObject hintIndicatorOption1;
     public GameObject hintIndicatorOption2;
     public GameObject hintIndicatorbuttonSend;
-    public GameObject thisButton;
+    //public GameObject thisButton;
 
     public LevelInstructionManager levelInstructionManager;
     private bool isCalled = false;
@@ -38,16 +38,18 @@ public class ButtonSendPolling : MonoBehaviour
             userInputFields[0].onValueChanged.AddListener(CheckAllFieldsFilled);
             userInputFields[1].onValueChanged.AddListener(CheckAllFieldsFilled);
             userInputFields[2].onValueChanged.AddListener(CheckAllFieldsFilled);
-            userInputFields[0].onSelect.AddListener(Option1Select);
-            userInputFields[0].onDeselect.AddListener(Option1DeSelect);
-            userInputFields[1].onSelect.AddListener(Option2Select);
-            userInputFields[1].onDeselect.AddListener(Option2DeSelect);
-            userInputFields[2].onSelect.AddListener(QuestionFieldSelect);
-            userInputFields[2].onDeselect.AddListener(QuestionFieldDeSelect);
+
+            userInputFields[0].onValueChanged.AddListener(QuestionFieldSelect);
+            userInputFields[1].onValueChanged.AddListener(Option1Select);
+            userInputFields[2].onValueChanged.AddListener(Option2Select);
+
+            //userInputFields[0].onEndEdit.AddListener(Option1DeSelect);
+            //userInputFields[1].onEndEdit.AddListener(Option2DeSelect);
+            //userInputFields[2].onEndEdit.AddListener(QuestionFieldDeSelect);
+
             levelCompleteEnable.onClick.AddListener(WinScreenAfterInputsAreFilled);
         }
     }
-
     private void OnConfirmButtonClick()
     {
         //disablePollingDetailsScreen.SetActive(false);
@@ -86,15 +88,20 @@ public class ButtonSendPolling : MonoBehaviour
 
     void Option1Select(string text)
     {
-        string Option1Text = text.Trim();
-        if (string.IsNullOrEmpty(Option1Text))
+        string Option1Text = text;
+        if (!string.IsNullOrEmpty(Option1Text))
+        {
+            hintIndicatorOption1.SetActive(false);
+        }
+        else
         {
             hintIndicatorOption1.SetActive(true);
         }
+        
     }
     void Option1DeSelect(string text)
     {
-        string Option1Text = text.Trim();
+        string Option1Text = text;
         if (!string.IsNullOrEmpty(Option1Text))
         {
             hintIndicatorOption1.SetActive(false);
@@ -102,15 +109,20 @@ public class ButtonSendPolling : MonoBehaviour
     }
     void Option2Select(string text)
     {
-        string Option2Text = text.Trim();
-        if (string.IsNullOrEmpty(Option2Text))
+        string Option2Text = text;
+        if (!string.IsNullOrEmpty(Option2Text))
+        {
+            hintIndicatorOption2.SetActive(false);
+        }
+        else
         {
             hintIndicatorOption2.SetActive(true);
         }
+        
     }
     void Option2DeSelect(string text)
     {
-        string Option2Text = text.Trim();
+        string Option2Text = text;
         if (!string.IsNullOrEmpty(Option2Text))
         {
             hintIndicatorOption2.SetActive(false);
@@ -118,15 +130,20 @@ public class ButtonSendPolling : MonoBehaviour
     }
     void QuestionFieldSelect(string text)
     {
-        string questionFieldText = text.Trim();
-        if (string.IsNullOrEmpty(questionFieldText))
+        string questionFieldText = text;
+        if (!string.IsNullOrEmpty(questionFieldText))
+        {
+            hintIndicatorQuestion.SetActive(false);
+        }
+        else
         {
             hintIndicatorQuestion.SetActive(true);
         }
+        
     }
     void QuestionFieldDeSelect(string text)
     {
-        string questionFieldText = text.Trim();
+        string questionFieldText = text;
         if (!string.IsNullOrEmpty(questionFieldText))
         {
             hintIndicatorQuestion.SetActive(false);
@@ -135,9 +152,9 @@ public class ButtonSendPolling : MonoBehaviour
     void CheckAllFieldsFilled(string newText)
     {
         // Check if all fields are filled
-        string Option1Text = userInputFields[0].text.Trim();
-        string Option2Text = userInputFields[1].text.Trim();
-        string questionFieldText = userInputFields[2].text.Trim();
+        string Option1Text = userInputFields[0].text;
+        string Option2Text = userInputFields[1].text;
+        string questionFieldText = userInputFields[2].text;
 
         if (!string.IsNullOrEmpty(Option1Text) &&
             !string.IsNullOrEmpty(Option2Text) &&
@@ -165,9 +182,9 @@ public class ButtonSendPolling : MonoBehaviour
 
     void WinScreenAfterInputsAreFilled()
     {
-        string Option1Text = userInputFields[0].text.Trim();
-        string Option2Text = userInputFields[1].text.Trim();
-        string questionFieldText = userInputFields[2].text.Trim();
+        string Option1Text = userInputFields[0].text;
+        string Option2Text = userInputFields[1].text;
+        string questionFieldText = userInputFields[2].text;
 
         if (!string.IsNullOrEmpty(Option1Text) &&
             !string.IsNullOrEmpty(Option2Text) &&

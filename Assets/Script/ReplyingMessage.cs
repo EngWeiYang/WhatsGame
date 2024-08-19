@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Security.Cryptography;
+using UnityEngine.EventSystems;
 
-public class ReplyingMessage : MonoBehaviour
+public class ReplyingMessage : MonoBehaviour, ISelectHandler
 {
-    public TMP_InputField inputField;  // Reference to the input field
+    public InputField inputField;  // Reference to the input field
     public Transform bot;
     public Button sendButton; // Reference to the send button
     public GameObject sendButtonSprite;
@@ -20,9 +20,8 @@ public class ReplyingMessage : MonoBehaviour
     public Button levelCompleteEnable;
     public GameObject fireflyStep2;
     public GameObject fireflyStep3;
-    public GameObject keyboard;
     private RectTransform botRectTransform;
-    //public LevelInstructionManager levelInstructionManager;
+    public LevelInstructionManager levelInstructionManager;
     private bool isCalled = false;
 
 
@@ -32,16 +31,18 @@ public class ReplyingMessage : MonoBehaviour
         inputField.onValueChanged.AddListener(UpdateButtonState);
         inputField.characterLimit = 20;
         sendButton.onClick.AddListener(OnSendButtonClick);
-        inputField.onSelect.AddListener(activateKeyboard);
-        //botRectTransform = bot.GetComponent<RectTransform>();
+        botRectTransform = bot.GetComponent<RectTransform>();
         // Initialize button state
         UpdateButtonState(inputField.text);
      
 
         isCalled = false;
     }
-
-     void activateKeyboard(string text)
+    public void OnSelect(BaseEventData eventData)
+    {
+        activateKeyboard(inputField.text);
+    }
+    public void activateKeyboard(string text)
     {
         botRectTransform.anchoredPosition = new Vector2(0, 495);
     }
@@ -54,7 +55,6 @@ public class ReplyingMessage : MonoBehaviour
         fireflyStep2.SetActive(false);
         fireflyStep3.SetActive(false);
         botRectTransform.anchoredPosition = new Vector2(0, 0);
-        keyboard.gameObject.SetActive(false);
     }
 
     IEnumerator WinScreen()
@@ -102,7 +102,7 @@ public class ReplyingMessage : MonoBehaviour
             
             if (!isCalled) {
                 isCalled = true;
-                //levelInstructionManager.NextInstruction();
+                levelInstructionManager.NextInstruction();
             }
             
         }

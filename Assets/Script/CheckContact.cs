@@ -6,20 +6,20 @@ using TMPro;
 
 public class CheckContact : MonoBehaviour
 {
-    public TMP_InputField Firstname;
-    public TMP_InputField Lastname;
-    public TMP_InputField Phone;
+    public InputField Firstname;
+    public InputField Lastname;
+    public InputField Phone;
     public GameObject SelectContact;
     public GameObject SelectContactObjectsActive;
     public GameObject HitIndicatorFirstName;
     public GameObject HitIndicatorLastName;
     public GameObject HitIndicatorPhoneText;
     public GameObject DeactivateAddContact;
-    public Animator firstNameAnimator;
-    public Animator lastNameAnimator;
-    public Animator phoneAnimator;
+    //public Animator firstNameAnimator;
+    //public Animator lastNameAnimator;
+    //public Animator phoneAnimator;
     public GameObject DeactivateHintIndicatorSelectContact;
-    public TMP_Text[] dynamicTexts;
+    public Text[] dynamicTexts;
     public GameObject ErrorMessageTextFirstName;
     public GameObject ErrorMessageTextLastName;
     public GameObject ErrorMessageTextPhoneText;
@@ -30,36 +30,39 @@ public class CheckContact : MonoBehaviour
     public GameObject levelCompleteScreen;
     public Animator levelCompleteAnimator;
     public Button levelCompleteEnable;
-    public GameObject keyboard;
     void Start()
     {
         // Set the Phone input field to only accept numeric values
-        Phone.contentType = TMP_InputField.ContentType.IntegerNumber;
+        Phone.contentType = InputField.ContentType.IntegerNumber;
         Phone.characterLimit = 8;
-        Firstname.characterLimit = 20;
-        Lastname.characterLimit = 20;
-        Firstname.contentType = TMP_InputField.ContentType.Name;
-        Lastname.contentType = TMP_InputField.ContentType.Name;
+        //Firstname.characterLimit = 20;
+        //Lastname.characterLimit = 20;
+        Firstname.contentType = InputField.ContentType.Name;
+        Lastname.contentType = InputField.ContentType.Name;
         GameObject coroutineManagerObject = GameObject.Find("CoroutineManager");
         coroutineManager = coroutineManagerObject.GetComponent<CoroutineManager>();
-        Firstname.onSelect.AddListener(OnFirstNameSelect);
-        Lastname.onSelect.AddListener(OnLastNameSelect);
-        Phone.onSelect.AddListener(OnPhoneSelect);
-        Firstname.onDeselect.AddListener(OnFirstNameUnSelect);
-        Lastname.onDeselect.AddListener(OnLastNameUnSelect);
-        Phone.onDeselect.AddListener(OnPhoneUnSelect);
+        //Firstname.Select.AddListener(OnFirstNameSelect);
+        //Lastname.onSelect.AddListener(OnLastNameSelect);
+        //Phone.onSelect.AddListener(OnPhoneSelect);
+
+        Firstname.onEndEdit.AddListener(OnFirstNameUnSelect);
+        Lastname.onEndEdit.AddListener(OnLastNameUnSelect);
+        Phone.onEndEdit.AddListener(OnPhoneUnSelect);
+
         Firstname.onValueChanged.AddListener(UpdateDynamicTexts);
         Lastname.onValueChanged.AddListener(UpdateDynamicTexts);
         Phone.onValueChanged.AddListener(UpdateDynamicTexts);
+
         Firstname.onValueChanged.AddListener(CheckAllFieldsFilled);
         Lastname.onValueChanged.AddListener(CheckAllFieldsFilled);
         Phone.onValueChanged.AddListener(CheckAllFieldsFilled);
+
         levelCompleteEnable.onClick.AddListener(WinScreenAfterInputsAreFilled);
     }
     public void CheckInput()
     {
         // Check Firstname
-        string firstNameText = Firstname.text.Trim(); // Get the input text and trim any extra spaces
+        string firstNameText = Firstname.text; // Get the input text and trim any extra spaces
         if (string.IsNullOrEmpty(firstNameText))
         {
             Debug.Log("Firstname is empty");
@@ -68,7 +71,7 @@ public class CheckContact : MonoBehaviour
         }
 
         // Check Lastname
-        string lastNameText = Lastname.text.Trim(); // Get the input text and trim any extra spaces
+        string lastNameText = Lastname.text; // Get the input text and trim any extra spaces
         if (string.IsNullOrEmpty(lastNameText))
         {
             Debug.Log("Lastname is empty");
@@ -77,7 +80,7 @@ public class CheckContact : MonoBehaviour
         }
         
         // Check Phone
-        string phoneText = Phone.text.Trim(); // Get the input text and trim any extra spaces
+        string phoneText = Phone.text; // Get the input text and trim any extra spaces
         if (string.IsNullOrEmpty(phoneText))
         {
             Debug.Log("Phone is empty");
@@ -93,7 +96,6 @@ public class CheckContact : MonoBehaviour
         ErrorMessageTextLastName.SetActive(false);
         FireflyStep4.gameObject.SetActive(false);
         ErrorMessageTextPhoneText.SetActive(false);
-        keyboard.gameObject.SetActive(false);
     }
 
     //private void ClearAllFields()
@@ -103,45 +105,45 @@ public class CheckContact : MonoBehaviour
     //    Phone.text = string.Empty; // Clear Phone field
     //}
 
-    void OnFirstNameSelect(string text)
-    {
-        string firstNameText = Firstname.text.Trim();
-        if (string.IsNullOrEmpty(firstNameText))
-        {
-            firstNameAnimator.SetTrigger("FirstName_Selected");
-            HitIndicatorFirstName.SetActive(true);
-        }
+    //void OnFirstNameSelect(string text)
+    //{
+    //    string firstNameText = Firstname.text.Trim();
+    //    if (string.IsNullOrEmpty(firstNameText))
+    //    {
+    //        firstNameAnimator.SetTrigger("FirstName_Selected");
+    //        HitIndicatorFirstName.SetActive(true);
+    //    }
         
-    }
+    //}
 
-    void OnLastNameSelect(string text)
-    {
-        string lastNameText = Lastname.text.Trim();
-        if (string.IsNullOrEmpty(lastNameText))
-        {
-            lastNameAnimator.SetTrigger("LastName_Selected");
-            HitIndicatorLastName.SetActive(true);
-        }
+    //void OnLastNameSelect(string text)
+    //{
+    //    string lastNameText = Lastname.text.Trim();
+    //    if (string.IsNullOrEmpty(lastNameText))
+    //    {
+    //        lastNameAnimator.SetTrigger("LastName_Selected");
+    //        HitIndicatorLastName.SetActive(true);
+    //    }
         
-    }
+    //}
 
-    void OnPhoneSelect(string text)
-    {
-        string phoneText = Phone.text.Trim();
-        if (string.IsNullOrEmpty(phoneText))
-        {
-            phoneAnimator.SetTrigger("Phone_Selected");
-            HitIndicatorPhoneText.SetActive(true);
-        }
+    //void OnPhoneSelect(string text)
+    //{
+    //    string phoneText = Phone.text.Trim();
+    //    if (string.IsNullOrEmpty(phoneText))
+    //    {
+    //        phoneAnimator.SetTrigger("Phone_Selected");
+    //        HitIndicatorPhoneText.SetActive(true);
+    //    }
         
-    }
+    //}
     
     void CheckAllFieldsFilled(string newText)
     {
         // Check if all fields are filled
-        string firstNameText = Firstname.text.Trim();
-        string lastNameText = Lastname.text.Trim();
-        string phoneText = Phone.text.Trim();
+        string firstNameText = Firstname.text;
+        string lastNameText = Lastname.text;
+        string phoneText = Phone.text;
 
         if (!string.IsNullOrEmpty(firstNameText) &&
             !string.IsNullOrEmpty(lastNameText) &&
@@ -164,9 +166,9 @@ public class CheckContact : MonoBehaviour
 
     void WinScreenAfterInputsAreFilled()
     {
-        string firstNameText = Firstname.text.Trim();
-        string lastNameText = Lastname.text.Trim();
-        string phoneText = Phone.text.Trim();
+        string firstNameText = Firstname.text;
+        string lastNameText = Lastname.text;
+        string phoneText = Phone.text;
 
         if (!string.IsNullOrEmpty(firstNameText) &&
             !string.IsNullOrEmpty(lastNameText) &&
@@ -186,50 +188,50 @@ public class CheckContact : MonoBehaviour
     }
     void OnFirstNameUnSelect(string text)
     {
-        string firstNameText = Firstname.text.Trim();
+        string firstNameText = Firstname.text;
         if (!string.IsNullOrEmpty(firstNameText))
         {
-            firstNameAnimator.SetBool("HaveText", true);
+            //firstNameAnimator.SetBool("HaveText", true);
             HitIndicatorFirstName.SetActive(false);
         }
         else
         {
-            firstNameAnimator.SetBool("HaveText", false);
+            //firstNameAnimator.SetBool("HaveText", false);
             HitIndicatorFirstName.SetActive(true);
-            firstNameAnimator.SetTrigger("FirstName_Unselect");
+            //firstNameAnimator.SetTrigger("FirstName_Unselect");
         }
     }
 
     void OnLastNameUnSelect(string text)
     {
-        string lastNameText = Lastname.text.Trim();
+        string lastNameText = Lastname.text;
         if (!string.IsNullOrEmpty(lastNameText))
         {
-            lastNameAnimator.SetBool("HaveText", true);
+            //lastNameAnimator.SetBool("HaveText", true);
             HitIndicatorLastName.SetActive(false);
         }
         else
         {
-            lastNameAnimator.SetBool("HaveText", false);
+           // lastNameAnimator.SetBool("HaveText", false);
             HitIndicatorLastName.SetActive(true);
-            lastNameAnimator.SetTrigger("LastName_Unselect");
+            //lastNameAnimator.SetTrigger("LastName_Unselect");
         }
         
     }
 
     void OnPhoneUnSelect(string text)
     {
-        string phoneText = Phone.text.Trim();
+        string phoneText = Phone.text;
         if (!string.IsNullOrEmpty(phoneText))
         {
-            phoneAnimator.SetBool("HaveText", true);
+            //phoneAnimator.SetBool("HaveText", true);
             HitIndicatorPhoneText.SetActive(false);
         }
         else
         {
-            phoneAnimator.SetBool("HaveText", false);
+            //phoneAnimator.SetBool("HaveText", false);
             HitIndicatorPhoneText.SetActive(true);
-            phoneAnimator.SetTrigger("Phone_Unselect");
+           // phoneAnimator.SetTrigger("Phone_Unselect");
         }
         
     }
