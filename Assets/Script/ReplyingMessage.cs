@@ -42,8 +42,8 @@ public class ReplyingMessage : MonoBehaviour
     }
     void activateKeyboard(string text)
     {
+        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, true , true, true);
         Debug.Log("hi");
-        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
     }
 
     void OnSendButtonClick()
