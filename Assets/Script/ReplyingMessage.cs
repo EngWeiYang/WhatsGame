@@ -30,7 +30,6 @@ public class ReplyingMessage : MonoBehaviour
     {
         // Add a listener to detect when the input field value changes
         inputField.onValueChanged.AddListener(UpdateButtonState);
-        inputField.onSelect.AddListener(activateKeyboard);
         inputField.characterLimit = 20;
         sendButton.onClick.AddListener(OnSendButtonClick);
 
@@ -39,11 +38,6 @@ public class ReplyingMessage : MonoBehaviour
         chatBubblePrefab.SetActive(false);
 
         isCalled = false;
-    }
-    void activateKeyboard(string text)
-    {
-        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, true , true, true);
-        Debug.Log("hi");
     }
 
     void OnSendButtonClick()

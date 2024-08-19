@@ -19,10 +19,7 @@ public class vkEnabler : MonoBehaviour
     }
 	
 	public void ShowVirtualKeyboard(){
-        if(SystemInfo.deviceType == DeviceType.Handheld)
-        {
-            TNVirtualKeyboard.instance.ShowVirtualKeyboard();
-            TNVirtualKeyboard.instance.targetText = gameObject.GetComponent<TMP_InputField>();
-        }
-	}
+        TNVirtualKeyboard.instance.ShowVirtualKeyboard();
+        TNVirtualKeyboard.instance.targetText = gameObject.GetComponent<TMP_InputField>();
+    }
 }
