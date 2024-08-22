@@ -25,7 +25,7 @@ public class videoCropRight : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     private bool isDragging = false;
 
     private float originalXValue = 290;
-    private float minXValue = -225;
+    //private float minXValue = -225;
     private float difference;
     private float differenceBetweenHandles = 80;
     private float croppedTime;

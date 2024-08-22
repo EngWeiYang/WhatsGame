@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using JetBrains.Annotations;
+using System;
 
 public class EmojiClickedLaughing : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class EmojiClickedLaughing : MonoBehaviour
     public GameObject textMessageWithEmojiLaughing;
     public Button sendMessageText;
     public Animator animator;
+    public Transform messageReplyEmojiLaugh;
     public Animator animatorSendingMessage;
     public GameObject defaultMessageBtn;
     public GameObject Scenario2;
@@ -28,6 +30,8 @@ public class EmojiClickedLaughing : MonoBehaviour
     public GameObject scenenario2;
     private CoroutineManager coroutineManager;
 
+    private RectTransform textMessageWithEmojiLaughingRT;
+    public MsgMoveUp msgMoveUp;
 
     void Start()
     {
@@ -39,6 +43,7 @@ public class EmojiClickedLaughing : MonoBehaviour
         emojiLaughing.color = laughingColor;
         GameObject coroutineManagerObject = GameObject.Find("CoroutineManager");
         coroutineManager = coroutineManagerObject.GetComponent<CoroutineManager>();
+        textMessageWithEmojiLaughingRT = textMessageWithEmojiLaughing.GetComponent<RectTransform>();
     }
 
     void clickedLaughingEmoji()
@@ -59,11 +64,17 @@ public class EmojiClickedLaughing : MonoBehaviour
         hintIndicatorSendEmoji.gameObject.SetActive(false);
         emojiLaughing.gameObject.SetActive(false);  
         textMessageWithEmojiLaughing.gameObject.SetActive(true);
-        Color laughingColorInText = emojiLaughinginMessage.color;
-        laughingColorInText.a = 1f;
-        emojiLaughinginMessage.color = laughingColorInText;
-        animator.SetTrigger("sendEmoji");
-        animatorSendingMessage.SetTrigger("sendMessage");
+
+        //set transparency
+        SetImageOpaque(messageReplyEmojiLaugh.Find("ChatBubble_Body"));
+        SetImageOpaque(messageReplyEmojiLaugh.Find("ChatBubble_Anchor"));
+        SetTextOpaque(messageReplyEmojiLaugh.Find("Text_Time"));
+        SetTextOpaque(messageReplyEmojiLaugh.Find("EmojiLaugh"));
+
+        msgMoveUp.EmojiMoveUp();
+
+        //animator.SetTrigger("sendEmoji");
+        //animatorSendingMessage.SetTrigger("sendMessage");
     }
 
     void EnableScenarioFlow()
@@ -81,5 +92,24 @@ public class EmojiClickedLaughing : MonoBehaviour
         
     }
 
+    private void SetImageOpaque(Transform transform)
+    {
+        Image image = transform.GetComponent<Image>();
+        Color imageColor;
+
+        imageColor = image.color;
+        imageColor.a = 1f;
+        image.color = imageColor;
+    }
+
+    private void SetTextOpaque(Transform transform)
+    {
+        TMP_Text text = transform.GetComponent<TMP_Text>();
+        Color imageColor;
+
+        imageColor = text.color;
+        imageColor.a = 1f;
+        text.color = imageColor;
+    }
 }
     
