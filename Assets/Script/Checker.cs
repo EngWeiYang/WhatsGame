@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Checker : MonoBehaviour
 {
+    public static bool isEnglish = true;
     public static bool firstTimeInScene = true;
     public GameObject levelSelectCanvas;
     public GameObject mainMenuCanvas;
@@ -23,5 +24,17 @@ public class Checker : MonoBehaviour
             mainMenuCanvas.SetActive(false);
             introCanvas.SetActive(false);
         }
+    }
+
+    public void SetEnglish()
+    {
+        isEnglish = true;
+        Debug.Log("Language is set to English");
+    }
+
+    public void SetChinese()
+    {
+        isEnglish = false;
+        Debug.Log("Language is set to Chinese");
     }
 }

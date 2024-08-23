@@ -25,6 +25,8 @@ public class ButtonTextDisplay : MonoBehaviour
     private ButtonTextList buttonTextList;
     public TextMeshProUGUI[] uiButtonsText;
 
+    //public Checker checker;
+
     void Start()
     {
         // Load the JSON file from Resources
@@ -32,20 +34,30 @@ public class ButtonTextDisplay : MonoBehaviour
         {
             // Parse the JSON into our ButtonTextList class
             buttonTextList = JsonUtility.FromJson<ButtonTextList>(jsonFile.text);
-
-            // Assign button texts
-            for (int i = 0; i < buttonTextList.buttonText.Length; i++)
-            {
-                if (i < uiButtonsText.Length)
-                {
-                    // Assign the text from JSON to the TextMeshProUGUI component
-                    uiButtonsText[i].text = buttonTextList.buttonText[i].En; // Use "Cn" for Chinese
-                }
-            }
         }
         else
         {
             Debug.LogError("JSON file not assigned!");
+        }
+    }
+
+    private void Update()
+    {
+        // Assign button texts
+        for (int i = 0; i < buttonTextList.buttonText.Length; i++)
+        {
+            if (i < uiButtonsText.Length)
+            {
+                if (Checker.isEnglish)
+                {
+                    // Assign the text from JSON to the TextMeshProUGUI component
+                    uiButtonsText[i].text = buttonTextList.buttonText[i].En; // Use "Cn" for Chinese
+                }
+                else
+                {
+                    uiButtonsText[i].text = buttonTextList.buttonText[i].Cn;
+                }
+            }
         }
     }
 }

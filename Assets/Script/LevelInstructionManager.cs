@@ -60,22 +60,50 @@ public class LevelInstructionManager : MonoBehaviour
             {
                 if (currentInstruction == 0 || currentInstruction == 4 || currentInstruction == 8 || currentInstruction == 12)
                 {
-                    scenarioIntroTextBox.text = levelInstructions[currentInstruction].En;
+                    if (Checker.isEnglish)
+                    {
+                        scenarioIntroTextBox.text = levelInstructions[currentInstruction].En;
+                    }
+                    else
+                    {
+                        scenarioIntroTextBox.text = levelInstructions[currentInstruction].Cn;
+                    }
                 }
                 else
                 {
-                    chatBubbleBody.text = levelInstructions[currentInstruction].En;
+                    if (Checker.isEnglish)
+                    {
+                        chatBubbleBody.text = levelInstructions[currentInstruction].En;
+                    }
+                    else
+                    {
+                        chatBubbleBody.text = levelInstructions[currentInstruction].Cn;
+                    }
                 }
             }
             else
             {
                 if (currentInstruction == 0)
                 {
-                    scenarioIntroTextBox.text = levelInstructions[currentInstruction].En;
+                    if (Checker.isEnglish)
+                    {
+                        scenarioIntroTextBox.text = levelInstructions[currentInstruction].En;
+                    }
+                    else
+                    {
+                        scenarioIntroTextBox.text = levelInstructions[currentInstruction].Cn;
+                    }
                 }
                 else
                 {
-                    chatBubbleBody.text = levelInstructions[currentInstruction].En;
+                    if (Checker.isEnglish)
+                    {
+                        chatBubbleBody.text = levelInstructions[currentInstruction].En;
+                    }
+                    else
+                    {
+                        chatBubbleBody.text = levelInstructions[currentInstruction].Cn;
+                    }
                 }
             }
         }

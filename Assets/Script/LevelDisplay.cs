@@ -30,26 +30,31 @@ public class LevelDisplay : MonoBehaviour
     public TextMeshProUGUI[] levelTextObjects; // Assign these in the Inspector
     public TextAsset jsonFile; // Assign this in the Inspector
 
-    void Start()
-    {
-        LoadLevelNames();
-    }
+    public List<LevelName> levelNames;
 
-    void LoadLevelNames()
+    void Start()
     {
         // Parse the JSON data
         LevelsData data = JsonUtility.FromJson<LevelsData>(jsonFile.text);
-
         // Assuming you want to load level names from the first level in the JSON
-        List<LevelName> levelNames = data.levels[0].levelNames;
+        levelNames = data.levels[0].levelNames;
+    }
 
+    void Update()
+    {
         // Assign the level names to the TextMeshPro objects
         for (int i = 0; i < levelTextObjects.Length; i++)
         {
             if (i < levelNames.Count)
             {
-                levelTextObjects[i].text = levelNames[i].En; // Assign English names
-                // levelTextObjects[i].text = levelNames[i].Cn; // Uncomment to assign Chinese names
+                if (Checker.isEnglish)
+                {
+                    levelTextObjects[i].text = levelNames[i].En; // Assign English names
+                }
+                else
+                {
+                    levelTextObjects[i].text = levelNames[i].Cn;
+                }
             }
             else
             {

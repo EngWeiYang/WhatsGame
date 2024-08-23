@@ -43,21 +43,29 @@ public class InstructionDisplay : MonoBehaviour
         {
             Debug.Log($"Instruction ID: {instruction.instructionId}, En: {instruction.En}, Cn: {instruction.Cn}");
         }
-
-        // Display the first instruction
-        DisplayInstruction();
-
         // Add a listener to the button to call the NextInstruction method
         nextButton.onClick.AddListener(NextInstruction);
     }
 
+
+    public void Update()
+    {
+        DisplayInstruction();
+    }
     void DisplayInstruction()
     {
         if (currentInstructionIndex < levelInstructions.Length)
         {
             Instruction currentInstruction = levelInstructions[currentInstructionIndex];
-            instructionText.text = currentInstruction.En; // Display in English
-            // instructionText.text = currentInstruction.Cn; // Uncomment to display in Chinese
+
+            if (Checker.isEnglish)
+            {
+                instructionText.text = currentInstruction.En; // Display in English
+            }
+            else
+            {
+                instructionText.text = currentInstruction.Cn; // Uncomment to display in Chinese
+            }
         }
         else
         {
