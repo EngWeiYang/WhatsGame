@@ -3,57 +3,57 @@
         {
             "buttonId": 1,
             "En": "Play",
-            "Cn": "Wan"
+            "Cn": "玩"
         },
         {
             "buttonId": 2,
             "En": "Difficulty:",
-            "Cn": "Zzz:"
+            "Cn": "难度："
         },
         {
             "buttonId": 3,
             "En": "Difficulty:",
-            "Cn": "Zzz:"
+            "Cn": "难度："
         },
         {
             "buttonId": 4,
             "En": "Easy",
-            "Cn": "Zzz:"
+            "Cn": "简单"
         },
         {
             "buttonId": 5,
             "En": "Easy",
-            "Cn": "Zzz:"
+            "Cn": "简单"
         },
         {
             "buttonId": 6,
             "En": "Medium",
-            "Cn": "Zzz:"
+            "Cn": "中等"
         },
         {
             "buttonId": 7,
             "En": "Medium",
-            "Cn": "Zzz:"
+            "Cn": "中等"
         },
         {
             "buttonId": 8,
             "En": "Hard",
-            "Cn": "Zzz:"
+            "Cn": "难"
         },
         {
             "buttonId": 9,
             "En": "Hard",
-            "Cn": "Zzz:"
+            "Cn": "难"
         },
         {
             "buttonId": 10,
             "En": "LEVELS",
-            "Cn": "Zzz:"
+            "Cn": "关卡"
         },
         {
             "buttonId": 11,
             "En": "LOADING",
-            "Cn": "zzz"
+            "Cn": "加载中"
         }
     ]
 }

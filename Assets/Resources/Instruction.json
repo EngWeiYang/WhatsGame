@@ -22,444 +22,445 @@
             "levelId": 0,
             "instructionId": 0,
             "En": "Your grandson, Little John, wants to chat with you on WhatsApp. Add his phone number to your contacts.",
-            "Cn": "zzz"
+            "Cn": "您的孙子小约翰想通过 WhatsApp 与您聊天。将他的电话号码添加到您的联系人中。"
         },
         {
             "levelId": 0,
             "instructionId": 1,
             "En": "Click on the add button.",
-            "Cn": "欢迎来到第二关！准备好迎接更多挑战。"
+            "Cn": "单击添加按钮。"
         },
         {
             "levelId": 0,
             "instructionId": 2,
             "En": "Click on new contact.",
-            "Cn": "记得在继续之前收集所有物品。"
+            "Cn": "单击新联系人。"
         },
         {
             "levelId": 0,
             "instructionId": 3,
             "En": "Add the required details into the box and Save",
-            "Cn": "记得在继续之前收集所有物品。"
+            "Cn": "将所需的详细祥情添加到框中并保存"
         },
         {
             "levelId": 1,
             "instructionId": 0,
             "En": "Little John has sent you a message. Add his phone number to your contacts from the chat.",
-            "Cn": "zzz"
+            "Cn": "小约翰给你发了一条信息。通过聊天将他的电话号码添加到您的联系人中。"
         },
         {
             "levelId": 1,
             "instructionId": 1,
             "En": "Click on the unknown phone number.",
-            "Cn": "记得在继续之前收集所有物品。"
+            "Cn": "点击未知电话号码。"
         },
         {
             "levelId": 1,
             "instructionId": 2,
             "En": "Click on add button.",
-            "Cn": "记得在继续之前收集所有物品。"
+            "Cn": "单击添加按钮。"
         },
         {
             "levelId": 1,
             "instructionId": 3,
             "En": "Click on 'Create new contact'.",
-            "Cn": "记得在继续之前收集所有物品。"
+            "Cn": "点击“创建新联系人”"
         },
         {
             "levelId": 1,
             "instructionId": 4,
             "En": "Click on Save.",
-            "Cn": "记得在继续之前收集所有物品。"
+            "Cn": "单击“保存”。"
         },
         {
             "levelId": 2,
             "instructionId": 0,
             "En": "Your grandson, Little John, wants to chat with you on WhatsApp. Scan his QR code to add him to your contacts.",
-            "Cn": "zzz"
+            "Cn": "您的孙子小约翰想通过 WhatsApp 与您聊天。扫描他的二维码将他添加到您的联系人中。"
         },
         {
             "levelId": 2,
             "instructionId": 1,
             "En": "Click on add button.",
-            "Cn": "zzz"
+            "Cn": "单击添加按钮。"
         },
         {
             "levelId": 2,
             "instructionId": 2,
             "En": "Click on the QR code.",
-            "Cn": "zzz"
+            "Cn": "点击二维码。"
         },
         {
             "levelId": 2,
             "instructionId": 3,
             "En": "Drag the QR code into the scanner and 'Add to contacts'",
-            "Cn": "zzz"
+            "Cn": "将二维码拖入扫描仪并“添加到联系人”"
         },
         {
             "levelId": 2,
             "instructionId": 4,
             "En": "Save the number.",
-            "Cn": "zzz"
+            "Cn": "保存号码。"
         },
         {
             "levelId": 3,
             "instructionId": 0,
             "En": "Little John has sent you a message. Respond to him.",
-            "Cn": "zzz"
+            "Cn": "小约翰给你发了一条信息。回应他。"
         },
         {
             "levelId": 3,
             "instructionId": 1,
             "En": "Click on Little John.",
-            "Cn": "zzz"
+            "Cn": "点击小约翰。"
         },
         {
             "levelId": 3,
             "instructionId": 2,
             "En": "Reply to Little's John message.",
-            "Cn": "zzz"
+            "Cn": "回复小约翰的信息。"
         },
         {
             "levelId": 3,
             "instructionId": 3,
             "En": "Send the message once you are ready.",
-            "Cn": "zzz"
+            "Cn": "准备好后发送信息。"
         },
         {
             "levelId": 4,
             "instructionId": 0,
             "En": "You carrying groceries on your way home and cannot type. Send Little John a voice message.",
-            "Cn": "记得在继续之前收集所有物品。"
+            "Cn": "您在回家的路上携带食品杂货并且无法打字。向小约翰发送语音信息。"
         },
         {
             "levelId": 4,
             "instructionId": 1,
             "En": "Press and hold the voice recording button.",
-            "Cn": "zzz"
+            "Cn": "按住录音按钮。"
         },
         {
             "levelId": 4,
             "instructionId": 2,
             "En": "Lock the voice recording. \nLock: Drag up \nCancel: Drag left",
-            "Cn": "zzz"
+            "Cn": "锁定录音。 \n锁定：向上拖动 \n取消：向左拖动"
         },
         {
             "levelId": 4,
             "instructionId": 3,
             "En": "Send the voice recording.",
-            "Cn": "zzz"
+            "Cn": "发送录音。"
         },
         {
             "levelId": 5,
             "instructionId": 0,
             "En": "You just finished cooking and want to show Little John. Send him a photo of your cooking.",
-            "Cn": "记得在继续之前收集所有物品。"
+            "Cn": "您刚做完饭，想给小约翰看。给他发一张菜肴照片。"
         },
         {
             "levelId": 5,
             "instructionId": 1,
             "En": "Tap on the camera",
-            "Cn": "zzz"
+            "Cn": "点击相机"
         },
         {
             "levelId": 5,
             "instructionId": 2,
             "En": "Click on the image",
-            "Cn": "zzz"
+            "Cn": "点击图片"
         },
         {
             "levelId": 5,
             "instructionId": 3,
             "En": "Send the image of the food",
-            "Cn": "zzz"
+            "Cn": "发送菜肴照片"
         },
         {
             "levelId": 6,
             "instructionId": 0,
             "En": "Little John is busy with school and cannot come visit. Call him to check up on him.",
-            "Cn": "记得在继续之前收集所有物品。"
+            "Cn": "小约翰学业繁忙，无法来探望。打电话给他，询问一下他的情况。"
         },
         {
             "levelId": 6,
             "instructionId": 1,
             "En": "Call Little John",
-            "Cn": "zzz"
+            "Cn": "打电话给小约翰"
         },
         {
             "levelId": 6,
             "instructionId": 2,
             "En": "Wait for Little John to pick up",
-            "Cn": "zzz"
+            "Cn": "等待小约翰接电话"
         },
         {
             "levelId": 6,
             "instructionId": 3,
             "En": "Switch to video call",
-            "Cn": "zzz"
+            "Cn": "切换到视频通话"
         },
         {
             "levelId": 6,
             "instructionId": 4,
-            "En": "End the call"
+            "En": "End the call",
+            "Cn": "结束通话"
         },
         {
             "levelId": 7,
             "instructionId": 0,
             "En": "You met up with some friends and got their contacts. Create a group chat so you can all talk and plan meet-ups together.",
-            "Cn": "记得在继续之前收集所有物品。"
+            "Cn": "您会见了一些朋友并取得了他们的联系方式。创建群聊，以便大家可以一起讨论并计划聚会。"
         },
         {
             "levelId": 7,
             "instructionId": 1,
             "En": "Click on the add button.",
-            "Cn": "zzz"
+            "Cn": "单击“新组”。"
         },
         {
             "levelId": 7,
             "instructionId": 2,
             "En": "Click on 'New group'.",
-            "Cn": "zzz"
+            "Cn": "单击“新组”。"
         },
         {
             "levelId": 7,
             "instructionId": 3,
             "En": "Add Annie and Thommas.",
-            "Cn": "zzz"
+            "Cn": "添加安妮和托马斯。"
         },
         {
             "levelId": 7,
             "instructionId": 4,
             "En": "Enter a group name.",
-            "Cn": "zzz"
+            "Cn": "输入组名称。"
         },
         {
             "levelId": 7,
             "instructionId": 5,
             "En": "Proceed once you are done.",
-            "Cn": "zzz"
+            "Cn": "完成后继续。"
         },
         {
             "levelId": 8,
             "instructionId": 0,
             "En": "Little John sent you something funny, reply to him using emojis.",
-            "Cn": "记得在继续之前收集所有物品。"
+            "Cn": "小约翰给你发了一些有趣的东西，用表情符号回复他。"
         },
         {
             "levelId": 8,
             "instructionId": 1,
             "En": "Click on the emoji button.",
-            "Cn": "zzz"
+            "Cn": "单击表情符号按钮。"
         },
         {
             "levelId": 8,
             "instructionId": 2,
             "En": "Click on the laughing emoji.",
-            "Cn": "zzz"
+            "Cn": "单击大笑的表情符号。"
         },
         {
             "levelId": 8,
             "instructionId": 3,
             "En": "Send the emoji.",
-            "Cn": "zzz"
+            "Cn": "发送表情符号。"
         },
         {
             "levelId": 8,
             "instructionId": 4,
             "En": "Little John is sick, send him a heart emoji to make him feel better.",
-            "Cn": "zzz"
+            "Cn": "小约翰病了，给他发送一个心形表情符号，让他感觉好点。"
         },
         {
             "levelId": 8,
             "instructionId": 5,
             "En": "Click on the symbol category.",
-            "Cn": "zzz"
+            "Cn": "单击符号类别。"
         },
         {
             "levelId": 8,
             "instructionId": 6,
             "En": "Click on the red heart emoji.",
-            "Cn": "zzz"
+            "Cn": "单击红心表情符号。"
         },
         {
             "levelId": 8,
             "instructionId": 7,
             "En": "Send the emoji.",
-            "Cn": "zzz"
+            "Cn": "发送表情符号。"
         },
         {
             "levelId": 8,
             "instructionId": 8,
             "En": "Little John sent you a good morning message, reply him with a GIF.",
-            "Cn": "zzz"
+            "Cn": "小约翰给你发了一条早安信息，用 GIF 回复他。"
         },
         {
             "levelId": 8,
             "instructionId": 9,
             "En": "Click on the GIF tab.",
-            "Cn": "zzz"
+            "Cn": "单击“GIF”选项卡。"
         },
         {
             "levelId": 8,
             "instructionId": 10,
             "En": "Click on the good morning GIF.",
-            "Cn": "zzz"
+            "Cn": "点击早上好 GIF。"
         },
         {
             "levelId": 8,
             "instructionId": 11,
             "En": "Send the GIF.",
-            "Cn": "zzz"
+            "Cn": "发送 GIF。"
         },
         {
             "levelId": 8,
             "instructionId": 12,
             "En": "Little John sent you a cool sticker, add it to you sticker collection.",
-            "Cn": "zzz"
+            "Cn": "小约翰给您发送了一张很酷的贴纸，请将其添加到您的贴纸收藏中。"
         },
         {
             "levelId": 8,
             "instructionId": 14,
             "En": "Click on the sticker Little John sent.",
-            "Cn": "zzz"
+            "Cn": "单击小约翰发送的贴纸。"
         },
         {
             "levelId": 8,
             "instructionId": 15,
             "En": "Add the sticker to favourite.",
-            "Cn": "zzz"
+            "Cn": "将贴纸添加到收藏夹。"
         },
         {
             "levelId": 8,
             "instructionId": 16,
             "En": "Press the sticker tab.",
-            "Cn": "zzz"
+            "Cn": "按贴纸标签。"
         },
         {
             "levelId": 8,
             "instructionId": 17,
             "En": "Send the sticker to Little John",
-            "Cn": "zzz"
+            "Cn": "将贴纸发送给小约翰"
         },
         {
             "levelId": 9,
             "instructionId": 0,
             "En": "You found an article online want to send it to Little John as he may find it interesting.",
-            "Cn": "zzz"
+            "Cn": "您在网上找到一篇文章想将其发送给小约翰，因为他可能会觉得有趣。"
         },
         {
             "levelId": 9,
             "instructionId": 1,
             "En": "Click on the paper clip.",
-            "Cn": "zzz"
+            "Cn": "单击回形针。"
         },
         {
             "levelId": 9,
             "instructionId": 2,
             "En": "Click on document.",
-            "Cn": "zzz"
+            "Cn": "单击文档。"
         },
         {
             "levelId": 9,
             "instructionId": 3,
             "En": "Select a document.",
-            "Cn": "zzz"
+            "Cn": "选择一个文档。"
         },
         {
             "levelId": 9,
             "instructionId": 4,
             "En": "Send the document.",
-            "Cn": "zzz"
+            "Cn": "发送文档。"
         },
         {
             "levelId": 10,
             "instructionId": 0,
             "En": "You ask your family to go out for dinner. Create a poll to let them choose where they would prefer to eat.",
-            "Cn": "Zzz"
+            "Cn": "你邀请你的家人出去吃饭。创建一个民意调查，让他们选择他们喜欢去哪里吃饭。"
         },
         {
             "levelId": 10,
             "instructionId": 1,
             "En": "Press on the paper clip.",
-            "Cn": "Zzz"
+            "Cn": "按下回形针。"
         },
         {
             "levelId": 10,
             "instructionId": 2,
             "En": "Press on Poll.",
-            "Cn": "Zzz"
+            "Cn": "按投票。"
         },
         {
             "levelId": 10,
             "instructionId": 3,
             "En": "Input the question and options.",
-            "Cn": "Zzz"
+            "Cn": "输入问题和选项。"
         },
         {
             "levelId": 10,
             "instructionId": 3,
             "En": "Send when ready",
-            "Cn": "Zzz"
+            "Cn": "准备好后发送"
         },
         {
             "levelId": 11,
             "instructionId": 0,
             "En": "You went to the market and saw some fruits. Crop the photo you took to only show the fruits you want Little John to see.",
-            "Cn": "Zzz"
+            "Cn": "你去了市场，看到了一些水果。裁剪你拍摄的照片，只显示你想让小约翰看到的水果。"
         },
         {
             "levelId": 11,
             "instructionId": 1,
             "En": "Click on the camera.",
-            "Cn": "Zzz"
+            "Cn": "单击相机。"
         },
         {
             "levelId": 11,
             "instructionId": 2,
             "En": "Click on the image you want to crop.",
-            "Cn": "Zzz"
+            "Cn": "单击要裁剪的图像。"
         },
         {
             "levelId": 11,
             "instructionId": 3,
             "En": "Click on the crop button.",
-            "Cn": "Zzz"
+            "Cn": "单击裁剪按钮。"
         },
         {
             "levelId": 11,
             "instructionId": 4,
             "En": "Adjust till you seem fit and save",
-            "Cn": "Zzz"
+            "Cn": "调整直到您看起来合适并保存"
         },
         {
             "levelId": 11,
             "instructionId": 5,
             "En": "Send the image.",
-            "Cn": "Zzz"
+            "Cn": "发送图像。"
         },
         {
             "levelId": 12,
             "instructionId": 0,
             "En": "You recorded a video but you forgot to stop recording. Cut the video to remove the excess.",
-            "Cn": "Zzz"
+            "Cn": "您录制了视频，但忘记停止录制。剪切视频以删除多余的部分。"
         },
         {
             "levelId": 12,
             "instructionId": 1,
             "En": "Click on the camera.",
-            "Cn": "Zzz"
+            "Cn": "单击相机。"
         },
         {
             "levelId": 12,
             "instructionId": 2,
             "En": "Click on video you want to cut.",
-            "Cn": "Zzz"
+            "Cn": "单击您要剪切的视频。"
         },
         {
             "levelId": 12,
             "instructionId": 3,
             "En": "At the top, adjust to your desired length and send",
-            "Cn": "Zzz"
+            "Cn": "在顶部，调整到您想要的长度并发送"
         }
     ]
 }

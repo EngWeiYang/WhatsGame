@@ -6,67 +6,67 @@
                 {
                     "levelId": 0,
                     "En": "1. Add to Contact via Phone Number",
-                    "Cn": "1级 - 通过电话号码添加联系方式"
+                    "Cn": "第1关 - 通过电话号码添加联系方式"
                 },
                 {
                     "levelId": 1,
                     "En": "2. Add Contact via Chat",
-                    "Cn": "第2关 - 添加联系人"
+                    "Cn": "第2关 - 通过群聊添加联系人"
                 },
                 {
                     "levelId": 2,
                     "En": "3. Add Contact via QRcode",
-                    "Cn": "第2关 - 添加联系人"
+                    "Cn": "第3关 - 通过二维码添加联系人"
                 },
                 {
                     "levelId": 3,
                     "En": "4. Send Message",
-                    "Cn": "第2关 - 添加联系人"
+                    "Cn": "第4关 - 发送消息"
                 },
                 {
                     "levelId": 4,
-                    "En": "5. Voice Message",
-                    "Cn": "zzz"
+                    "En": "5. Record voice Message",
+                    "Cn": "第5关. 录制语音留言"
                 },
                 {
                     "levelId": 6,
                     "En": "6. Send Images/Videos",
-                    "Cn": "第2关 - 添加联系人"
+                    "Cn": "第6关 - 发送图像/视频"
                 },
                 {
                     "levelId": 7,
                     "En": "7. Call and Video Call",
-                    "Cn": "第2关 - 添加联系人"
+                    "Cn": "第7关 - 打电话和视频通话"
                 },
                 {
                     "levelId": 8,
                     "En": "8. Create Group Chats",
-                    "Cn": "第2关 - 添加联系人"
+                    "Cn": "第8关 - 创建群聊"
                 },
                 {
                     "levelId": 9,
                     "En": "9. Emoji, GIFs, Stickers",
-                    "Cn": "第2关 - 添加联系人"
+                    "Cn": "第9关 - 表情符号、GIF、贴纸"
                 },
                 {
                     "levelId": 10,
                     "En": "10. Send Documents",
-                    "Cn": "第2关 - 添加联系人"
+                    "Cn": "第10关 - 发送文件"
                 },
                 {
                     "levelId": 11,
                     "En": "11. Creating Polls",
-                    "Cn": "第2关 - 添加联系人"
+                    "Cn": "第11关 - 创建投票"
                 },
                 {
                     "levelId": 12,
                     "En": "12. Cropping Images",
-                    "Cn": "第2关 - 添加联系人"
+                    "Cn": "第12关 - 裁剪图像"
                 },
                 {
                     "levelId": 13,
                     "En": "13. Cutting Videos",
-                    "Cn": "第2关 - 添加联系人"
+                    "Cn": "第13关 - 剪辑视频"
                 }
             ]
         }
