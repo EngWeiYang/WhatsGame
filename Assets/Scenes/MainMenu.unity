@@ -4586,6 +4586,8 @@ MonoBehaviour:
   levelSelectCanvas: {fileID: 1296467660}
   mainMenuCanvas: {fileID: 2074342549}
   introCanvas: {fileID: 57360995}
+  englishIndicator: {fileID: 811295220}
+  chineseIndicator: {fileID: 916550006}
 --- !u!1 &876402050
 GameObject:
   m_ObjectHideFlags: 0

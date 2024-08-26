@@ -11,6 +11,9 @@ public class Checker : MonoBehaviour
     public GameObject mainMenuCanvas;
     public GameObject introCanvas;
 
+    public GameObject englishIndicator;
+    public GameObject chineseIndicator;
+
     private void Start()
     {
         if (firstTimeInScene)
@@ -23,6 +26,20 @@ public class Checker : MonoBehaviour
             levelSelectCanvas.SetActive(true);
             mainMenuCanvas.SetActive(false);
             introCanvas.SetActive(false);
+        }
+    }
+
+    private void Update()
+    {
+        if (isEnglish)
+        {
+            englishIndicator.SetActive(true);
+            chineseIndicator.SetActive(false);
+        }
+        else
+        {
+            englishIndicator.SetActive(false);
+            chineseIndicator.SetActive(true);
         }
     }
 
