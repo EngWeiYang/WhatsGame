@@ -35,7 +35,6 @@ public class LevelInstructionManager : MonoBehaviour
 
         levelNames = data.levels[0].levelNames;
 
-        scenarioIntroTitleTextBox.text = levelNames[LevelSelect.currLevel].En;
         chatBubbleTitle.text = levelNames[LevelSelect.currLevel].En;
 
         InstructionsData level = JsonUtility.FromJson<InstructionsData>(jsonFile_Instructions.text);
@@ -62,10 +61,12 @@ public class LevelInstructionManager : MonoBehaviour
                 {
                     if (Checker.isEnglish)
                     {
+                        scenarioIntroTitleTextBox.text = levelNames[LevelSelect.currLevel].En;
                         scenarioIntroTextBox.text = levelInstructions[currentInstruction].En;
                     }
                     else
                     {
+                        scenarioIntroTitleTextBox.text = levelNames[LevelSelect.currLevel].Cn;
                         scenarioIntroTextBox.text = levelInstructions[currentInstruction].Cn;
                     }
                 }
@@ -73,10 +74,12 @@ public class LevelInstructionManager : MonoBehaviour
                 {
                     if (Checker.isEnglish)
                     {
+                        chatBubbleTitle.text = levelNames[LevelSelect.currLevel].En;
                         chatBubbleBody.text = levelInstructions[currentInstruction].En;
                     }
                     else
                     {
+                        chatBubbleTitle.text = levelNames[LevelSelect.currLevel].Cn;
                         chatBubbleBody.text = levelInstructions[currentInstruction].Cn;
                     }
                 }
@@ -87,10 +90,12 @@ public class LevelInstructionManager : MonoBehaviour
                 {
                     if (Checker.isEnglish)
                     {
+                        scenarioIntroTitleTextBox.text = levelNames[LevelSelect.currLevel].En;
                         scenarioIntroTextBox.text = levelInstructions[currentInstruction].En;
                     }
                     else
                     {
+                        scenarioIntroTitleTextBox.text = levelNames[LevelSelect.currLevel].Cn; 
                         scenarioIntroTextBox.text = levelInstructions[currentInstruction].Cn;
                     }
                 }
@@ -98,10 +103,12 @@ public class LevelInstructionManager : MonoBehaviour
                 {
                     if (Checker.isEnglish)
                     {
+                        chatBubbleTitle.text = levelNames[LevelSelect.currLevel].En;
                         chatBubbleBody.text = levelInstructions[currentInstruction].En;
                     }
                     else
                     {
+                        chatBubbleTitle.text = levelNames[LevelSelect.currLevel].Cn;
                         chatBubbleBody.text = levelInstructions[currentInstruction].Cn;
                     }
                 }
