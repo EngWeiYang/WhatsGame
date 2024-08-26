@@ -16,8 +16,8 @@ public class MsgMoveUp : MonoBehaviour
 
     private bool screenTooSmall = false;
 
-    public float constantVar;
     public float offset;
+    public float offset2;
 
     // Start is called before the first frame update
     void Start()
@@ -34,17 +34,19 @@ public class MsgMoveUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (chatCollider.IsTouching(inputBoxCollider))
-        //{
-        //    Debug.Log("Touch");
-        //    screenTooSmall = true;
-        //
-        //    chatCollider.enabled = false;
-        //
-        //    chatRT.anchoredPosition = new Vector2(chatRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + 5/Screen.height);
-        //}
+        if (chatCollider.IsTouching(inputBoxCollider))
+        {
+            Debug.Log("Touch");
+            screenTooSmall = true;
+        
+            chatCollider.enabled = false;
 
-        chatRT.anchoredPosition = new Vector2(chatRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + offset - (constantVar * Screen.height));
+            //Change Anchor
+            chatRT.anchorMin = new Vector2(0, 0f);
+            chatRT.anchorMax = new Vector2(0, 0f);
+
+            chatRT.anchoredPosition = new Vector2(chatRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + offset);
+        }
     }
 
     public void EmojiMoveUp()
@@ -53,7 +55,9 @@ public class MsgMoveUp : MonoBehaviour
         {
             Debug.Log("H");
 
-            replyRT.anchoredPosition = new Vector2(replyRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y - 330);
+            replyRT.anchoredPosition = new Vector2(replyRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + offset2);
+
+            chatRT.anchoredPosition = new Vector2(chatRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + offset - offset2);
         }
     }
 }

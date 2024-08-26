@@ -65,13 +65,13 @@ public class EmojiClickedLaughing : MonoBehaviour
         emojiLaughing.gameObject.SetActive(false);  
         textMessageWithEmojiLaughing.gameObject.SetActive(true);
 
+        msgMoveUp.EmojiMoveUp();
+
         //set transparency
         SetImageOpaque(messageReplyEmojiLaugh.Find("ChatBubble_Body"));
         SetImageOpaque(messageReplyEmojiLaugh.Find("ChatBubble_Anchor"));
         SetTextOpaque(messageReplyEmojiLaugh.Find("Text_Time"));
         SetTextOpaque(messageReplyEmojiLaugh.Find("EmojiLaugh"));
-
-        msgMoveUp.EmojiMoveUp();
 
         //animator.SetTrigger("sendEmoji");
         //animatorSendingMessage.SetTrigger("sendMessage");

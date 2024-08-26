@@ -77,8 +77,8 @@ public class videoCropRight : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         if (isDragging)
         {
             //Position
-            videoCropperRectTransform.localPosition = new Vector3(heightManager.originalXPosVideoCropper + difference / 2, videoCropperRectTransform.anchoredPosition.y, 0);
-            videoCropperImageRectTransform.localPosition = new Vector3(heightManager.originalXPosVideoCropper + difference / 2, videoCropperRectTransform.anchoredPosition.y, 0);
+            videoCropperRectTransform.anchoredPosition = new Vector3(heightManager.originalXPosVideoCropper + difference / 2, videoCropperRectTransform.anchoredPosition.y, 0);
+            videoCropperImageRectTransform.anchoredPosition = new Vector3(heightManager.originalXPosVideoCropper + difference / 2, videoCropperImageRectTransform.anchoredPosition.y, 0);
 
             //Scale
             videoCropperRectTransform.sizeDelta = new Vector2(heightManager.videoCropperWidth + difference, videoCropperRectTransform.sizeDelta.y);
