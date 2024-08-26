@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class MsgMoveUp : MonoBehaviour
@@ -20,9 +21,16 @@ public class MsgMoveUp : MonoBehaviour
     public float offset;
     public float offset2;
 
+    public Transform mobileDetectorSquare;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (Platform.IsMobileBrowser())
+        {
+            mobileDetectorSquare.GetComponent<Image>().color = Color.green;
+        }
+
         chatRT = chat.GetComponent<RectTransform>();
         inputBoxRT = inputBox.GetComponent<RectTransform>();
 
