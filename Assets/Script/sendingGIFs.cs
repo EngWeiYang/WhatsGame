@@ -16,6 +16,7 @@ public class sendingGIFs : MonoBehaviour
     public GameObject scenenario4;
     private CoroutineManager coroutineManager;
 
+    public MsgMoveUp msgMoveUp;
 
     private void Start()
     {
@@ -30,7 +31,8 @@ public class sendingGIFs : MonoBehaviour
         sendGIFScreen.gameObject.SetActive(false);
         chatScreen.gameObject.SetActive(true);
         hintindicator.gameObject.SetActive(false);
-        sendGIFAnim.SetTrigger("sendGIF");
+
+        msgMoveUp.GIFMoveUp();
     }
 
     void EnableScenarioFlow()

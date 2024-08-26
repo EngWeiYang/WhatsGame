@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MsgMoveUp : MonoBehaviour
 {
+    public GameObject chat;
     private RectTransform chatRT;
     private BoxCollider2D chatCollider;
 
@@ -22,10 +23,10 @@ public class MsgMoveUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        chatRT = GetComponent<RectTransform>();
+        chatRT = chat.GetComponent<RectTransform>();
         inputBoxRT = inputBox.GetComponent<RectTransform>();
 
-        chatCollider = GetComponent<BoxCollider2D>();
+        chatCollider = chat.GetComponent<BoxCollider2D>();
         inputBoxCollider = inputBox.GetComponent<BoxCollider2D>();
 
         replyRT = reply.GetComponent<RectTransform>();
@@ -58,6 +59,14 @@ public class MsgMoveUp : MonoBehaviour
             replyRT.anchoredPosition = new Vector2(replyRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + offset2);
 
             chatRT.anchoredPosition = new Vector2(chatRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + offset - offset2);
+        }
+    }
+
+    public void GIFMoveUp()
+    {
+        if (screenTooSmall)
+        {
+            Debug.Log("H");
         }
     }
 }
