@@ -68,10 +68,10 @@ public class EmojiClickedLaughing : MonoBehaviour
         msgMoveUp.EmojiMoveUp();
 
         //set transparency
-        SetImageOpaque(messageReplyEmojiLaugh.Find("ChatBubble_Body"));
-        SetImageOpaque(messageReplyEmojiLaugh.Find("ChatBubble_Anchor"));
-        SetTextOpaque(messageReplyEmojiLaugh.Find("Text_Time"));
-        SetTextOpaque(messageReplyEmojiLaugh.Find("EmojiLaugh"));
+        msgMoveUp.SetImageOpaque(messageReplyEmojiLaugh.Find("ChatBubble_Body"));
+        msgMoveUp.SetImageOpaque(messageReplyEmojiLaugh.Find("ChatBubble_Anchor"));
+        msgMoveUp.SetTextOpaque(messageReplyEmojiLaugh.Find("Text_Time"));
+        msgMoveUp.SetTextOpaque(messageReplyEmojiLaugh.Find("EmojiLaugh"));
 
         //animator.SetTrigger("sendEmoji");
         //animatorSendingMessage.SetTrigger("sendMessage");
@@ -90,26 +90,6 @@ public class EmojiClickedLaughing : MonoBehaviour
         fireflyInstructions.gameObject.SetActive(false);
         fireflyScenario.gameObject.SetActive(true);
         
-    }
-
-    private void SetImageOpaque(Transform transform)
-    {
-        Image image = transform.GetComponent<Image>();
-        Color imageColor;
-
-        imageColor = image.color;
-        imageColor.a = 1f;
-        image.color = imageColor;
-    }
-
-    private void SetTextOpaque(Transform transform)
-    {
-        TMP_Text text = transform.GetComponent<TMP_Text>();
-        Color imageColor;
-
-        imageColor = text.color;
-        imageColor.a = 1f;
-        text.color = imageColor;
     }
 }
     

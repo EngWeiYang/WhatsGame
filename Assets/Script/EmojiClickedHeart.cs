@@ -27,6 +27,7 @@ public class EmojiClickedHeart : MonoBehaviour
 
     public Transform MessageReply_EmojiHeart;
 
+    public MsgMoveUp msgMoveUp;
 
     void Start()
     {
@@ -62,30 +63,10 @@ public class EmojiClickedHeart : MonoBehaviour
         heartEmojiColorInText.a = 1f;
         emojiHeartinMessage.color = heartEmojiColorInText;
 
-        SetImageOpaque(MessageReply_EmojiHeart.Find("ChatBubble_Anchor"));
-        SetImageOpaque(MessageReply_EmojiHeart.Find("ChatBubble_Body"));
-        SetTextOpaque(MessageReply_EmojiHeart.Find("Text_Time"));
-        SetImageOpaque(MessageReply_EmojiHeart.Find("EmojiHeart"));
-    }
-
-    private void SetImageOpaque(Transform transform)
-    {
-        Image image = transform.GetComponent<Image>();
-        Color imageColor;
-
-        imageColor = image.color;
-        imageColor.a = 1f;
-        image.color = imageColor;
-    }
-
-    private void SetTextOpaque(Transform transform)
-    {
-        TMP_Text text = transform.GetComponent<TMP_Text>();
-        Color imageColor;
-
-        imageColor = text.color;
-        imageColor.a = 1f;
-        text.color = imageColor;
+        msgMoveUp.SetImageOpaque(MessageReply_EmojiHeart.Find("ChatBubble_Anchor"));
+        msgMoveUp.SetImageOpaque(MessageReply_EmojiHeart.Find("ChatBubble_Body"));
+        msgMoveUp.SetTextOpaque(MessageReply_EmojiHeart.Find("Text_Time"));
+        msgMoveUp.SetImageOpaque(MessageReply_EmojiHeart.Find("EmojiHeart"));
     }
 
     void EnableScenarioFlow()

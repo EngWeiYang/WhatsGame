@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
+using System.Runtime.InteropServices;
 
 public class MsgMoveUp : MonoBehaviour
 {
@@ -16,17 +18,41 @@ public class MsgMoveUp : MonoBehaviour
     public GameObject reply;
     private RectTransform replyRT;
 
+    public GameObject gifMsg;
+    private RectTransform gifMsgRT;
+
+    public GameObject gifReply;
+    private RectTransform gifReplyRT;
+
     private bool screenTooSmall = false;
 
-    public float offset;
-    public float offset2;
+    public float LaughingEmojiOffset;
+    public float LaughingEmojiOffset2;
+    public float LaughingEmojiOffset3;
+    public float gifReplyOffset;
+    public float gifMsgOffset;
 
     public Transform mobileDetectorSquare;
+
+    #region WebGL is on mobile check
+
+    [DllImport("__Internal")]
+    private static extern bool IsMobileBrowser();
+
+    public bool isMobileBrowser()
+    {
+#if !UNITY_EDITOR && UNITY_WEBGL
+            return IsMobileBrowser();
+#endif
+        return false;
+    }
+
+    #endregion
 
     // Start is called before the first frame update
     void Start()
     {
-        if (Platform.IsMobileBrowser())
+        if (isMobileBrowser() == true)
         {
             mobileDetectorSquare.GetComponent<Image>().color = Color.green;
         }
@@ -38,6 +64,10 @@ public class MsgMoveUp : MonoBehaviour
         inputBoxCollider = inputBox.GetComponent<BoxCollider2D>();
 
         replyRT = reply.GetComponent<RectTransform>();
+
+        gifReplyRT = gifReply.GetComponent<RectTransform>();
+
+        gifMsgRT = gifMsg.GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -54,7 +84,7 @@ public class MsgMoveUp : MonoBehaviour
             chatRT.anchorMin = new Vector2(0, 0f);
             chatRT.anchorMax = new Vector2(0, 0f);
 
-            chatRT.anchoredPosition = new Vector2(chatRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + offset);
+            chatRT.anchoredPosition = new Vector2(chatRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + LaughingEmojiOffset);
         }
     }
 
@@ -62,11 +92,13 @@ public class MsgMoveUp : MonoBehaviour
     {
         if (screenTooSmall)
         {
-            Debug.Log("H");
+            //Change Anchor
+            replyRT.anchorMin = new Vector2(1, 0f);
+            replyRT.anchorMax = new Vector2(1, 0f);
 
-            replyRT.anchoredPosition = new Vector2(replyRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + offset2);
+            replyRT.anchoredPosition = new Vector2(replyRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + LaughingEmojiOffset2);
 
-            chatRT.anchoredPosition = new Vector2(chatRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + offset - offset2);
+            chatRT.anchoredPosition = new Vector2(chatRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + LaughingEmojiOffset2 + LaughingEmojiOffset3);
         }
     }
 
@@ -74,7 +106,52 @@ public class MsgMoveUp : MonoBehaviour
     {
         if (screenTooSmall)
         {
-            Debug.Log("H");
+            //Change Anchors
+            gifReplyRT.anchorMin = new Vector2(1, 0f);
+            gifReplyRT.anchorMax = new Vector2(1, 0f);
+
+            gifMsgRT.anchorMin = new Vector2(0, 0f);
+            gifMsgRT.anchorMax = new Vector2(0, 0f);
+
+            //Move gif reply above input box
+            gifReplyRT.anchoredPosition = new Vector2(gifReplyRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + gifReplyOffset);
+
+            //Move msg above reply
+            gifMsgRT.anchoredPosition = new Vector2(gifMsgRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + gifReplyOffset + gifMsgOffset);
         }
+
+        //Set transparency
+        SetImageOpaque(gifReply.transform.Find("ChatBubble_Tail"));
+        SetImageOpaque(gifReply.transform.Find("ChatBubble_Body"));
+        SetImageOpaque(gifReply.transform.Find("ChatBubble_Body").Find("GoodMorning_GIF"));
+        SetTextOpaque(gifReply.transform.Find("ChatBubble_Body").Find("Text_Time"));
+    }
+
+    public void StickerMoveUp()
+    {
+        if (screenTooSmall)
+        {
+
+        }
+    }
+
+    public void SetImageOpaque(Transform transform)
+    {
+        Image image = transform.GetComponent<Image>();
+        Color imageColor;
+
+        imageColor = image.color;
+        imageColor.a = 1f;
+        image.color = imageColor;
+    }
+
+    public void SetTextOpaque(Transform transform)
+    {
+        TMP_Text text = transform.GetComponent<TMP_Text>();
+        Color imageColor;
+
+        imageColor = text.color;
+        imageColor.a = 1f;
+        text.color = imageColor;
     }
 }
