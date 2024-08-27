@@ -56,6 +56,10 @@ public class MsgMoveUp : MonoBehaviour
         {
             mobileDetectorSquare.GetComponent<Image>().color = Color.green;
         }
+        else
+        {
+            mobileDetectorSquare.GetComponent<Image>().color = Color.cyan;
+        }
 
         chatRT = chat.GetComponent<RectTransform>();
         inputBoxRT = inputBox.GetComponent<RectTransform>();
