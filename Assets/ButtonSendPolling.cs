@@ -23,6 +23,8 @@ public class ButtonSendPolling : MonoBehaviour
     public GameObject hintIndicatorbuttonSend;
     //public GameObject thisButton;
 
+    public MsgMoveUp msgMoveUp;
+
     public LevelInstructionManager levelInstructionManager;
     private bool isCalled = false;
     
@@ -67,6 +69,8 @@ public class ButtonSendPolling : MonoBehaviour
 
         // Update dynamic texts with the collected user inputs
         UpdateDynamicTexts(userInputs);
+
+        msgMoveUp.PollMoveUp();
     }
 
     public void UpdateDynamicTexts(List<string> inputs)

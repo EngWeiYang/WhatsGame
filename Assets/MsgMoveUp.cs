@@ -30,6 +30,12 @@ public class MsgMoveUp : MonoBehaviour
     public GameObject stickerReply;
     private RectTransform stickerReplyRT;
 
+    public GameObject pollMsgs;
+    private RectTransform pollMsgsRT;
+
+    public GameObject pollReply;
+    private RectTransform pollReplyRT;
+
     private bool screenTooSmall = false;
 
     public float LaughingEmojiOffset;
@@ -40,6 +46,9 @@ public class MsgMoveUp : MonoBehaviour
 
     public float stickerMsgOffset;
     public float stickerReplyOffset;
+
+    public float pollMsgsOffset;
+    public float pollReplyOffset;
 
     public Transform mobileDetectorSquare;
 
@@ -83,6 +92,9 @@ public class MsgMoveUp : MonoBehaviour
 
         stickerMsgRT = stickerMsg.GetComponent<RectTransform>();
         stickerReplyRT = stickerReply.GetComponent<RectTransform>();
+
+        pollMsgsRT = pollMsgs.GetComponent<RectTransform>();
+        pollReplyRT = pollReply.GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -154,6 +166,22 @@ public class MsgMoveUp : MonoBehaviour
 
             stickerReplyRT.anchoredPosition = new Vector2(stickerReplyRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + stickerReplyOffset);
             stickerMsgRT.anchoredPosition = new Vector2(stickerMsgRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + stickerReplyOffset + stickerMsgOffset);
+        }
+    }
+
+    public void PollMoveUp()
+    {
+        if (screenTooSmall)
+        {
+            pollReplyRT.anchorMin = new Vector2(1, 0f);
+            pollReplyRT.anchorMax = new Vector2(1, 0f);
+
+            pollMsgsRT.anchorMin = new Vector2(0, 0f);
+            pollMsgsRT.anchorMax = new Vector2(0, 0f);
+
+            pollReplyRT.anchoredPosition = new Vector2(pollReplyRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + pollReplyOffset);
+
+            pollMsgsRT.anchoredPosition = new Vector2(pollMsgsRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + pollMsgsOffset);
         }
     }
 
