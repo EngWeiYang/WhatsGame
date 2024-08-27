@@ -24,6 +24,12 @@ public class MsgMoveUp : MonoBehaviour
     public GameObject gifReply;
     private RectTransform gifReplyRT;
 
+    public GameObject stickerMsg;
+    private RectTransform stickerMsgRT;
+
+    public GameObject stickerReply;
+    private RectTransform stickerReplyRT;
+
     private bool screenTooSmall = false;
 
     public float LaughingEmojiOffset;
@@ -32,17 +38,20 @@ public class MsgMoveUp : MonoBehaviour
     public float gifReplyOffset;
     public float gifMsgOffset;
 
+    public float stickerMsgOffset;
+    public float stickerReplyOffset;
+
     public Transform mobileDetectorSquare;
 
     #region WebGL is on mobile check
 
     [DllImport("__Internal")]
-    private static extern bool IsMobileBrowser();
+    private static extern bool IsMobile();
 
-    public bool isMobileBrowser()
+    public bool isMobile()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
-            return IsMobileBrowser();
+            return IsMobile();
 #endif
         return false;
     }
@@ -52,7 +61,7 @@ public class MsgMoveUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (isMobileBrowser() == true)
+        if (isMobile() == true)
         {
             mobileDetectorSquare.GetComponent<Image>().color = Color.green;
         }
@@ -69,9 +78,11 @@ public class MsgMoveUp : MonoBehaviour
 
         replyRT = reply.GetComponent<RectTransform>();
 
+        gifMsgRT = gifMsg.GetComponent<RectTransform>();
         gifReplyRT = gifReply.GetComponent<RectTransform>();
 
-        gifMsgRT = gifMsg.GetComponent<RectTransform>();
+        stickerMsgRT = stickerMsg.GetComponent<RectTransform>();
+        stickerReplyRT = stickerReply.GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -135,7 +146,14 @@ public class MsgMoveUp : MonoBehaviour
     {
         if (screenTooSmall)
         {
+            stickerMsgRT.anchorMin = new Vector2(0, 0f);
+            stickerMsgRT.anchorMax = new Vector2(0, 0f);
 
+            stickerReplyRT.anchorMin = new Vector2(1, 0f);
+            stickerReplyRT.anchorMax = new Vector2(1, 0f);
+
+            stickerReplyRT.anchoredPosition = new Vector2(stickerReplyRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + stickerReplyOffset);
+            stickerMsgRT.anchoredPosition = new Vector2(stickerMsgRT.anchoredPosition.x, inputBoxRT.anchoredPosition.y + stickerReplyOffset + stickerMsgOffset);
         }
     }
 

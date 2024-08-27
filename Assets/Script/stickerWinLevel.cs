@@ -11,6 +11,9 @@ public class stickerWinLevel : MonoBehaviour
     public GameObject firefly;
     public Button levelCompleteEnable;
     private CoroutineManager coroutineManager;
+
+    public MsgMoveUp msgMoveUp;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -22,6 +25,8 @@ public class stickerWinLevel : MonoBehaviour
 
     void EnableLevelCompletion()
     {
+        msgMoveUp.StickerMoveUp();
+
         // Enable the level complete screen and trigger the animatio
         coroutineManager.StartManagedCoroutine(WinScreenCoroutine());
         hintIndicator.gameObject.SetActive(false);
