@@ -12,35 +12,39 @@ public class CallingWithCoroutine : MonoBehaviour
     public Button callButton;
     private CoroutineManager coroutineManager;
     public GameObject profilepic;
-    private SlideAnim slideAnim;
 
     public LevelInstructionManager levelInstructionManager;
+
+    private ScaleToCenter scale;
+
     void Start()
     {
         callButton.onClick.AddListener(CallingandAnswering);
         GameObject coroutineManagerObject = GameObject.Find("CoroutineManager");
         coroutineManager = coroutineManagerObject.GetComponent<CoroutineManager>();
-        slideAnim = profilepic.GetComponent<SlideAnim>();
+        scale = profilepic.GetComponent<ScaleToCenter>();
     }
 
-    // Update is called once per frame
     void CallingandAnswering()
     {
         fireflyhelp.SetActive(false);
         screenRinging.SetActive(true);
         coroutineManager.StartManagedCoroutine(FromRingingToAnswering());
     }
-    IEnumerator FromRingingToAnswering()
+
+    private IEnumerator FromRingingToAnswering()
     {
         // Wait for the animation to finish (ADD IN AUDIO LATER)
         yield return new WaitForSeconds(5f);
-        slideAnim.TriggerSlideAnimation();
+
+        // Start scaling to the center of the screen
+        scale.StartScaling();
+
         yield return new WaitForSeconds(0.9f);
         screenRinging.SetActive(false);
         screenAnswer.SetActive(true);
         fireflyhelp.SetActive(false);
         fireflyhelp2.SetActive(true);
         levelInstructionManager.NextInstruction();
-
     }
 }

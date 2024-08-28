@@ -42,10 +42,10 @@ public class LevelInstructionManager : MonoBehaviour
     .Where(instr => instr.levelId == LevelSelect.currLevel)
     .ToArray();
 
-        foreach (var instruction in levelInstructions)
-        {
-            Debug.Log($"Instruction ID: {instruction.instructionId}, En: {instruction.En}, Cn: {instruction.Cn}");
-        }
+        // foreach (var instruction in levelInstructions)
+        // {
+        //     Debug.Log($"Instruction ID: {instruction.instructionId}, En: {instruction.En}, Cn: {instruction.Cn}");
+        // }
     }
 
     private void Update()
