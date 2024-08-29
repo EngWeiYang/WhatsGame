@@ -27,6 +27,9 @@ public class CheckContact : MonoBehaviour
     public GameObject levelCompleteScreen;
     public Animator levelCompleteAnimator;
     public Button levelCompleteEnable;
+    public Button checkInput;
+    public LevelInstructionManager levelInstructionManager;
+    public SlideAnim slideAnim;
     void Start()
     {
         // Set the Phone input field to only accept numeric values
@@ -56,6 +59,8 @@ public class CheckContact : MonoBehaviour
         Phone.onValueChanged.AddListener(CheckAllFieldsFilled);
 
         levelCompleteEnable.onClick.AddListener(WinScreenAfterInputsAreFilled);
+        checkInput.onClick.AddListener(CheckInput);
+
     }
     public void CheckInput()
     {
@@ -177,6 +182,8 @@ public class CheckContact : MonoBehaviour
         {
             // Enable the level complete screen and trigger the animatio
             coroutineManager.StartManagedCoroutine(WinScreenCoroutine());
+            slideAnim.TriggerSlideAnimation();
+            levelInstructionManager.NextInstruction();
         }
     }
     IEnumerator WinScreenCoroutine()

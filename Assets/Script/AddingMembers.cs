@@ -20,13 +20,13 @@ public class AddingMembers : MonoBehaviour
     public TMP_Text[] namesRef;
     bool AnnieClicked;
     bool ThommasClicked;
-    public GameObject currentScreen;
-    public GameObject groupDetailsScreen;
     public TMP_Text[] targetScreenTexts;
     public Button nextButton;
     public GameObject HintIndicatorAnnie;
     public GameObject HintIndicatorThommas;
     public GameObject HintIndicatorBtnNext;
+    public SlideAnim_NoSetInActive slideanim;
+    public LevelInstructionManager levelinstructionmanager;
 
     private void Start()
     {
@@ -137,13 +137,12 @@ public class AddingMembers : MonoBehaviour
             HintIndicatorBtnNext.SetActive(true);
             // Call the UpdateDynamicTexts method
             UpdateDynamicTexts(chatmembers);
-            currentScreen.SetActive(false);
-            groupDetailsScreen.SetActive(true);
-
+            slideanim.TriggerSlideAnimation();
+            levelinstructionmanager.NextInstruction();
         }
         else
         {
-            Debug.Log("You must select exactly 2 contacts to proceed.");
+            Debug.Log("Not enough ppl");
         }
     }
 
