@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-using System.Runtime.InteropServices;
 
 public class MsgMoveUp : MonoBehaviour
 {
@@ -50,35 +49,9 @@ public class MsgMoveUp : MonoBehaviour
     public float pollMsgsOffset;
     public float pollReplyOffset;
 
-    public Transform mobileDetectorSquare;
-
-    #region WebGL is on mobile check
-
-    [DllImport("__Internal")]
-    private static extern bool IsMobile();
-
-    public bool isMobile()
-    {
-#if !UNITY_EDITOR && UNITY_WEBGL
-            return IsMobile();
-#endif
-        return false;
-    }
-
-    #endregion
-
     // Start is called before the first frame update
     void Start()
     {
-        if (isMobile() == true)
-        {
-            mobileDetectorSquare.GetComponent<Image>().color = Color.green;
-        }
-        else
-        {
-            mobileDetectorSquare.GetComponent<Image>().color = Color.cyan;
-        }
-
         chatRT = chat.GetComponent<RectTransform>();
         inputBoxRT = inputBox.GetComponent<RectTransform>();
 
