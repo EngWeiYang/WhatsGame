@@ -38,7 +38,7 @@ public class CallingWithCoroutine : MonoBehaviour
         yield return new WaitForSeconds(5f);
 
         // Start scaling to the center of the screen
-        scale.StartScaling();
+        //scale.StartScaling();
 
         yield return new WaitForSeconds(0.9f);
         screenRinging.SetActive(false);
