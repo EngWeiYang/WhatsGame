@@ -8,6 +8,7 @@ public class WinLevelWithCoroutine : MonoBehaviour
     public GameObject levelCompleteScreen;
     public Animator levelCompleteAnimator;
     public Button levelCompleteEnable;
+    public Animator levelCompleteCNAnimator;
     private CoroutineManager coroutineManager;
     // Start is called before the first frame update
     private void Start()
@@ -29,6 +30,8 @@ public class WinLevelWithCoroutine : MonoBehaviour
         yield return new WaitForSeconds(1f);
         levelCompleteScreen.SetActive(true);
         levelCompleteAnimator.SetTrigger("LevelCompleted");
-        
+        levelCompleteCNAnimator.SetTrigger("LevelCompleted");
+
+
     }
 }

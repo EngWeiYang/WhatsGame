@@ -6,6 +6,7 @@ public class stickerWinLevel : MonoBehaviour
 {
     public GameObject levelCompleteScreen;
     public Animator levelCompleteAnimator;
+    public Animator levelCompleteCNAnimator;
     public GameObject hintIndicator;
     public GameObject messageStickerReply;
     public GameObject firefly;
@@ -39,6 +40,7 @@ public class stickerWinLevel : MonoBehaviour
         yield return new WaitForSeconds(1f);
         levelCompleteScreen.SetActive(true);
         levelCompleteAnimator.SetTrigger("LevelCompleted");
+        levelCompleteCNAnimator.SetTrigger("LevelCompleted");
 
     }
 }

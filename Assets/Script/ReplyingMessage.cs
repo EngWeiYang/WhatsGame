@@ -17,6 +17,7 @@ public class ReplyingMessage : MonoBehaviour, ISelectHandler
     public GameObject HintIndicatorInputText;
     public GameObject levelCompleteScreen;
     public Animator levelCompleteAnimator;
+    public Animator levelCompleteCNAnimator;
     public Button levelCompleteEnable;
     public GameObject fireflyStep2;
     public GameObject fireflyStep3;
@@ -62,6 +63,7 @@ public class ReplyingMessage : MonoBehaviour, ISelectHandler
         yield return new WaitForSeconds(1f);
         levelCompleteScreen.SetActive(true);
         levelCompleteAnimator.SetTrigger("LevelCompleted");
+        levelCompleteCNAnimator.SetTrigger("LevelCompleted");
     }
     void SubmitText(string text)
     {

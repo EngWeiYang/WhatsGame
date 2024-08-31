@@ -15,6 +15,7 @@ public class ButtonSendPolling : MonoBehaviour
     public GameObject pollingText;
     public GameObject levelCompleteScreen;
     public Animator levelCompleteAnimator;
+    public Animator levelCompleteCNAnimator;
     public Button levelCompleteEnable;
     private CoroutineManager coroutineManager;
     public GameObject hintIndicatorQuestion;
@@ -170,6 +171,7 @@ public class ButtonSendPolling : MonoBehaviour
             // Enable the level complete screen and trigger the animatio
             coroutineManager.StartManagedCoroutine(WinScreenCoroutine());
             slideanim.TriggerSlideDownAnimation();
+            levelInstructionManager.NextInstruction();
         }
     }
     IEnumerator WinScreenCoroutine()
@@ -178,6 +180,7 @@ public class ButtonSendPolling : MonoBehaviour
         yield return new WaitForSeconds(2f);
         levelCompleteScreen.SetActive(true);
         levelCompleteAnimator.SetTrigger("LevelCompleted");
+        levelCompleteCNAnimator.SetTrigger("LevelCompleted");
 
     }
 }

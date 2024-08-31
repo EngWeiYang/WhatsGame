@@ -26,10 +26,12 @@ public class CheckContact : MonoBehaviour
     private CoroutineManager coroutineManager;
     public GameObject levelCompleteScreen;
     public Animator levelCompleteAnimator;
+    public Animator levelCompleteCNAnimator;
     public Button levelCompleteEnable;
     public Button checkInput;
     public LevelInstructionManager levelInstructionManager;
     public SlideAnim slideAnim;
+    
     void Start()
     {
         // Set the Phone input field to only accept numeric values
@@ -192,6 +194,7 @@ public class CheckContact : MonoBehaviour
         yield return new WaitForSeconds(1f);
         levelCompleteScreen.SetActive(true);
         levelCompleteAnimator.SetTrigger("LevelCompleted");
+        levelCompleteCNAnimator.SetTrigger("LevelCompleted");
 
     }
     void OnFirstNameUnSelect(string text)
