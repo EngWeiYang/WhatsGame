@@ -5,6 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class LevelComplete_YL : MonoBehaviour
 {
+    public GameObject enPanel;
+    public GameObject cnPanel;
+
+    public void Start()
+    {
+        if (Checker.isEnglish)
+        {
+            enPanel.SetActive(true);
+            cnPanel.SetActive(false);
+        }
+        else
+        {
+            enPanel.SetActive(false);
+            cnPanel.SetActive(true);
+        }
+    }
     // Called when the player clicks the "Next Level" button
     public void NextLevelButton()
     {
