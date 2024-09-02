@@ -27,6 +27,8 @@ public class CheckContact : MonoBehaviour
     public GameObject levelCompleteScreen;
     public Animator levelCompleteAnimator;
     public Animator levelCompleteCNAnimator;
+    public Animator lastLevelAnimator;
+    public Animator lastlevelCNAnimator;
     public Button levelCompleteEnable;
     public Button checkInput;
     public LevelInstructionManager levelInstructionManager;
@@ -195,6 +197,8 @@ public class CheckContact : MonoBehaviour
         levelCompleteScreen.SetActive(true);
         levelCompleteAnimator.SetTrigger("LevelCompleted");
         levelCompleteCNAnimator.SetTrigger("LevelCompleted");
+        lastLevelAnimator.SetTrigger("LevelCompleted");
+        lastlevelCNAnimator.SetTrigger("LevelCompleted");
 
     }
     void OnFirstNameUnSelect(string text)

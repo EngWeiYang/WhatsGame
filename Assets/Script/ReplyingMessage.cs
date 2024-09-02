@@ -18,6 +18,8 @@ public class ReplyingMessage : MonoBehaviour, ISelectHandler
     public GameObject levelCompleteScreen;
     public Animator levelCompleteAnimator;
     public Animator levelCompleteCNAnimator;
+    public Animator lastLevelAnimator;
+    public Animator lastlevelCNAnimator;
     public Button levelCompleteEnable;
     public GameObject fireflyStep2;
     public GameObject fireflyStep3;
@@ -64,6 +66,8 @@ public class ReplyingMessage : MonoBehaviour, ISelectHandler
         levelCompleteScreen.SetActive(true);
         levelCompleteAnimator.SetTrigger("LevelCompleted");
         levelCompleteCNAnimator.SetTrigger("LevelCompleted");
+        lastLevelAnimator.SetTrigger("LevelCompleted");
+        lastlevelCNAnimator.SetTrigger("LevelCompleted");
     }
     void SubmitText(string text)
     {

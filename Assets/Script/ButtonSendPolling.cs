@@ -16,6 +16,8 @@ public class ButtonSendPolling : MonoBehaviour
     public GameObject levelCompleteScreen;
     public Animator levelCompleteAnimator;
     public Animator levelCompleteCNAnimator;
+    public Animator lastLevelAnimator;
+    public Animator lastLevelCNAnimator;
     public Button levelCompleteEnable;
     private CoroutineManager coroutineManager;
     public GameObject hintIndicatorQuestion;
@@ -181,6 +183,8 @@ public class ButtonSendPolling : MonoBehaviour
         levelCompleteScreen.SetActive(true);
         levelCompleteAnimator.SetTrigger("LevelCompleted");
         levelCompleteCNAnimator.SetTrigger("LevelCompleted");
+        lastLevelAnimator.SetTrigger("LevelCompleted");
+        lastLevelCNAnimator.SetTrigger("LevelCompleted");
 
     }
 }
