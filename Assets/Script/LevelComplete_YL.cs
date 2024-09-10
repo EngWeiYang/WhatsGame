@@ -7,18 +7,45 @@ public class LevelComplete_YL : MonoBehaviour
 {
     public GameObject enPanel;
     public GameObject cnPanel;
+    public GameObject enLastLevel;
+    public GameObject cnLastLevel;
 
     public void Start()
     {
         if (Checker.isEnglish)
         {
-            enPanel.SetActive(true);
-            cnPanel.SetActive(false);
+            if (LevelSelect.currLevel == 12)
+            {
+                enLastLevel.SetActive(true);
+                cnLastLevel.SetActive(false);
+                enPanel.SetActive(false);
+                cnPanel.SetActive(false);
+            }
+            else
+            {
+                enLastLevel.SetActive(false);
+                cnLastLevel.SetActive(false);
+                enPanel.SetActive(true);
+                cnPanel.SetActive(false);
+            }
+            
         }
         else
         {
-            enPanel.SetActive(false);
-            cnPanel.SetActive(true);
+            if (LevelSelect.currLevel == 12)
+            {
+                enLastLevel.SetActive(false);
+                cnLastLevel.SetActive(true);
+                enPanel.SetActive(false);
+                cnPanel.SetActive(false);
+            }
+            else
+            {
+                enLastLevel.SetActive(false);
+                cnLastLevel.SetActive(false);
+                enPanel.SetActive(false);
+                cnPanel.SetActive(true);
+            }
         }
     }
     // Called when the player clicks the "Next Level" button
