@@ -26,7 +26,8 @@ public class InstructionDisplay : MonoBehaviour
 {
     // UI elements assigned in the Inspector
     public TextMeshProUGUI instructionText; // Text component to display the instruction
-    public Button nextButton; // Button to advance to the next instruction
+    public Button nextButtonEN; // Button to advance to the next instruction
+    public Button nextButtonCN; // Button to advance to the next instruction
     public TextAsset jsonFile; // JSON file containing the instructions data
     public GameObject panel; // Panel containing the instruction text and button
 
@@ -52,7 +53,8 @@ public class InstructionDisplay : MonoBehaviour
         }
 
         // Add a listener to the button to call the NextInstruction method when clicked
-        nextButton.onClick.AddListener(NextInstruction);
+        nextButtonEN.onClick.AddListener(NextInstruction);
+        nextButtonCN.onClick.AddListener(NextInstruction);
     }
 
     void Update()
